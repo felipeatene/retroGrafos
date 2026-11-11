@@ -1,0 +1,15 @@
+{
+  "generic_tags": [
+    "sistema",
+    "problema",
+    "lentidao",
+    "erro",
+    "falha",
+    "incidente",
+    "suporte",
+    "computador",
+    "rede",
+    "indisponibilidade"
+  ],
+  "recurrence_threshold": 4
+}
