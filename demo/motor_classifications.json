@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "items": [
+    {
+      "incident_sys_id": "a83820b58f723300e7e16c7827bdeed1",
+      "tags": ["portal_fornecedor", "erro_envio_nf", "centralizada", "limpeza_cache_kb"]
+    },
+    {
+      "incident_sys_id": "a83820b58f723300e7e16c7827bdeed2",
+      "tags": ["portal_fornecedor", "erro_envio_nf", "centralizada", "limpeza_cache_kb"]
+    },
+    {
+      "incident_sys_id": "a83820b58f723300e7e16c7827bdeed3",
+      "tags": ["portal_fornecedor", "erro_envio_nf", "centralizada", "limpeza_cache_kb"]
+    },
+    {
+      "incident_sys_id": "a83820b58f723300e7e16c7827bdeed4",
+      "tags": ["portal_fornecedor", "erro_envio_nf", "centralizada", "limpeza_cache_kb"]
+    },
+    {
+      "incident_sys_id": "b94931c68f723300e7e16c7827bdeef1",
+      "tags": ["checkfacil", "falha_geracao_pdf", "vistoria_devolucao"]
+    },
+    {
+      "incident_sys_id": "b94931c68f723300e7e16c7827bdeef2",
+      "tags": ["checkfacil", "falha_geracao_pdf", "vistoria_devolucao"]
+    },
+    {
+      "incident_sys_id": "b94931c68f723300e7e16c7827bdeef3",
+      "tags": ["checkfacil", "falha_geracao_pdf", "vistoria_devolucao"]
+    }
+  ]
+}

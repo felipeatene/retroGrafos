@@ -1,0 +1,73 @@
+{
+  "info": {
+    "name": "RetroGrafos - PDI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "instancia",
+      "value": "https://exemplo.service-now.com"
+    },
+    {
+      "key": "webhook_teams",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Ler incidentes de demonstração",
+      "request": {
+        "method": "GET",
+        "url": "{{instancia}}/api/now/table/incident?sysparm_fields=sys_id,number,u_system_name&sysparm_limit=10",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Sincronizar tags de demonstração",
+      "request": {
+        "method": "POST",
+        "url": "{{instancia}}/api/global/retrografos/sync_tags",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"items\": [\n    {\n      \"incident_sys_id\": \"a83820b58f723300e7e16c7827bdeed1\",\n      \"add_tags\": [\n        \"erro_envio_nf\"\n      ],\n      \"remove_tags\": [\n        \"sistema\"\n      ]\n    }\n  ]\n}"
+        }
+      }
+    },
+    {
+      "name": "Enviar cartão de demonstração",
+      "request": {
+        "method": "POST",
+        "url": "{{webhook_teams}}",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"type\": \"message\",\n  \"attachments\": [\n    {\n      \"contentType\": \"application/vnd.microsoft.card.adaptive\",\n      \"content\": {\n        \"type\": \"AdaptiveCard\",\n        \"version\": \"1.4\",\n        \"body\": [\n          {\n            \"type\": \"TextBlock\",\n            \"text\": \"RetroGrafos: recorrência de demonstração\",\n            \"wrap\": true\n          }\n        ]\n      }\n    }\n  ]\n}"
+        }
+      }
+    }
+  ]
+}

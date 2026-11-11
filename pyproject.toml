@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "retrografos"
+version = "1.0.0"
+description = "Motor de sincronizacao semantica de tags ServiceNow, deteccao de recorrencias, Adaptive Cards no Teams e exportacao de grafos para Obsidian."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Felipe Atene" }]
+dependencies = []
+
+[project.scripts]
+retrografos = "retrografos.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
