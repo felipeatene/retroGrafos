@@ -10,7 +10,7 @@
 <body>
   <header class="topo vidro">
     <div class="marca">
-      <svg class="sinal" viewBox="0 0 36 36" aria-hidden="true"><path d="M10 25 18 10l8 15M10 25h16"/><circle cx="18" cy="10" r="3"/><circle cx="10" cy="25" r="3"/><circle cx="26" cy="25" r="3"/></svg>
+      <img id="lino" class="lino" src="assets/lino-avatar.webp" width="40" height="40" alt="Lino">
       <h1>Lino</h1>
     </div>
     <div class="topo-acoes">
@@ -23,24 +23,24 @@
   </header>
 
   <main>
-    <section id="vista-chamado" class="chamado" aria-labelledby="contexto-titulo">
+    <section id="vista-chamado" class="chamado cartao" aria-labelledby="contexto-titulo">
       <div class="chamado-intro">
         <div class="chamado-texto">
           <p id="contexto-numero" class="numero" hidden></p>
           <h2 id="contexto-titulo" tabindex="-1">Categorização de incidentes</h2>
           <p id="contexto-texto" class="texto" role="status">Verificando a aba ativa…</p>
         </div>
-        <img id="lino" class="lino" src="assets/lino-avatar.webp" width="75" height="75" alt="Lino">
       </div>
       <div class="acoes">
         <button type="button" id="autorizar" class="primario" hidden>Conectar ao ServiceNow</button>
         <button type="button" id="entrar" class="primario" hidden>Entrar no ServiceNow</button>
-        <button type="button" id="verificar" hidden>Verificar novamente</button>
-        <button type="button" id="legado" hidden>Abrir problemas e mudanças</button>
+        <button type="button" id="verificar" class="secundario" hidden>Verificar novamente</button>
+        <button type="button" id="legado" class="secundario" hidden>Abrir problemas e mudanças</button>
       </div>
-      <fieldset id="selecao" hidden><legend>Selecione os incidentes desta página</legend><div id="candidatos" class="candidatos"></div></fieldset>
+      <fieldset id="selecao" class="lista-selecao" hidden><legend>Selecione os incidentes desta página</legend><div id="candidatos" class="candidatos"></div></fieldset>
       <p id="selecionados" class="secundario selecao-resumo"></p>
       <p id="resultado-status" class="texto resultado-status" role="status"></p>
+      <div id="resultado-barras" class="resultado-barras" hidden></div>
       <details id="resultados" class="resultados" hidden><summary>Detalhes da classificação</summary><ul id="resultado-lista"></ul></details>
     </section>
 
@@ -91,10 +91,10 @@
     <p id="detalhe-contexto" class="texto"></p>
     <ul id="detalhe-incidentes" class="lista-linhas"></ul>
     <button type="button" id="mais-incidentes" class="discreto" hidden>Mostrar mais incidentes</button>
-    <div class="acoes"><button type="button" id="ignorar">Ignorar nas próximas análises</button><button type="button" id="prever" class="perigo">Remover dos chamados</button></div>
+    <div class="acoes dialogo-rodape"><button type="button" id="ignorar" class="secundario">Ignorar nas próximas análises</button><button type="button" id="prever" class="perigo">Remover dos chamados</button></div>
     <section id="impacto" class="impacto" aria-label="Impacto da remoção" hidden>
       <p id="impacto-texto" role="status"></p>
-      <div class="acoes"><button type="button" id="cancelar-remocao">Cancelar</button><button type="button" id="confirmar" class="perigo" hidden>Confirmar remoção</button></div>
+      <div class="acoes dialogo-rodape"><button type="button" id="cancelar-remocao" class="secundario">Cancelar</button><button type="button" id="confirmar" class="perigo" hidden>Confirmar remoção</button></div>
       <ul id="remocao-falhas" class="lista-linhas" hidden></ul>
     </section>
   </dialog>

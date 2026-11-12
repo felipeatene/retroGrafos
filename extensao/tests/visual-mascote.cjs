@@ -39,7 +39,7 @@ const server = http.createServer((req,res) => {
         return [{result:{status:200,dados}}];
       }}};
   },{origin});
-  for (const width of [260,380,900]) {
+  for (const width of [260,380,442,900]) {
     const page=await context.newPage(); page.on('pageerror',e=>errors.push(e.message)); await page.setViewportSize({width,height:850});
     await page.goto(origin+'/painel.html'); await page.getByRole('button',{name:'Classificar e aplicar tags',exact:true}).waitFor();
     await page.screenshot({path:path.join(output,`painel-${width}.png`),fullPage:true});
@@ -83,6 +83,6 @@ const server = http.createServer((req,res) => {
   await page.close();
   const rig=await context.newPage(); await rig.goto(origin+'/assets/mascote/demo.html'); await rig.screenshot({path:path.join(output,'rig.png'),fullPage:true});
   await rig.close(); await browser.close(); server.close();
-  fs.writeFileSync(path.join(output,'browser-results.json'),JSON.stringify({errors,checks:['painel e grafo em 260, 380 e 900 px','navegação por teclado','seleção preservada ao alternar vistas','classificação pela barra','contexto e resultado','minimizar e expandir','ocultar nesta página']},null,2));
+  fs.writeFileSync(path.join(output,'browser-results.json'),JSON.stringify({errors,checks:['painel e grafo em 260, 380, 442 e 900 px','navegação por teclado','seleção preservada ao alternar vistas','classificação pela barra','contexto e resultado','minimizar e expandir','ocultar nesta página']},null,2));
   assert.deepEqual(errors,[]); console.log('Browser checks passed');
 })().catch(e=>{console.error(e);server.close();process.exit(1)});
