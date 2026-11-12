@@ -106,3 +106,7 @@ Lip-sync simples: alternar `data-mouth` entre `talk-a`, `talk-o`, `smile`/`neutr
 - Vários SVGs inline na mesma página repetem ids; funciona (os gradientes resolvem para o primeiro), mas seletores devem ser escopados pelo `<svg>` (`svg.querySelector`). Para isolamento total, use Shadow DOM.
 - O logo "L&CO" é desenhado à mão com traços (sem fonte); a menos de ~80 px vira só uma mancha verde-limão.
 - Animar `data-mouth` exige JS; as poses e loops são CSS puro. `prefers-reduced-motion: reduce` desliga todas as animações/transições do rig (as poses continuam aplicadas de forma estática).
+
+
+## Extensão Lino 0.4
+Presets aditivos: `alert`, `sleep`, `present`, `point-l`; olhos `wide`; boca `surprised`; mãos `holding` e `open-up` reutilizam respectivamente a mão fechada e aberta existentes. Props `clipboard` e `zzz`. `data-detail=low` simplifica a marca e engrossa o contorno; `data-view=head` oculta o corpo (o controlador ajusta o viewBox). IDs novos: `m-logo-small`, `m-clipboard`, `m-sleep-mark`. Nenhum ID ou pivô original removido. Salto limitado a dois ciclos. Piscar disparado pelo controlador em intervalo aleatório de 3–6 s. Vista 3/4 e luz assimétrica dos membros espelhados permanecem adiadas: exigem novas vistas aprovadas do personagem.

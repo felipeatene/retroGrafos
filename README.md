@@ -65,3 +65,7 @@ O código de saída 1 indica falha de aplicação ou de notificação.
    e valide o GET e duas chamadas consecutivas de sincronização.
 4. Após conferir a captura dos metadados, complete o Update Set e exporte
    o XML pela interface do ServiceNow.
+
+## Extensão para Chrome
+
+A extensão sugere tags nativas do ServiceNow a partir de uma lista simulada do SharePoint. Consulte as [instruções de instalação e configuração](extensao/README.md).

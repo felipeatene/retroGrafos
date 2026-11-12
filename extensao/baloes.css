@@ -1,0 +1,46 @@
+:host {
+  --lino-fundo: #101612; --balao-fundo: #1a251d; --lino-texto: #f4f8f2;
+  --lino-suporte: #c1cec0; --lino-metadado: #acbca9; --lino-inativo: #97a894;
+  --lino-acao: #7dde21; --lino-foco: #a8f769; --lino-perigo: #ffe0d9;
+  --balao-borda: #51644e; --balao-contorno: #101612;
+  --lino-controle: #101a13; --lino-raio: 12px;
+  color: var(--lino-texto); font: 14px/1.45 Inter, system-ui, sans-serif;
+  color-scheme: dark; pointer-events: none;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+::selection { background: var(--lino-acao); color: var(--lino-fundo); }
+button, summary { cursor: pointer; }
+button { font: inherit; color: inherit; background: var(--lino-controle); border: 1px solid var(--balao-borda); border-radius: 6px; padding: 6px 8px; min-height: 28px; }
+button:hover { background: #30422f; }
+button:active { background: #3b5036; }
+button:disabled { opacity: .55; cursor: default; }
+:focus-visible { outline: 2px solid var(--lino-foco); outline-offset: 3px; }
+.assistente { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; max-width: min(320px, calc(100vw - 32px)); }
+.balao { pointer-events: auto; width: 100%; padding: 12px; background: var(--balao-fundo); border: 1px solid var(--balao-borda); border-radius: var(--lino-raio); box-shadow: 0 1px 2px rgb(5 10 5 / .22), 0 8px 20px rgb(5 10 5 / .22); outline: 1px solid var(--balao-contorno); max-height: 40vh; overflow: auto; scrollbar-color: var(--balao-borda) var(--balao-fundo); }
+.balao[data-estado=erro] { border-color: #c48677; }
+.balao p { margin: 4px 0 8px; }
+.etapa { font-size: 12px; font-weight: 600; color: var(--lino-suporte); }
+.contador { font-variant-numeric: tabular-nums; color: var(--lino-suporte); font-size: 12px; }
+progress { width: 100%; height: 3px; accent-color: var(--lino-acao); display: block; margin-top: 8px; }
+.chips { display: flex; gap: 4px; flex-wrap: wrap; pointer-events: auto; }
+.chips button { font-size: 11px; border-radius: 6px; }
+.historico { pointer-events: auto; background: var(--balao-fundo); border-radius: 6px; padding: 4px 8px; font-size: 12px; max-height: 30vh; overflow: auto; }
+.historico ol { padding-left: 20px; }
+.base { display: flex; align-items: flex-end; gap: 4px; pointer-events: auto; }
+.personagem { border: 0; padding: 0; background: transparent; touch-action: none; width: 77px; height: 96px; }
+.personagem:hover, .personagem:active { background: transparent; }
+.personagem svg { display: block; width: 100%; height: 100%; transform-origin: 50% 96.9%; }
+.controles { display: flex; flex-wrap: wrap; gap: 4px; max-width: 220px; }
+.controles button { font-size: 11px; }
+.compacto .personagem { width: 40px; height: 40px; }
+.compacto .controles, .compacto .balao, .compacto .chips, .compacto .historico { display: none; }
+.sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.totais { margin: 8px 0 0; }
+.total { display: grid; grid-template-columns: minmax(90px, 1fr) 60px 28px; gap: 8px; align-items: center; font-size: 12px; }
+.total b { font-variant-numeric: tabular-nums; text-align: right; }
+.trilho { height: 4px; background: var(--balao-borda); }
+.trilho i { display: block; height: 4px; background: var(--lino-acao); }
+.total[data-falha=true] .trilho i { background: #e7a18f; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+@media (forced-colors: active) { .balao, button { border: 1px solid CanvasText; } }

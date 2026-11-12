@@ -1,0 +1,16 @@
+/* Legacy layout uses the same Lino surfaces and control hierarchy. */
+:root { --bs-body-font-family: Inter, system-ui, sans-serif; --bs-body-bg: #101612; --bs-body-color: #f4f8f2; --bs-secondary-color: #c1cec0; --bs-primary: #7dde21; --secundaria: #c1cec0; }
+.cabecalho, .barra { background: var(--superficie); color: var(--texto, #f4f8f2); }
+.cabecalho { border-bottom: 1px solid var(--linha); }
+.form-control { background: #101612; color: #f4f8f2; border-color: #51644e; }
+.form-control:focus { background: #101612; color: #f4f8f2; border-color: #a8f769; box-shadow: none; }
+.form-control::placeholder { color: #acbca9; }
+.btn-primary { --bs-btn-color: #101612; --bs-btn-bg: #7dde21; --bs-btn-border-color: #7dde21; --bs-btn-hover-color: #101612; --bs-btn-hover-bg: #a8f769; --bs-btn-hover-border-color: #a8f769; --bs-btn-disabled-bg: #526b44; }
+.btn-outline-secondary, .botao-config { --bs-btn-color: #f4f8f2; --bs-btn-border-color: #51644e; --bs-btn-hover-bg: #30422f; --bs-btn-hover-color: #f4f8f2; }
+.registro a.fw-semibold { color: #a8f769; }
+.registro.card { color: #f4f8f2; }
+.etapas span { color: #c1cec0; }
+.etapas span[aria-current=step] { border-color: #7dde21; }
+#mapa-processamento { padding-block: 16px; }
+.text-muted, .text-secondary { color: #c1cec0 !important; }
+main { max-width: none; }

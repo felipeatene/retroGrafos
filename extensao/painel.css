@@ -1,0 +1,65 @@
+
+:root {
+  --bs-body-font-family: "Source Sans 3", system-ui, sans-serif;
+  --bs-body-bg: #edf3f1;
+  --bs-body-color: #152e2a;
+  --bs-primary: #106350;
+  --linha: #c5d6cf;
+  --secundaria: #405a53;
+}
+body { min-width: 240px; }
+::selection { background: #b8efdb; color: #10382f; }
+.cabecalho { padding: 1rem; background: #102e2a; color: #f4fff9; }
+.cabecalho h1 { font-size: 1.37rem; font-weight: 720; letter-spacing: -.025em; margin: 0; }
+.botao-config { color: #d8f5e9; border-color: #789b90; }
+.botao-config:hover { color: #102e2a; background: #e7f8ef; }
+.etapas { display: flex; flex-wrap: wrap; gap: .3rem .7rem; margin-top: .85rem; font-size: .75rem; }
+.etapas span { color: #b5d4c9; padding-block: .18rem; }
+.etapas span[aria-current=step] { color: #fff; border-bottom: 2px solid #92dfc5; }
+main { padding: 1rem; }
+.entrada label { font-weight: 650; }
+.form-control { border-color: #9cb7ab; }
+.form-control::placeholder { color: #516c62; }
+.btn-primary { --bs-btn-bg: #106350; --bs-btn-border-color: #106350; --bs-btn-hover-bg: #0b4e3f; --bs-btn-hover-border-color: #0b4e3f; --bs-btn-disabled-bg: #426b60; --bs-btn-disabled-border-color: #426b60; }
+.btn-outline-secondary { --bs-btn-color: #294b41; --bs-btn-border-color: #90aaa0; --bs-btn-hover-bg: #294b41; --bs-btn-hover-border-color: #294b41; }
+.query, .mensagem { overflow-wrap: anywhere; color: var(--secundaria); font-size: .82rem; margin: .75rem 0; }
+.query { white-space: pre-wrap; }
+.mensagem:empty { display: none; }
+.acesso { margin: 1rem 0; border-block: 1px solid var(--linha); padding: .6rem 0; font-size: .85rem; }
+.acesso summary { font-weight: 650; cursor: pointer; }
+.checks { display: grid; grid-template-columns: auto 1fr; gap: .35rem .65rem; margin-top: .6rem; }
+.checks dd { margin: 0; overflow-wrap: anywhere; }
+#processamento { background: #132f2c; color: #ecfff7; border-radius: .85rem; padding: 1rem; margin-block: 1rem 1.4rem; }
+.mapa-cabecalho { display: flex; justify-content: space-between; align-items: baseline; gap: .65rem; }
+h2 { font-size: 1.02rem; font-weight: 680; margin: 0; letter-spacing: -.015em; }
+#progresso-contador { color: #c6eadf; font-size: .88rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+progress { display: block; width: 100%; height: .42rem; margin-block: .7rem .4rem; border: 0; border-radius: .5rem; overflow: hidden; background: #37534d; }
+progress::-webkit-progress-bar { background: #37534d; }
+progress::-webkit-progress-value { background: #a4efcd; }
+.progresso-detalhe { color: #c2ded5; font-size: .75rem; margin: 0; }
+.mapa { margin: 0; }
+.mapa svg { display: block; width: 100%; max-height: 20rem; overflow: visible; }
+.mapa figcaption { color: #c4e6da; font-size: .75rem; }
+.ligacao { stroke: #83cdb5; stroke-opacity: .46; stroke-width: .85; }
+.vertice-registro circle { fill: #b5dcd0; }
+.vertice-registro.validado circle { fill: #83f0b9; }
+.vertice-registro.pendente circle { fill: #ffc483; }
+.vertice-termo { cursor: pointer; }
+.vertice-termo circle { fill: #a6eed3; stroke: #132f2c; stroke-width: 2; }
+.vertice-termo text { fill: #f0fff9; font-size: 11px; paint-order: stroke; stroke: #132f2c; stroke-width: 3px; stroke-linejoin: round; }
+.vertice-termo:hover circle, .vertice-termo:focus-visible circle, .vertice-termo[aria-pressed=true] circle { fill: #fff; stroke: #69e2b7; }
+.atenuado { opacity: .14; }
+.vertice, .ligacao { animation: aparecer .38s ease-out both; }
+@keyframes aparecer { from { opacity: 0; } }
+#filtro { color: #d9faed; border-color: #87b8a6; margin-top: .6rem; }
+.registro.card { background: transparent; border: 0; border-radius: 0; border-bottom: 1px solid var(--linha); }
+.registro .card-body { padding-inline: 0; }
+.registro .small { overflow-wrap: anywhere; }
+.registro label { display: block; }
+.registro a.fw-semibold { color: #0a5d49; text-underline-offset: .18em; }
+.barra { position: sticky; bottom: 0; padding: .85rem 1rem; border-top: 1px solid var(--linha); background: #f8fcfa; font-size: .8rem; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 2px solid #168557; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  .vertice, .ligacao { animation: none; }
+}
