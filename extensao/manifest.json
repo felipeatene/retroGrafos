@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Lino · Tags ServiceNow",
+  "version": "0.3.0",
+  "minimum_chrome_version": "116",
+  "description": "Classifica incidentes do ServiceNow e explora tags nativas em um grafo.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "sidePanel"
+  ],
+  "optional_host_permissions": [
+    "https://*/*"
+  ],
+  "background": {
+    "service_worker": "painel-worker.js"
+  },
+  "action": {
+    "default_title": "Abrir Lino"
+  },
+  "side_panel": {
+    "default_path": "painel.html"
+  },
+  "options_page": "opcoes.html"
+}

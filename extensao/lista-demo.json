@@ -1,0 +1,149 @@
+{
+  "value": [
+    {
+      "id": "1",
+      "fields": {
+        "Title": "atraso_notas",
+        "PalavrasChave": [
+          "financeiro",
+          "conciliação",
+          "processamento de notas"
+        ],
+        "Campos": [
+          "short_description",
+          "description",
+          "close_notes",
+          "implementation_plan",
+          "justification"
+        ],
+        "TiposTarefa": [
+          "incident",
+          "problem",
+          "change_request"
+        ],
+        "Ativa": true
+      }
+    },
+    {
+      "id": "2",
+      "fields": {
+        "Title": "falha_rastreamento",
+        "PalavrasChave": [
+          "logística",
+          "rastreamento",
+          "atualização de entregas"
+        ],
+        "Campos": [
+          "short_description",
+          "description",
+          "close_notes",
+          "implementation_plan",
+          "justification"
+        ],
+        "TiposTarefa": [
+          "incident",
+          "problem",
+          "change_request"
+        ],
+        "Ativa": true
+      }
+    },
+    {
+      "id": "3",
+      "fields": {
+        "Title": "timeout_protocolos",
+        "PalavrasChave": [
+          "atendimento",
+          "consultar protocolos",
+          "tempo limite"
+        ],
+        "Campos": [
+          "short_description",
+          "description",
+          "close_notes",
+          "implementation_plan",
+          "justification"
+        ],
+        "TiposTarefa": [
+          "incident",
+          "problem",
+          "change_request"
+        ],
+        "Ativa": true
+      }
+    },
+    {
+      "id": "4",
+      "fields": {
+        "Title": "erro_sessao",
+        "PalavrasChave": [
+          "identidade",
+          "renovar sessão",
+          "rotação de chaves"
+        ],
+        "Campos": [
+          "short_description",
+          "description",
+          "close_notes",
+          "implementation_plan",
+          "justification"
+        ],
+        "TiposTarefa": [
+          "incident",
+          "problem",
+          "change_request"
+        ],
+        "Ativa": true
+      }
+    },
+    {
+      "id": "5",
+      "fields": {
+        "Title": "divergencia_saldo",
+        "Rotulo": "Divergência de saldo",
+        "PalavrasChave": [
+          "estoque",
+          "inventário",
+          "sincronização de saldo"
+        ],
+        "Campos": [
+          "short_description",
+          "description",
+          "close_notes",
+          "implementation_plan",
+          "justification"
+        ],
+        "TiposTarefa": [
+          "incident",
+          "problem",
+          "change_request"
+        ],
+        "Ativa": true
+      }
+    },
+    {
+      "id": "6",
+      "fields": {
+        "Title": "falha_exportacao",
+        "PalavrasChave": [
+          "relatórios",
+          "exportação interrompida",
+          "dividir exportações"
+        ],
+        "Campos": [
+          "short_description",
+          "description",
+          "close_notes",
+          "implementation_plan",
+          "justification"
+        ],
+        "TiposTarefa": [
+          "incident",
+          "problem",
+          "change_request"
+        ],
+        "Ativa": true
+      }
+    }
+  ]
+}

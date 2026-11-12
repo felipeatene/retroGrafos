@@ -1,0 +1,71 @@
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RetroGrafos · Problemas e mudanças</title>
+  <link rel="stylesheet" href="vendor/bootstrap.min.css"><link rel="stylesheet" href="painel.css">
+  <script type="module" src="painel.mjs"></script>
+</head>
+<body>
+<header class="cabecalho">
+  <div class="d-flex align-items-center justify-content-between gap-2">
+    <h1>RetroGrafos</h1><button id="configurar" class="btn btn-sm botao-config">Configurar</button>
+  </div>
+  <nav aria-label="Etapas" class="etapas">
+    <span data-etapa="consulta">Consulta</span><span data-etapa="acesso">Acesso</span><span data-etapa="revisao">Revisão</span><span data-etapa="resultado">Resultado</span>
+  </nav>
+</header>
+<main>
+  <section class="entrada" aria-label="Consulta">
+    <form id="consulta">
+      <label class="form-label" for="url">URL do ServiceNow</label>
+      <input id="url" type="url" class="form-control" placeholder="URL da lista ou do registro" required>
+      <div class="d-flex flex-wrap gap-2 mt-3">
+        <button id="analisar" class="btn btn-primary">Analisar consulta</button>
+        <button id="usar" type="button" class="btn btn-outline-secondary">Usar aba atual</button>
+      </div>
+    </form>
+    <p class="query" id="query" hidden></p>
+  </section>
+
+  <details class="acesso">
+    <summary>Verificação de acesso</summary>
+    <dl class="checks mb-0"><dt>Sessão</dt><dd id="sessao">A verificar</dd><dt>Leitura da tabela</dt><dd id="leitura">A verificar</dd>
+    <dt>Gravação de tags</dt><dd id="gravacao">A verificar</dd></dl>
+  </details>
+
+  <p id="estado" role="status" aria-live="polite" class="mensagem"></p>
+  <div id="login" hidden class="alert alert-warning p-2 small">Entre no ServiceNow na aba de trabalho e volte ao painel.
+    <button type="button" id="entrar" class="btn btn-sm btn-outline-dark">Abrir aba de trabalho</button>
+  </div>
+
+  <section id="processamento" hidden aria-labelledby="progresso-titulo">
+    <div class="mapa-cabecalho">
+      <h2 id="progresso-titulo">Analisando registros</h2><span id="progresso-contador"></span>
+    </div>
+    <progress id="progresso" max="1" value="0" aria-labelledby="progresso-titulo"></progress>
+    <p id="progresso-detalhe" class="progresso-detalhe"></p>
+    <figure class="mapa">
+      <svg id="grafo" viewBox="0 0 420 290" aria-label="Conexões entre palavras-chave e registros">
+        <title>Mapa de palavras-chave</title>
+      </svg>
+      <figcaption id="grafo-legenda"></figcaption>
+    </figure>
+    <button id="filtro" class="btn btn-sm btn-outline-secondary" hidden></button>
+  </section>
+
+  <section id="revisao" hidden>
+    <div class="d-flex justify-content-between align-items-center gap-2 mb-2">
+      <h2>Revisar registros</h2><button id="proxima" class="btn btn-outline-secondary btn-sm" hidden>Próxima página</button>
+    </div>
+    <div id="registros" class="vstack"></div>
+  </section>
+</main>
+<footer class="barra" id="barra" hidden>
+  <div class="d-flex align-items-center justify-content-between gap-2">
+    <span id="selecao">0 de 25 selecionados</span><button id="aplicar" class="btn btn-primary" disabled>Aplicar selecionados</button>
+  </div>
+</footer>
+</body>
+</html>
