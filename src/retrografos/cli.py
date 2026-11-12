@@ -154,6 +154,8 @@ def main(argv: list[str] | None = None) -> int:
         cfg_data = json.loads(Path(args.config_file).read_text(encoding="utf-8"))
         sn_client = None
         if args.aplicar:
+            if any(incident.get("synthetic") is True for incident in inc_data):
+                parser.error("Dados sintéticos só podem ser usados em prévia.")
             if Path(args.incidents_file).resolve() == (root / "demo/synthetic_incidents.json").resolve():
                 parser.error("--aplicar exige um arquivo de incidentes da instância, obtido com extrair.")
             sn_client = ServiceNowClient(
