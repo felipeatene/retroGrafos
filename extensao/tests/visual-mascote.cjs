@@ -34,12 +34,16 @@ const server = http.createServer((req,res) => {
         if (rota==='acesso') dados={usuario:'a'.repeat(32)};
         if (rota==='classificar') {
           globalThis.__classificados=opcoes.corpo.ids;
-          dados={itens:opcoes.corpo.ids.map(id=>({id,numero:'DEMO001',estado:'analisado',tags:[]}))};
+          dados={itens:opcoes.corpo.ids.map(id=>({id,numero:'DEMO001',estado:'analisado',tags:[
+            {valor:'Estoque',estado:'adicionada',fontes:['short_description']},
+            {valor:'Cache',estado:'existente',fontes:['short_description']},
+            {valor:'PDF',estado:'falha',fontes:['short_description']}
+          ]}))};
         }
         return [{result:{status:200,dados}}];
       }}};
   },{origin});
-  for (const width of [260,380,900]) {
+  for (const width of [260,380,442,900]) {
     const page=await context.newPage(); page.on('pageerror',e=>errors.push(e.message)); await page.setViewportSize({width,height:850});
     await page.goto(origin+'/painel.html'); await page.getByRole('button',{name:'Classificar e aplicar tags',exact:true}).waitFor();
     await page.screenshot({path:path.join(output,`painel-${width}.png`),fullPage:true});
@@ -61,8 +65,13 @@ const server = http.createServer((req,res) => {
     await grafo.click();
     await classificar.click();
     await page.locator('#resultados').waitFor();
+    await page.locator('#resultado-barras').waitFor();
+    const barras=await page.locator('.barra-resultado').evaluateAll(linhas=>linhas.map(linha=>linha.innerText.replace(/\s+/g,' ').trim()));
+    assert.deepEqual(barras,['Adicionadas 1','Já presentes 1','Falhas 1']);
+    assert.equal(await page.locator('#detalhe').evaluate(dialogo=>dialogo.open),false);
     assert(await page.locator('#vista-chamado').isVisible());
     assert.deepEqual(await page.evaluate(()=>globalThis.__classificados),['a'.repeat(32)]);
+    if (width===442) await page.screenshot({path:path.join(output,'painel-resultado-442.png')});
     await page.close();
   }
   const page=await context.newPage(); page.on('pageerror',e=>errors.push(e.message)); await page.setViewportSize({width:1366,height:768});
@@ -89,6 +98,6 @@ const server = http.createServer((req,res) => {
   await page.close();
   const rig=await context.newPage(); await rig.goto(origin+'/assets/mascote/demo.html'); await rig.screenshot({path:path.join(output,'rig.png'),fullPage:true});
   await rig.close(); await browser.close(); server.close();
-  fs.writeFileSync(path.join(output,'browser-results.json'),JSON.stringify({errors,checks:['painel e grafo em 260, 380 e 900 px','navegação por teclado','seleção preservada ao alternar vistas','classificação pela barra','contexto e resultado','pet em 48, 64 e 88 px','minimizar e expandir','ocultar nesta página']},null,2));
+  fs.writeFileSync(path.join(output,'browser-results.json'),JSON.stringify({errors,checks:['painel e grafo em 260, 380, 442 e 900 px','navegação por teclado','seleção preservada ao alternar vistas','classificação pela barra','três barras antes dos detalhes','contexto e resultado','pet em 48, 64 e 88 px','minimizar e expandir','ocultar nesta página']},null,2));
   assert.deepEqual(errors,[]); console.log('Browser checks passed');
 })().catch(e=>{console.error(e);server.close();process.exit(1)});

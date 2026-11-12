@@ -87,6 +87,8 @@ function limparSessao() {
   el('selecionados').textContent = '';
   for (const id of ["candidatos", "grafo", "tags", "resultado-lista", "detalhe-incidentes", "ignorado-lista"]) el(id).replaceChildren();
   el("resultado-status").textContent = "";
+  el("resultado-barras").replaceChildren();
+  el("resultado-barras").hidden = true;
   el("busca").value = "";
   el("tipo").value = "";
 }
@@ -289,6 +291,28 @@ async function carregarGrafo() {
   }
 }
 
+function barrasResultado(totais) {
+  const nomes = {adicionada: "Adicionadas", existente: "Já presentes", falha: "Falhas"};
+  const maior = Math.max(1, ...Object.values(totais));
+  const caixa = el("resultado-barras");
+  caixa.replaceChildren();
+  for (const [chave, rotulo] of Object.entries(nomes)) {
+    const valor = Number(totais[chave]) || 0;
+    const linha = elemento("div");
+    linha.className = "barra-resultado";
+    linha.dataset.falha = String(chave === "falha");
+    const trilho = elemento("span");
+    trilho.className = "trilho";
+    trilho.setAttribute("aria-hidden", "true");
+    const preenchimento = elemento("i");
+    preenchimento.style.width = (100 * valor / maior) + "%";
+    trilho.append(preenchimento);
+    linha.append(elemento("span", rotulo), trilho, elemento("b", String(valor)));
+    caixa.append(linha);
+  }
+  caixa.hidden = false;
+}
+
 function mostrarResultado(itens) {
   const nomes = {adicionada: "adicionada", existente: "já presente", falha: "falhou"};
   const totais = {adicionada: 0, existente: 0, falha: 0};
@@ -321,6 +345,7 @@ function mostrarResultado(itens) {
   });
   el("resultado-lista").replaceChildren(...linhas);
   el("resultados").hidden = false;
+  barrasResultado(totais);
   const resumo = [contagem(totais.adicionada, "adicionada", "adicionadas"),
     contagem(totais.existente, "já presente", "já presentes"), contagem(totais.falha, "falha de tag", "falhas de tag"),
     falhasDeRegistro ? contagem(falhasDeRegistro, "incidente com falha", "incidentes com falha") : "",
@@ -337,6 +362,7 @@ async function classificar() {
   ocupado = true;
   atualizarSelecao();
   el("resultados").hidden = true;
+  el("resultado-barras").hidden = true;
   comunicar({etapa: "classificar", estado: "ativo", texto: "Aplicando as tags no ServiceNow…", limpar: true});
   try {
     const ids = [...selecionados];
