@@ -189,20 +189,16 @@ legend { padding-inline: .35rem; font-weight: 620; }
 .busca svg { flex: 0 0 1.05rem; color: #bdd4bb; }
 .busca input { min-width: 0; width: 100%; padding: .35rem 0; border: 0; background: transparent; font-size: .84rem; }
 .busca input::placeholder { color: #becdbb; opacity: 1; }
-.mapa-canvas { position: relative; display: grid; align-items: center; min-height: 10rem; }
-#grafo { width: 100%; height: auto; max-height: 29rem; }
+.mapa-canvas { position: relative; display: grid; align-items: center; min-height: 16rem; }
+#grafo { width: 100%; height: 16rem; display: block; touch-action: none; }
+.cena-acoes { position: absolute; z-index: 1; top: .45rem; right: .45rem; display: flex; gap: .35rem; }
+.cena-acoes .icone { width: 2rem; height: 2rem; min-height: 2rem; border-radius: 999px; background: #101612d0; }
+.cena-acoes .icone svg circle { fill: none; }
 .grafo-estado { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; padding: 1.3rem; color: #dae9d7; pointer-events: none; }
 .grafo-estado:empty { display: none; }
 .mapa-rodape { min-height: 2rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: .3rem .7rem; padding: .5rem .75rem; border-top: 1px solid #3d5140; background: #19261d; font-size: .74rem; color: var(--suave); font-variant-numeric: tabular-nums; }
-#grafo-legenda { display: inline-flex; gap: .3rem; align-items: center; }
+#grafo-legenda { display: inline-flex; gap: .35rem; align-items: center; }
 #grafo-legenda i { width: .46rem; height: .46rem; border-radius: 50%; background: var(--verde); margin-left: .3rem; }
-#grafo-legenda i + i { background: #a8c6ba; }
-.aresta { fill: none; stroke: #9ccd9f; opacity: .43; stroke-width: 1.15; }
-.no-tag, .no-incidente { cursor: pointer; }
-.no-tag circle { fill: var(--verde); stroke: #d2f6b9; stroke-width: 1.5; }
-.no-incidente circle { fill: #b9d5c9; stroke: #43674e; stroke-width: 1.5; }
-.no-tag:hover circle, .no-tag:focus-visible circle, .no-incidente:hover circle, .no-incidente:focus-visible circle { fill: #fff; stroke-width: 3; }
-.rotulo-grafo { fill: #f4f8f2; stroke: #19291d; stroke-width: 4; stroke-linejoin: round; paint-order: stroke; font-size: 12px; font-weight: 650; pointer-events: none; }
 .lista-linhas > li { border-bottom: 1px solid var(--linha); }
 .lista-linhas > li > :is(button, a, span) { display: flex; width: 100%; gap: .55rem; justify-content: space-between; align-items: center; padding: .57rem .15rem; text-align: left; overflow-wrap: anywhere; }
 .lista-linhas button { border: 0; border-radius: .25rem; background: transparent; }

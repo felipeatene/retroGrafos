@@ -46,7 +46,7 @@
 
     <section id="exploracao" aria-labelledby="grafo-titulo" hidden>
       <div class="titulo-linha">
-        <h2 id="grafo-titulo" tabindex="-1">Grafo de tags</h2><button id="expandir" type="button">Expandir</button>
+        <h2 id="grafo-titulo" tabindex="-1">Grafo de tags</h2>
         <button type="button" id="preferencias" class="discreto">Termos ignorados</button>
       </div>
       <div class="mapa">
@@ -56,7 +56,11 @@
           <button type="button" id="atualizar" class="icone" aria-label="Atualizar grafo" title="Atualizar grafo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 8a7.5 7.5 0 1 0 .3 7M19 4v5h-5"/></svg></button>
         </div>
         <div class="mapa-canvas">
-          <svg id="grafo" viewBox="0 0 540 350" role="group" aria-label="Conexões entre tags e incidentes"></svg>
+          <canvas id="grafo" aria-label="Conexões entre tags e incidentes"></canvas>
+          <div class="cena-acoes">
+            <button type="button" id="enquadrar" class="icone" aria-label="Centralizar grafo" title="Centralizar grafo"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="9" r="2"/><circle cx="16" cy="8" r="2"/><circle cx="12" cy="16" r="2"/><path d="M8.7 10.2 10.5 14.2M14.4 9.4 13.2 14.2"/></svg></button>
+            <button type="button" id="expandir" class="icone" aria-label="Expandir grafo" title="Expandir" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5M19 5l-7 7M10 19H5v-5M5 19l7-7"/></svg></button>
+          </div>
           <p id="grafo-estado" class="grafo-estado" role="status"></p>
         </div>
         <div class="mapa-rodape"><span id="grafo-contagem"></span><span id="grafo-legenda" hidden><i></i> Tag <i></i> Incidente</span></div>

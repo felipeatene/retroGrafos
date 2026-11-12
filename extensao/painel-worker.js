@@ -81,9 +81,12 @@ async function mensagem(m, sender) {
   if (m.tipo === 'lino:expandir' && painel) {
     if (!Array.isArray(m.dados) || m.dados.length > 20000) throw new Error('O grafo excedeu o limite de exportação.');
     const uuid = crypto.randomUUID(), chave = 'lino:grafico:' + uuid;
-    const dados = m.dados.map(v => ({id: String(v.id || ''), fontes: [],
-      tag: {id: String(v.tag.id), tipo: String(v.tag.tipo), valor: String(v.tag.valor).slice(0, 200)},
-      incidente: {id: String(v.incidente.id), tabela: ['incident','problem','change_request'].includes(v.incidente.tabela) ? v.incidente.tabela : 'incident', numero: String(v.incidente.numero || '').slice(0, 80), titulo: String(v.incidente.titulo || '').slice(0, 240)}}));
+    const texto = (valor, limite) => String(valor || '').slice(0, limite);
+    const dados = m.dados.map(v => ({id: texto(v.id, 80), fontes: [],
+      tag: {id: texto(v.tag.id, 80), tipo: texto(v.tag.tipo, 40), valor: texto(v.tag.valor, 200)},
+      incidente: {id: texto(v.incidente.id, 80), tabela: ['incident','problem','change_request'].includes(v.incidente.tabela) ? v.incidente.tabela : 'incident',
+        numero: texto(v.incidente.numero, 80), titulo: texto(v.incidente.titulo, 240), abertoEm: texto(v.incidente.abertoEm, 32),
+        campos: Object.fromEntries(['grupo','prioridade','estado','categoria','ic'].map(chave => [chave, texto(v.incidente.campos?.[chave], 120)]))}}));
     await chrome.storage.session.set({[chave]: {origem, fluxo: m.fluxo, geradoEm: Date.now(), dados}});
     await chrome.alarms.create(chave, {when: Date.now() + 600000});
     await chrome.tabs.create({url: chrome.runtime.getURL('grafico.html#' + uuid)}); return {ok: true};

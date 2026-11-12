@@ -1,12 +1,68 @@
 <!doctype html>
-<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Grafo de tags · Lino</title><link rel="stylesheet" href="lino.css"><link rel="stylesheet" href="grafico.css"><script type="module" src="grafico.mjs"></script></head>
-<body><header class="topo vidro"><h1>Lino</h1><span>Grafo de tags</span></header><main>
-<div class="titulo-linha"><h2>Conexões entre chamados</h2><p id="contagem" role="status">Carregando o grafo…</p></div>
-<p id="estado" role="status"></p>
-<section id="conteudo" hidden>
-<div class="filtros vidro"><label>Buscar tags <input id="busca" type="search" placeholder="Nome da tag"></label><label>Tipo <select id="tipo"><option value="">Todos os tipos</option></select></label></div>
-<svg id="grafo" viewBox="0 0 540 350" role="group" aria-label="Conexões entre tags e chamados"></svg>
-<p class="secundario">O desenho mostra até 8 tags e 14 chamados. A lista abaixo inclui todas as conexões do filtro.</p>
-<div class="colunas"><section><h2>Tags</h2><ul id="tags" class="lista-linhas"></ul></section><section aria-labelledby="detalhe"><h2 id="detalhe">Selecione uma tag</h2><ul id="incidentes" class="lista-linhas"></ul></section></div>
-</section></main></body></html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grafo de tags · Lino</title>
+  <link rel="stylesheet" href="lino.css">
+  <link rel="stylesheet" href="grafico.css">
+  <script type="module" src="grafico.mjs"></script>
+</head>
+<body class="pagina-grafo">
+  <header class="topo vidro">
+    <div class="marca"><h1>Lino</h1></div>
+    <span>Grafo de tags</span>
+  </header>
+  <main>
+    <div class="titulo-linha">
+      <h2>Conexões entre chamados</h2>
+      <p id="contagem" role="status">Carregando o grafo…</p>
+    </div>
+    <p id="estado" role="status"></p>
+    <div id="conteudo" class="palco" hidden>
+      <aside class="mapeamento" aria-label="Mapeamento do grafo">
+        <fieldset id="vertices"><legend>Vértices</legend></fieldset>
+        <fieldset>
+          <legend>Arestas</legend>
+          <label class="opcao"><input type="radio" name="arestas" value="pertence" checked> Pertence a</label>
+          <label class="opcao"><input type="radio" name="arestas" value="juntos"> Aparecem juntos</label>
+          <p id="arestas-nota" class="nota" hidden>Sem incidentes, as ligações usam valores que aparecem juntos.</p>
+        </fieldset>
+        <label class="campo">Cor <select id="cor"></select></label>
+        <div id="legenda" class="legenda-cor" aria-label="Legenda de cores"></div>
+        <label class="campo">Âncora <select id="ancora"></select></label>
+        <fieldset id="fisica">
+          <legend>Física</legend>
+          <button type="button" id="restaurar" class="secundario">Restaurar padrão</button>
+        </fieldset>
+        <fieldset class="linha-tempo">
+          <legend>Linha do tempo</legend>
+          <label class="opcao"><input id="linha" type="checkbox"> Reproduzir pela abertura</label>
+          <button type="button" id="play" class="secundario" aria-pressed="false">Reproduzir</button>
+          <label class="campo">Velocidade <input id="velocidade" type="range" min="1" max="8" step="1" value="3"></label>
+          <label class="campo">Régua <input id="regua" type="range" min="0" max="0" step="1" value="0"></label>
+          <p id="data-corrente" class="nota" role="status"></p>
+        </fieldset>
+        <label class="campo">Buscar tags <input id="busca" type="search" placeholder="Nome da tag"></label>
+        <label class="campo">Tipo <select id="tipo"><option value="">Todos os tipos</option></select></label>
+      </aside>
+      <div class="cena">
+        <canvas id="grafo" aria-label="Conexões entre tags e chamados"></canvas>
+        <div class="cena-acoes">
+          <button type="button" id="enquadrar" class="icone" aria-label="Centralizar grafo" title="Centralizar grafo"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="9" r="2"/><circle cx="16" cy="8" r="2"/><circle cx="12" cy="16" r="2"/><path d="M8.7 10.2 10.5 14.2M14.4 9.4 13.2 14.2"/></svg></button>
+        </div>
+      </div>
+      <div class="listas">
+        <section>
+          <h2 id="lista-titulo">Tags</h2>
+          <ul id="tags" class="lista-linhas"></ul>
+        </section>
+        <section aria-labelledby="detalhe">
+          <h2 id="detalhe">Selecione um nó</h2>
+          <ul id="incidentes" class="lista-linhas"></ul>
+        </section>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
