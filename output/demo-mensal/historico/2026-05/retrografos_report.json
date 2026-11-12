@@ -1,0 +1,1326 @@
+{
+  "generated_at": "2026-11-11T22:04:22.549190+00:00",
+  "mode": "preview",
+  "recurrence_threshold": 4,
+  "incidents": [
+    {
+      "sys_id": "44c608e7821a576a8c419e8825449dcf",
+      "number": "DEMO20260503001",
+      "state": "6",
+      "active": false,
+      "opened_at": "2026-05-01T09:00:00+00:00",
+      "resolved_at": "2026-05-01T21:00:00+00:00",
+      "short_description": "Tempo limite ao consultar protocolos",
+      "description": "Cenário fictício de portal no sistema Atendimento.",
+      "close_notes": "Validação concluída no cenário de demonstração.",
+      "u_sintoma": "Tempo limite ao consultar protocolos",
+      "u_system_name": "Atendimento",
+      "u_system_module": "Portal",
+      "existing_tags": [
+        "sistema"
+      ],
+      "synthetic": true,
+      "scenario": "historico"
+    },
+    {
+      "sys_id": "291b791dd6d2522abcd228a0949887d6",
+      "number": "DEMO20260501001",
+      "state": "6",
+      "active": false,
+      "opened_at": "2026-05-01T13:00:00+00:00",
+      "resolved_at": "2026-05-01T15:00:00+00:00",
+      "short_description": "Atraso no processamento de notas",
+      "description": "Cenário fictício de conciliação no sistema Financeiro.",
+      "close_notes": "Validação concluída no cenário de demonstração.",
+      "u_sintoma": "Atraso no processamento de notas",
+      "u_system_name": "Financeiro",
+      "u_system_module": "Conciliação",
+      "existing_tags": [
+        "sistema"
+      ],
+      "synthetic": true,
+      "scenario": "historico"
+    },
+    {
+      "sys_id": "64ce3950ad8c53218b713a88e049b981",
+      "number": "DEMO20260504001",
+      "state": "6",
+      "active": false,
+      "opened_at": "2026-05-01T14:00:00+00:00",
+      "resolved_at": "2026-05-02T07:00:00+00:00",
+      "short_description": "Erro ao renovar sessão",
+      "description": "Cenário fictício de acesso no sistema Identidade.",
+      "close_notes": "Validação concluída no cenário de demonstração.",
+      "u_sintoma": "Erro ao renovar sessão",
+      "u_system_name": "Identidade",
+      "u_system_module": "Acesso",
+      "existing_tags": [
+        "sistema"
+      ],
+      "synthetic": true,
+      "scenario": "historico"
+    },
+    {
+      "sys_id": "c0e10709195e53c98868d5df41c70e9d",
+      "number": "DEMO20260502001",
+      "state": "6",
+      "active": false,
+      "opened_at": "2026-05-01T15:00:00+00:00",
+      "resolved_at": "2026-05-02T07:00:00+00:00",
+      "short_description": "Falha na atualização de entregas",
+      "description": "Cenário fictício de rastreamento no sistema Logística.",
+      "close_notes": "Validação concluída no cenário de demonstração.",
+      "u_sintoma": "Falha na atualização de entregas",
+      "u_system_name": "Logística",
+      "u_system_module": "Rastreamento",
+      "existing_tags": [
+        "sistema"
+      ],
+      "synthetic": true,
+      "scenario": "historico"
+    },
+    {
+      "sys_id": "1df2dff795de5cf893ebd4e0c0bcd781",
+      "number": "DEMO20260505001",
+      "state": "2",
+      "active": true,
+      "opened_at": "2026-05-01T16:00:00+00:00",
+      "resolved_at": null,
+      "short_description": "Divergência na sincronização de saldo",
+      "description": "Cenário fictício de inventário no sistema Estoque.",
+      "close_notes": "",
+      "u_sintoma": "Divergência na sincronização de saldo",
+      "u_system_name": "Estoque",
+      "u_system_module": "Inventário",
+      "existing_tags": [
+        "sistema"
+      ],
+      "synthetic": true,
+      "scenario": "historico"
+    },
+    {
+      "sys_id": "f983e48349ae577b8d780b55f199a7bc",
+      "number": "DEMO20260506001",
+      "state": "6",
+      "active": false,
+      "opened_at": "2026-05-01T16:00:00+00:00",
+      "resolved_at": "2026-05-01T19:00:00+00:00",
+      "short_description": "Exportação interrompida",
+      "description": "Cenário fictício de exportação no sistema Relatórios.",
+      "close_notes": "Validação concluída no cenário de demonstração.",
+      "u_sintoma": "Exportação interrompida",
+      "u_system_name": "Relatórios",
+      "u_system_module": "Exportação",
+      "existing_tags": [
+        "sistema"
+      ],
+      "synthetic": true,
+      "scenario": "historico"
+    },
+    {
+      "sys_id": "dc1e077d2dd8579eb24bf568705e0f9a",
+      "number": "DEMO20260504002",
+      "state": "6",
+      "active": false,
+      "opened_at": "2026-05-05T14:00:00+00:00",
+      "resolved_at": "2026-05-06T06:00:00+00:00",
+      "short_description": "Erro ao renovar sessão",
+      "description": "Cenário fictício de acesso no sistema Identidade.",
+      "close_notes": "Validação concluída no cenário de demonstração.",
+      "u_sintoma": "Erro ao renovar sessão",
+      "u_system_name": "Identidade",
+      "u_system_module": "Acesso",
+      "existing_tags": [
+        "sistema"
+      ],
+      "synthetic": true,
+      "scenario": "historico"
+    },
+    {
+      "sys_id": "59c178837d0756f4beb2cb7dac55f6aa",
+      "number": "DEMO20260501002",
+      "state": "6",
+      "active": false,
+      "opened_at": "2026-05-06T12:00:00+00:00",
+      "resolved_at": "2026-05-06T13:00:00+00:00",
+      "short_description": "Atraso no processamento de notas",
+      "description": "Cenário fictício de conciliação no sistema Financeiro.",
+      "close_notes": "Validação concluída no cenário de demonstração.",
+      "u_sintoma": "Atraso no processamento de notas",
+      "u_system_name": "Financeiro",
+      "u_system_module": "Conciliação",
+      "existing_tags": [
+        "sistema"
+      ],
+      "synthetic": true,
+      "scenario": "historico"
+    },
+    {
+      "sys_id": "d8e0827eb6f25fbea5d5aa8fa07914a5",
+      "number": "DEMO20260502002",
+      "state": "6",
+      "active": false,
+      "opened_at": "2026-05-07T10:00:00+00:00",
+      "resolved_at": "2026-05-07T16:00:00+00:00",
+      "short_description": "Falha na atualização de entregas",
+      "description": "Cenário fictício de rastreamento no sistema Logística.",
+      "close_notes": "Validação concluída no cenário de demonstração.",
+      "u_sintoma": "Falha na atualização de entregas",
+      "u_system_name": "Logística",
+      "u_system_module": "Rastreamento",
+      "existing_tags": [
+        "sistema"
+      ],
+      "synthetic": true,
+      "scenario": "historico"
+    },
+    {
+      "sys_id": "765182ba2bdb525f9d9aa25413aa5baa",
+      "number": "DEMO20260503002",
+      "state": "6",
+      "active": false,
+      "opened_at": "2026-05-08T11:00:00+00:00",
+      "resolved_at": "2026-05-08T16:00:00+00:00",
+      "short_description": "Tempo limite ao consultar protocolos",
+      "description": "Cenário fictício de portal no sistema Atendimento.",
+      "close_notes": "Validação concluída no cenário de demonstração.",
+      "u_sintoma": "Tempo limite ao consultar protocolos",
+      "u_system_name": "Atendimento",
+      "u_system_module": "Portal",
+      "existing_tags": [
+        "sistema"
+      ],
+      "synthetic": true,
+      "scenario": "historico"
+    },
+    {
+      "sys_id": "6a1298e482915270aad98ccf9d1830be",
+      "number": "DEMO20260504003",
+      "state": "6",
+      "active": false,
+      "opened_at": "2026-05-09T09:00:00+00:00",
+      "resolved_at": "2026-05-09T14:00:00+00:00",
+      "short_description": "Erro ao renovar sessão",
+      "description": "Cenário fictício de acesso no sistema Identidade.",
+      "close_notes": "Validação concluída no cenário de demonstração.",
+      "u_sintoma": "Erro ao renovar sessão",
+      "u_system_name": "Identidade",
+      "u_system_module": "Acesso",
+      "existing_tags": [
+        "sistema"
+      ],
+      "synthetic": true,
+      "scenario": "historico"
+    },
+    {
+      "sys_id": "450f33c1d5995365ac92a90431f231ab",
+      "number": "DEMO20260501003",
+      "state": "6",
+      "active": false,
+      "opened_at": "2026-05-11T15:00:00+00:00",
+      "resolved_at": "2026-05-12T05:00:00+00:00",
+      "short_description": "Atraso no processamento de notas",
+      "description": "Cenário fictício de conciliação no sistema Financeiro.",
+      "close_notes": "Validação concluída no cenário de demonstração.",
+      "u_sintoma": "Atraso no processamento de notas",
+      "u_system_name": "Financeiro",
+      "u_system_module": "Conciliação",
+      "existing_tags": [
+        "sistema"
+      ],
+      "synthetic": true,
+      "scenario": "historico"
+    },
+    {
+      "sys_id": "90adca907d03577985bc0b9c9999cd15",
+      "number": "DEMO20260504004",
+      "state": "6",
+      "active": false,
+      "opened_at": "2026-05-13T09:00:00+00:00",
+      "resolved_at": "2026-05-13T13:00:00+00:00",
+      "short_description": "Erro ao renovar sessão",
+      "description": "Cenário fictício de acesso no sistema Identidade.",
+      "close_notes": "Validação concluída no cenário de demonstração.",
+      "u_sintoma": "Erro ao renovar sessão",
+      "u_system_name": "Identidade",
+      "u_system_module": "Acesso",
+      "existing_tags": [
+        "sistema"
+      ],
+      "synthetic": true,
+      "scenario": "historico"
+    },
+    {
+      "sys_id": "a8fc11e6455c5e81823fdb91c79b3fea",
+      "number": "DEMO20260502003",
+      "state": "6",
+      "active": false,
+      "opened_at": "2026-05-13T11:00:00+00:00",
+      "resolved_at": "2026-05-13T22:00:00+00:00",
+      "short_description": "Falha na atualização de entregas",
+      "description": "Cenário fictício de rastreamento no sistema Logística.",
+      "close_notes": "Validação concluída no cenário de demonstração.",
+      "u_sintoma": "Falha na atualização de entregas",
+      "u_system_name": "Logística",
+      "u_system_module": "Rastreamento",
+      "existing_tags": [
+        "sistema"
+      ],
+      "synthetic": true,
+      "scenario": "historico"
+    },
+    {
+      "sys_id": "b10140d8c417551eb7f34f8f8b554bd9",
+      "number": "DEMO20260501004",
+      "state": "6",
+      "active": false,
+      "opened_at": "2026-05-16T10:00:00+00:00",
+      "resolved_at": "2026-05-16T22:00:00+00:00",
+      "short_description": "Atraso no processamento de notas",
+      "description": "Cenário fictício de conciliação no sistema Financeiro.",
+      "close_notes": "Validação concluída no cenário de demonstração.",
+      "u_sintoma": "Atraso no processamento de notas",
+      "u_system_name": "Financeiro",
+      "u_system_module": "Conciliação",
+      "existing_tags": [
+        "sistema"
+      ],
+      "synthetic": true,
+      "scenario": "historico"
+    },
+    {
+      "sys_id": "6608c2f2a52459eba7ab1d75823274b1",
+      "number": "DEMO20260506002",
+      "state": "6",
+      "active": false,
+      "opened_at": "2026-05-16T15:00:00+00:00",
+      "resolved_at": "2026-05-16T20:00:00+00:00",
+      "short_description": "Exportação interrompida",
+      "description": "Cenário fictício de exportação no sistema Relatórios.",
+      "close_notes": "Validação concluída no cenário de demonstração.",
+      "u_sintoma": "Exportação interrompida",
+      "u_system_name": "Relatórios",
+      "u_system_module": "Exportação",
+      "existing_tags": [
+        "sistema"
+      ],
+      "synthetic": true,
+      "scenario": "historico"
+    },
+    {
+      "sys_id": "8b3a8d09ccf25b4bae2dc9e81717b55c",
+      "number": "DEMO20260503003",
+      "state": "6",
+      "active": false,
+      "opened_at": "2026-05-16T16:00:00+00:00",
+      "resolved_at": "2026-05-17T04:00:00+00:00",
+      "short_description": "Tempo limite ao consultar protocolos",
+      "description": "Cenário fictício de portal no sistema Atendimento.",
+      "close_notes": "Validação concluída no cenário de demonstração.",
+      "u_sintoma": "Tempo limite ao consultar protocolos",
+      "u_system_name": "Atendimento",
+      "u_system_module": "Portal",
+      "existing_tags": [
+        "sistema"
+      ],
+      "synthetic": true,
+      "scenario": "historico"
+    },
+    {
+      "sys_id": "467440b8b21858ab85499edbf1fe0f83",
+      "number": "DEMO20260504005",
+      "state": "6",
+      "active": false,
+      "opened_at": "2026-05-18T09:00:00+00:00",
+      "resolved_at": "2026-05-18T12:00:00+00:00",
+      "short_description": "Erro ao renovar sessão",
+      "description": "Cenário fictício de acesso no sistema Identidade.",
+      "close_notes": "Validação concluída no cenário de demonstração.",
+      "u_sintoma": "Erro ao renovar sessão",
+      "u_system_name": "Identidade",
+      "u_system_module": "Acesso",
+      "existing_tags": [
+        "sistema"
+      ],
+      "synthetic": true,
+      "scenario": "historico"
+    },
+    {
+      "sys_id": "88931268afd756a5aa2a43ed5e5ccfba",
+      "number": "DEMO20260502004",
+      "state": "6",
+      "active": false,
+      "opened_at": "2026-05-19T09:00:00+00:00",
+      "resolved_at": "2026-05-19T12:00:00+00:00",
+      "short_description": "Falha na atualização de entregas",
+      "description": "Cenário fictício de rastreamento no sistema Logística.",
+      "close_notes": "Validação concluída no cenário de demonstração.",
+      "u_sintoma": "Falha na atualização de entregas",
+      "u_system_name": "Logística",
+      "u_system_module": "Rastreamento",
+      "existing_tags": [
+        "sistema"
+      ],
+      "synthetic": true,
+      "scenario": "historico"
+    },
+    {
+      "sys_id": "ff2da39c2ce7514388de50544b07d76b",
+      "number": "DEMO20260501005",
+      "state": "6",
+      "active": false,
+      "opened_at": "2026-05-21T12:00:00+00:00",
+      "resolved_at": "2026-05-22T03:00:00+00:00",
+      "short_description": "Atraso no processamento de notas",
+      "description": "Cenário fictício de conciliação no sistema Financeiro.",
+      "close_notes": "Validação concluída no cenário de demonstração.",
+      "u_sintoma": "Atraso no processamento de notas",
+      "u_system_name": "Financeiro",
+      "u_system_module": "Conciliação",
+      "existing_tags": [
+        "sistema"
+      ],
+      "synthetic": true,
+      "scenario": "historico"
+    },
+    {
+      "sys_id": "a4c87597c4715ce492dfab5214ec979e",
+      "number": "DEMO20260504006",
+      "state": "6",
+      "active": false,
+      "opened_at": "2026-05-22T15:00:00+00:00",
+      "resolved_at": "2026-05-22T16:00:00+00:00",
+      "short_description": "Erro ao renovar sessão",
+      "description": "Cenário fictício de acesso no sistema Identidade.",
+      "close_notes": "Validação concluída no cenário de demonstração.",
+      "u_sintoma": "Erro ao renovar sessão",
+      "u_system_name": "Identidade",
+      "u_system_module": "Acesso",
+      "existing_tags": [
+        "sistema"
+      ],
+      "synthetic": true,
+      "scenario": "historico"
+    },
+    {
+      "sys_id": "3b4be41c4d6a522e9605338fccde3da0",
+      "number": "DEMO20260503004",
+      "state": "6",
+      "active": false,
+      "opened_at": "2026-05-23T09:00:00+00:00",
+      "resolved_at": "2026-05-23T19:00:00+00:00",
+      "short_description": "Tempo limite ao consultar protocolos",
+      "description": "Cenário fictício de portal no sistema Atendimento.",
+      "close_notes": "Validação concluída no cenário de demonstração.",
+      "u_sintoma": "Tempo limite ao consultar protocolos",
+      "u_system_name": "Atendimento",
+      "u_system_module": "Portal",
+      "existing_tags": [
+        "sistema"
+      ],
+      "synthetic": true,
+      "scenario": "historico"
+    },
+    {
+      "sys_id": "7287c738ce1d5e7b959b6848bc2ec7cc",
+      "number": "DEMO20260502005",
+      "state": "2",
+      "active": true,
+      "opened_at": "2026-05-25T14:00:00+00:00",
+      "resolved_at": null,
+      "short_description": "Falha na atualização de entregas",
+      "description": "Cenário fictício de rastreamento no sistema Logística.",
+      "close_notes": "",
+      "u_sintoma": "Falha na atualização de entregas",
+      "u_system_name": "Logística",
+      "u_system_module": "Rastreamento",
+      "existing_tags": [
+        "sistema"
+      ],
+      "synthetic": true,
+      "scenario": "historico"
+    },
+    {
+      "sys_id": "69a2acc8a050591aaf769cf7f4530c15",
+      "number": "DEMO20260501006",
+      "state": "6",
+      "active": false,
+      "opened_at": "2026-05-26T10:00:00+00:00",
+      "resolved_at": "2026-05-26T18:00:00+00:00",
+      "short_description": "Atraso no processamento de notas",
+      "description": "Cenário fictício de conciliação no sistema Financeiro.",
+      "close_notes": "Validação concluída no cenário de demonstração.",
+      "u_sintoma": "Atraso no processamento de notas",
+      "u_system_name": "Financeiro",
+      "u_system_module": "Conciliação",
+      "existing_tags": [
+        "sistema"
+      ],
+      "synthetic": true,
+      "scenario": "historico"
+    },
+    {
+      "sys_id": "a3c6b74c833f57f6b7486377db2382c7",
+      "number": "DEMO20260504007",
+      "state": "6",
+      "active": false,
+      "opened_at": "2026-05-26T11:00:00+00:00",
+      "resolved_at": "2026-05-26T14:00:00+00:00",
+      "short_description": "Erro ao renovar sessão",
+      "description": "Cenário fictício de acesso no sistema Identidade.",
+      "close_notes": "Validação concluída no cenário de demonstração.",
+      "u_sintoma": "Erro ao renovar sessão",
+      "u_system_name": "Identidade",
+      "u_system_module": "Acesso",
+      "existing_tags": [
+        "sistema"
+      ],
+      "synthetic": true,
+      "scenario": "historico"
+    }
+  ],
+  "sync_plan": [
+    {
+      "incident_sys_id": "291b791dd6d2522abcd228a0949887d6",
+      "number": "DEMO20260501001",
+      "system_name": "Financeiro",
+      "existing_tags": [
+        "sistema"
+      ],
+      "add_tags": [
+        "atraso_notas"
+      ],
+      "remove_tags": [
+        "sistema"
+      ],
+      "final_tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "59c178837d0756f4beb2cb7dac55f6aa",
+      "number": "DEMO20260501002",
+      "system_name": "Financeiro",
+      "existing_tags": [
+        "sistema"
+      ],
+      "add_tags": [
+        "atraso_notas"
+      ],
+      "remove_tags": [
+        "sistema"
+      ],
+      "final_tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "450f33c1d5995365ac92a90431f231ab",
+      "number": "DEMO20260501003",
+      "system_name": "Financeiro",
+      "existing_tags": [
+        "sistema"
+      ],
+      "add_tags": [
+        "atraso_notas"
+      ],
+      "remove_tags": [
+        "sistema"
+      ],
+      "final_tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "b10140d8c417551eb7f34f8f8b554bd9",
+      "number": "DEMO20260501004",
+      "system_name": "Financeiro",
+      "existing_tags": [
+        "sistema"
+      ],
+      "add_tags": [
+        "atraso_notas"
+      ],
+      "remove_tags": [
+        "sistema"
+      ],
+      "final_tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "ff2da39c2ce7514388de50544b07d76b",
+      "number": "DEMO20260501005",
+      "system_name": "Financeiro",
+      "existing_tags": [
+        "sistema"
+      ],
+      "add_tags": [
+        "atraso_notas"
+      ],
+      "remove_tags": [
+        "sistema"
+      ],
+      "final_tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "69a2acc8a050591aaf769cf7f4530c15",
+      "number": "DEMO20260501006",
+      "system_name": "Financeiro",
+      "existing_tags": [
+        "sistema"
+      ],
+      "add_tags": [
+        "atraso_notas"
+      ],
+      "remove_tags": [
+        "sistema"
+      ],
+      "final_tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "c0e10709195e53c98868d5df41c70e9d",
+      "number": "DEMO20260502001",
+      "system_name": "Logística",
+      "existing_tags": [
+        "sistema"
+      ],
+      "add_tags": [
+        "falha_rastreamento"
+      ],
+      "remove_tags": [
+        "sistema"
+      ],
+      "final_tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "d8e0827eb6f25fbea5d5aa8fa07914a5",
+      "number": "DEMO20260502002",
+      "system_name": "Logística",
+      "existing_tags": [
+        "sistema"
+      ],
+      "add_tags": [
+        "falha_rastreamento"
+      ],
+      "remove_tags": [
+        "sistema"
+      ],
+      "final_tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "a8fc11e6455c5e81823fdb91c79b3fea",
+      "number": "DEMO20260502003",
+      "system_name": "Logística",
+      "existing_tags": [
+        "sistema"
+      ],
+      "add_tags": [
+        "falha_rastreamento"
+      ],
+      "remove_tags": [
+        "sistema"
+      ],
+      "final_tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "88931268afd756a5aa2a43ed5e5ccfba",
+      "number": "DEMO20260502004",
+      "system_name": "Logística",
+      "existing_tags": [
+        "sistema"
+      ],
+      "add_tags": [
+        "falha_rastreamento"
+      ],
+      "remove_tags": [
+        "sistema"
+      ],
+      "final_tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "7287c738ce1d5e7b959b6848bc2ec7cc",
+      "number": "DEMO20260502005",
+      "system_name": "Logística",
+      "existing_tags": [
+        "sistema"
+      ],
+      "add_tags": [
+        "falha_rastreamento"
+      ],
+      "remove_tags": [
+        "sistema"
+      ],
+      "final_tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "44c608e7821a576a8c419e8825449dcf",
+      "number": "DEMO20260503001",
+      "system_name": "Atendimento",
+      "existing_tags": [
+        "sistema"
+      ],
+      "add_tags": [
+        "timeout_protocolos"
+      ],
+      "remove_tags": [
+        "sistema"
+      ],
+      "final_tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "765182ba2bdb525f9d9aa25413aa5baa",
+      "number": "DEMO20260503002",
+      "system_name": "Atendimento",
+      "existing_tags": [
+        "sistema"
+      ],
+      "add_tags": [
+        "timeout_protocolos"
+      ],
+      "remove_tags": [
+        "sistema"
+      ],
+      "final_tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "8b3a8d09ccf25b4bae2dc9e81717b55c",
+      "number": "DEMO20260503003",
+      "system_name": "Atendimento",
+      "existing_tags": [
+        "sistema"
+      ],
+      "add_tags": [
+        "timeout_protocolos"
+      ],
+      "remove_tags": [
+        "sistema"
+      ],
+      "final_tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "3b4be41c4d6a522e9605338fccde3da0",
+      "number": "DEMO20260503004",
+      "system_name": "Atendimento",
+      "existing_tags": [
+        "sistema"
+      ],
+      "add_tags": [
+        "timeout_protocolos"
+      ],
+      "remove_tags": [
+        "sistema"
+      ],
+      "final_tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "64ce3950ad8c53218b713a88e049b981",
+      "number": "DEMO20260504001",
+      "system_name": "Identidade",
+      "existing_tags": [
+        "sistema"
+      ],
+      "add_tags": [
+        "erro_sessao"
+      ],
+      "remove_tags": [
+        "sistema"
+      ],
+      "final_tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "dc1e077d2dd8579eb24bf568705e0f9a",
+      "number": "DEMO20260504002",
+      "system_name": "Identidade",
+      "existing_tags": [
+        "sistema"
+      ],
+      "add_tags": [
+        "erro_sessao"
+      ],
+      "remove_tags": [
+        "sistema"
+      ],
+      "final_tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "6a1298e482915270aad98ccf9d1830be",
+      "number": "DEMO20260504003",
+      "system_name": "Identidade",
+      "existing_tags": [
+        "sistema"
+      ],
+      "add_tags": [
+        "erro_sessao"
+      ],
+      "remove_tags": [
+        "sistema"
+      ],
+      "final_tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "90adca907d03577985bc0b9c9999cd15",
+      "number": "DEMO20260504004",
+      "system_name": "Identidade",
+      "existing_tags": [
+        "sistema"
+      ],
+      "add_tags": [
+        "erro_sessao"
+      ],
+      "remove_tags": [
+        "sistema"
+      ],
+      "final_tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "467440b8b21858ab85499edbf1fe0f83",
+      "number": "DEMO20260504005",
+      "system_name": "Identidade",
+      "existing_tags": [
+        "sistema"
+      ],
+      "add_tags": [
+        "erro_sessao"
+      ],
+      "remove_tags": [
+        "sistema"
+      ],
+      "final_tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "a4c87597c4715ce492dfab5214ec979e",
+      "number": "DEMO20260504006",
+      "system_name": "Identidade",
+      "existing_tags": [
+        "sistema"
+      ],
+      "add_tags": [
+        "erro_sessao"
+      ],
+      "remove_tags": [
+        "sistema"
+      ],
+      "final_tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "a3c6b74c833f57f6b7486377db2382c7",
+      "number": "DEMO20260504007",
+      "system_name": "Identidade",
+      "existing_tags": [
+        "sistema"
+      ],
+      "add_tags": [
+        "erro_sessao"
+      ],
+      "remove_tags": [
+        "sistema"
+      ],
+      "final_tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "1df2dff795de5cf893ebd4e0c0bcd781",
+      "number": "DEMO20260505001",
+      "system_name": "Estoque",
+      "existing_tags": [
+        "sistema"
+      ],
+      "add_tags": [
+        "divergencia_saldo"
+      ],
+      "remove_tags": [
+        "sistema"
+      ],
+      "final_tags": [
+        "divergencia_saldo"
+      ]
+    },
+    {
+      "incident_sys_id": "f983e48349ae577b8d780b55f199a7bc",
+      "number": "DEMO20260506001",
+      "system_name": "Relatórios",
+      "existing_tags": [
+        "sistema"
+      ],
+      "add_tags": [
+        "falha_exportacao"
+      ],
+      "remove_tags": [
+        "sistema"
+      ],
+      "final_tags": [
+        "falha_exportacao"
+      ]
+    },
+    {
+      "incident_sys_id": "6608c2f2a52459eba7ab1d75823274b1",
+      "number": "DEMO20260506002",
+      "system_name": "Relatórios",
+      "existing_tags": [
+        "sistema"
+      ],
+      "add_tags": [
+        "falha_exportacao"
+      ],
+      "remove_tags": [
+        "sistema"
+      ],
+      "final_tags": [
+        "falha_exportacao"
+      ]
+    }
+  ],
+  "sync_execution": {
+    "mode": "preview",
+    "results": []
+  },
+  "recurrences": [
+    {
+      "recurrence_id": "REC-001",
+      "system_name": "Atendimento",
+      "tag_signature": [
+        "timeout_protocolos"
+      ],
+      "incident_numbers": [
+        "DEMO20260503001",
+        "DEMO20260503002",
+        "DEMO20260503003",
+        "DEMO20260503004"
+      ],
+      "incident_sys_ids": [
+        "44c608e7821a576a8c419e8825449dcf",
+        "765182ba2bdb525f9d9aa25413aa5baa",
+        "8b3a8d09ccf25b4bae2dc9e81717b55c",
+        "3b4be41c4d6a522e9605338fccde3da0"
+      ],
+      "count": 4,
+      "suggested_problem": "Criar Novo PRB",
+      "suggested_kb": "Mapear Novo KB"
+    },
+    {
+      "recurrence_id": "REC-003",
+      "system_name": "Financeiro",
+      "tag_signature": [
+        "atraso_notas"
+      ],
+      "incident_numbers": [
+        "DEMO20260501001",
+        "DEMO20260501002",
+        "DEMO20260501003",
+        "DEMO20260501004",
+        "DEMO20260501005",
+        "DEMO20260501006"
+      ],
+      "incident_sys_ids": [
+        "291b791dd6d2522abcd228a0949887d6",
+        "59c178837d0756f4beb2cb7dac55f6aa",
+        "450f33c1d5995365ac92a90431f231ab",
+        "b10140d8c417551eb7f34f8f8b554bd9",
+        "ff2da39c2ce7514388de50544b07d76b",
+        "69a2acc8a050591aaf769cf7f4530c15"
+      ],
+      "count": 6,
+      "suggested_problem": "Criar Novo PRB",
+      "suggested_kb": "Mapear Novo KB"
+    },
+    {
+      "recurrence_id": "REC-004",
+      "system_name": "Identidade",
+      "tag_signature": [
+        "erro_sessao"
+      ],
+      "incident_numbers": [
+        "DEMO20260504001",
+        "DEMO20260504002",
+        "DEMO20260504003",
+        "DEMO20260504004",
+        "DEMO20260504005",
+        "DEMO20260504006",
+        "DEMO20260504007"
+      ],
+      "incident_sys_ids": [
+        "64ce3950ad8c53218b713a88e049b981",
+        "dc1e077d2dd8579eb24bf568705e0f9a",
+        "6a1298e482915270aad98ccf9d1830be",
+        "90adca907d03577985bc0b9c9999cd15",
+        "467440b8b21858ab85499edbf1fe0f83",
+        "a4c87597c4715ce492dfab5214ec979e",
+        "a3c6b74c833f57f6b7486377db2382c7"
+      ],
+      "count": 7,
+      "suggested_problem": "Criar Novo PRB",
+      "suggested_kb": "Mapear Novo KB"
+    },
+    {
+      "recurrence_id": "REC-005",
+      "system_name": "Logística",
+      "tag_signature": [
+        "falha_rastreamento"
+      ],
+      "incident_numbers": [
+        "DEMO20260502001",
+        "DEMO20260502002",
+        "DEMO20260502003",
+        "DEMO20260502004",
+        "DEMO20260502005"
+      ],
+      "incident_sys_ids": [
+        "c0e10709195e53c98868d5df41c70e9d",
+        "d8e0827eb6f25fbea5d5aa8fa07914a5",
+        "a8fc11e6455c5e81823fdb91c79b3fea",
+        "88931268afd756a5aa2a43ed5e5ccfba",
+        "7287c738ce1d5e7b959b6848bc2ec7cc"
+      ],
+      "count": 5,
+      "suggested_problem": "Criar Novo PRB",
+      "suggested_kb": "Mapear Novo KB"
+    }
+  ],
+  "below_threshold": [
+    {
+      "recurrence_id": "REC-002",
+      "system_name": "Estoque",
+      "tag_signature": [
+        "divergencia_saldo"
+      ],
+      "incident_numbers": [
+        "DEMO20260505001"
+      ],
+      "incident_sys_ids": [
+        "1df2dff795de5cf893ebd4e0c0bcd781"
+      ],
+      "count": 1,
+      "suggested_problem": "Criar Novo PRB",
+      "suggested_kb": "Mapear Novo KB"
+    },
+    {
+      "recurrence_id": "REC-006",
+      "system_name": "Relatórios",
+      "tag_signature": [
+        "falha_exportacao"
+      ],
+      "incident_numbers": [
+        "DEMO20260506001",
+        "DEMO20260506002"
+      ],
+      "incident_sys_ids": [
+        "f983e48349ae577b8d780b55f199a7bc",
+        "6608c2f2a52459eba7ab1d75823274b1"
+      ],
+      "count": 2,
+      "suggested_problem": "Criar Novo PRB",
+      "suggested_kb": "Mapear Novo KB"
+    }
+  ],
+  "teams_notifications": [
+    {
+      "recurrence_id": "REC-001",
+      "delivery_key": "3761b4dcfa907020",
+      "status": "preview_only",
+      "card": {
+        "type": "message",
+        "attachments": [
+          {
+            "contentType": "application/vnd.microsoft.card.adaptive",
+            "contentUrl": null,
+            "content": {
+              "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+              "type": "AdaptiveCard",
+              "version": "1.4",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "🚨 Radar RetroGrafos: Recorrência Detectada (REC-001)",
+                  "weight": "Bolder",
+                  "size": "Large",
+                  "color": "Attention"
+                },
+                {
+                  "type": "FactSet",
+                  "facts": [
+                    {
+                      "title": "Sistema:",
+                      "value": "Atendimento"
+                    },
+                    {
+                      "title": "Incidentes na Semana:",
+                      "value": "4 (DEMO20260503001, DEMO20260503002, DEMO20260503003, DEMO20260503004)"
+                    },
+                    {
+                      "title": "Assinatura de Tags:",
+                      "value": "#timeout_protocolos"
+                    },
+                    {
+                      "title": "Problema Sugerido:",
+                      "value": "Criar Novo PRB"
+                    },
+                    {
+                      "title": "Artigo KB Sugerido:",
+                      "value": "Mapear Novo KB"
+                    }
+                  ]
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "💡 **Ação Recomendada:** Vincular chamados ao Problema raiz e acionar deflexão via Base de Conhecimento.",
+                  "wrap": true,
+                  "spacing": "Medium"
+                }
+              ],
+              "actions": [
+                {
+                  "type": "Action.OpenUrl",
+                  "title": "Abrir Incidente Âncora no ServiceNow",
+                  "url": "https://dev217534.service-now.com/nav_to.do?uri=incident.do?sys_id=44c608e7821a576a8c419e8825449dcf"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recurrence_id": "REC-003",
+      "delivery_key": "0ee62eb2845e2417",
+      "status": "preview_only",
+      "card": {
+        "type": "message",
+        "attachments": [
+          {
+            "contentType": "application/vnd.microsoft.card.adaptive",
+            "contentUrl": null,
+            "content": {
+              "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+              "type": "AdaptiveCard",
+              "version": "1.4",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "🚨 Radar RetroGrafos: Recorrência Detectada (REC-003)",
+                  "weight": "Bolder",
+                  "size": "Large",
+                  "color": "Attention"
+                },
+                {
+                  "type": "FactSet",
+                  "facts": [
+                    {
+                      "title": "Sistema:",
+                      "value": "Financeiro"
+                    },
+                    {
+                      "title": "Incidentes na Semana:",
+                      "value": "6 (DEMO20260501001, DEMO20260501002, DEMO20260501003, DEMO20260501004, DEMO20260501005, DEMO20260501006)"
+                    },
+                    {
+                      "title": "Assinatura de Tags:",
+                      "value": "#atraso_notas"
+                    },
+                    {
+                      "title": "Problema Sugerido:",
+                      "value": "Criar Novo PRB"
+                    },
+                    {
+                      "title": "Artigo KB Sugerido:",
+                      "value": "Mapear Novo KB"
+                    }
+                  ]
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "💡 **Ação Recomendada:** Vincular chamados ao Problema raiz e acionar deflexão via Base de Conhecimento.",
+                  "wrap": true,
+                  "spacing": "Medium"
+                }
+              ],
+              "actions": [
+                {
+                  "type": "Action.OpenUrl",
+                  "title": "Abrir Incidente Âncora no ServiceNow",
+                  "url": "https://dev217534.service-now.com/nav_to.do?uri=incident.do?sys_id=291b791dd6d2522abcd228a0949887d6"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recurrence_id": "REC-004",
+      "delivery_key": "b298e528a458693e",
+      "status": "preview_only",
+      "card": {
+        "type": "message",
+        "attachments": [
+          {
+            "contentType": "application/vnd.microsoft.card.adaptive",
+            "contentUrl": null,
+            "content": {
+              "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+              "type": "AdaptiveCard",
+              "version": "1.4",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "🚨 Radar RetroGrafos: Recorrência Detectada (REC-004)",
+                  "weight": "Bolder",
+                  "size": "Large",
+                  "color": "Attention"
+                },
+                {
+                  "type": "FactSet",
+                  "facts": [
+                    {
+                      "title": "Sistema:",
+                      "value": "Identidade"
+                    },
+                    {
+                      "title": "Incidentes na Semana:",
+                      "value": "7 (DEMO20260504001, DEMO20260504002, DEMO20260504003, DEMO20260504004, DEMO20260504005, DEMO20260504006, DEMO20260504007)"
+                    },
+                    {
+                      "title": "Assinatura de Tags:",
+                      "value": "#erro_sessao"
+                    },
+                    {
+                      "title": "Problema Sugerido:",
+                      "value": "Criar Novo PRB"
+                    },
+                    {
+                      "title": "Artigo KB Sugerido:",
+                      "value": "Mapear Novo KB"
+                    }
+                  ]
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "💡 **Ação Recomendada:** Vincular chamados ao Problema raiz e acionar deflexão via Base de Conhecimento.",
+                  "wrap": true,
+                  "spacing": "Medium"
+                }
+              ],
+              "actions": [
+                {
+                  "type": "Action.OpenUrl",
+                  "title": "Abrir Incidente Âncora no ServiceNow",
+                  "url": "https://dev217534.service-now.com/nav_to.do?uri=incident.do?sys_id=64ce3950ad8c53218b713a88e049b981"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "recurrence_id": "REC-005",
+      "delivery_key": "2203b482c2d6fefd",
+      "status": "preview_only",
+      "card": {
+        "type": "message",
+        "attachments": [
+          {
+            "contentType": "application/vnd.microsoft.card.adaptive",
+            "contentUrl": null,
+            "content": {
+              "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+              "type": "AdaptiveCard",
+              "version": "1.4",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "🚨 Radar RetroGrafos: Recorrência Detectada (REC-005)",
+                  "weight": "Bolder",
+                  "size": "Large",
+                  "color": "Attention"
+                },
+                {
+                  "type": "FactSet",
+                  "facts": [
+                    {
+                      "title": "Sistema:",
+                      "value": "Logística"
+                    },
+                    {
+                      "title": "Incidentes na Semana:",
+                      "value": "5 (DEMO20260502001, DEMO20260502002, DEMO20260502003, DEMO20260502004, DEMO20260502005)"
+                    },
+                    {
+                      "title": "Assinatura de Tags:",
+                      "value": "#falha_rastreamento"
+                    },
+                    {
+                      "title": "Problema Sugerido:",
+                      "value": "Criar Novo PRB"
+                    },
+                    {
+                      "title": "Artigo KB Sugerido:",
+                      "value": "Mapear Novo KB"
+                    }
+                  ]
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "💡 **Ação Recomendada:** Vincular chamados ao Problema raiz e acionar deflexão via Base de Conhecimento.",
+                  "wrap": true,
+                  "spacing": "Medium"
+                }
+              ],
+              "actions": [
+                {
+                  "type": "Action.OpenUrl",
+                  "title": "Abrir Incidente Âncora no ServiceNow",
+                  "url": "https://dev217534.service-now.com/nav_to.do?uri=incident.do?sys_id=c0e10709195e53c98868d5df41c70e9d"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "artifacts": {
+    "report_json": "output\\demo-mensal\\historico\\2026-05\\retrografos_report.json",
+    "dashboard_html": "output\\demo-mensal\\historico\\2026-05\\dashboard\\index.html",
+    "obsidian_vault": {
+      "vault_path": "output\\demo-mensal\\historico\\2026-05\\obsidian_vault_14d26b7cfd10",
+      "notes_count": 45,
+      "broken_links": []
+    }
+  }
+}

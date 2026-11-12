@@ -1,0 +1,292 @@
+{
+  "problems": [
+    {
+      "sys_id": "34768901534f5656bd55ea653ebf0c9f",
+      "number": "DEMO-PRB-20260501",
+      "short_description": "[DEMO] Causa raiz em Atendimento",
+      "description": "Uma consulta sem índice esgotou a capacidade do portal após a publicação.",
+      "opened_at": "2026-05-01T09:00:00+00:00",
+      "rfc": "8d45b09adefe584285936fee3349884a"
+    },
+    {
+      "sys_id": "d292e632f11958a282cb690c00b1b93a",
+      "number": "DEMO-PRB-20260502",
+      "short_description": "[DEMO] Causa raiz em Estoque",
+      "description": "Uma alteração no inventário introduziu uma condição de corrida entre integrações.",
+      "opened_at": "2026-05-01T16:00:00+00:00",
+      "rfc": "22591db68f335e1fa108a159d8da43ed"
+    },
+    {
+      "sys_id": "d9bf7fbc996a59e393dea8f67127a112",
+      "number": "DEMO-PRB-20260503",
+      "short_description": "[DEMO] Causa raiz em Financeiro",
+      "description": "Uma nova regra de conciliação serializou a fila de notas.",
+      "opened_at": "2026-05-01T13:00:00+00:00",
+      "rfc": "9a61da88ccfc548aa41e544dceaae577"
+    },
+    {
+      "sys_id": "0ed186234d525f0d913278cf3389ae75",
+      "number": "DEMO-PRB-20260504",
+      "short_description": "[DEMO] Causa raiz em Identidade",
+      "description": "O serviço de sessão armazenava chaves antigas após a rotação.",
+      "opened_at": "2026-05-01T14:00:00+00:00",
+      "rfc": "c9fb1bb70078562b966b5c2acc3fcb99"
+    },
+    {
+      "sys_id": "e7b8863e63955c0b9b24c46244cba350",
+      "number": "DEMO-PRB-20260505",
+      "short_description": "[DEMO] Causa raiz em Logística",
+      "description": "O consumidor de eventos descartava atualizações que chegavam fora de ordem.",
+      "opened_at": "2026-05-01T15:00:00+00:00",
+      "rfc": "7ea53af635f355d9ac38073fcfce64f4"
+    },
+    {
+      "sys_id": "4492479da2ee5c3ab33e0336289a8911",
+      "number": "DEMO-PRB-20260506",
+      "short_description": "[DEMO] Causa raiz em Relatórios",
+      "description": "Exportações grandes excediam a memória disponível no processo.",
+      "opened_at": "2026-05-01T16:00:00+00:00",
+      "rfc": "3eca53c715a2534780c884d128c21ff4"
+    },
+    {
+      "sys_id": "2f24b4314f1d50e3b96306bd0b19e062",
+      "number": "DEMO-PRB-20260601",
+      "short_description": "[DEMO] Causa raiz em Atendimento",
+      "description": "Uma consulta sem índice esgotou a capacidade do portal após a publicação.",
+      "opened_at": "2026-06-01T14:00:00+00:00",
+      "rfc": "f9191442874c57e49f3e9671b0481ce7"
+    },
+    {
+      "sys_id": "97c020fe00f65954a4d68c8a35a1034c",
+      "number": "DEMO-PRB-20260602",
+      "short_description": "[DEMO] Causa raiz em Estoque",
+      "description": "Uma alteração no inventário introduziu uma condição de corrida entre integrações.",
+      "opened_at": "2026-06-01T09:00:00+00:00",
+      "rfc": "57fcc75b0f745402930be124cfc39313"
+    },
+    {
+      "sys_id": "a25e83bc6d3a5141a550223936a33d28",
+      "number": "DEMO-PRB-20260603",
+      "short_description": "[DEMO] Causa raiz em Financeiro",
+      "description": "Uma nova regra de conciliação serializou a fila de notas.",
+      "opened_at": "2026-06-01T15:00:00+00:00",
+      "rfc": "f06bc6d7d258500c842d5280d1ef6539"
+    },
+    {
+      "sys_id": "30895ec086595ed6bbeec6aa93968fba",
+      "number": "DEMO-PRB-20260604",
+      "short_description": "[DEMO] Causa raiz em Identidade",
+      "description": "O serviço de sessão armazenava chaves antigas após a rotação.",
+      "opened_at": "2026-06-01T10:00:00+00:00",
+      "rfc": "64260bb27dd0575d9cceb4cdc175b905"
+    },
+    {
+      "sys_id": "af9e8614a0285c7cab9c9bba3e759724",
+      "number": "DEMO-PRB-20260605",
+      "short_description": "[DEMO] Causa raiz em Logística",
+      "description": "O consumidor de eventos descartava atualizações que chegavam fora de ordem.",
+      "opened_at": "2026-06-01T15:00:00+00:00",
+      "rfc": "f68c6567b2e85aaf8efb73abfc6ad7f5"
+    },
+    {
+      "sys_id": "e3417846dcd45caa8794fa30f72f54b6",
+      "number": "DEMO-PRB-20260606",
+      "short_description": "[DEMO] Causa raiz em Relatórios",
+      "description": "Exportações grandes excediam a memória disponível no processo.",
+      "opened_at": "2026-06-01T13:00:00+00:00",
+      "rfc": "15afd7187b195cc6a3768e69fa2ac8b7"
+    },
+    {
+      "sys_id": "df5396b7775e5a99b93cf8c0832afff6",
+      "number": "DEMO-PRB-20260701",
+      "short_description": "[DEMO] Causa raiz em Atendimento",
+      "description": "Uma consulta sem índice esgotou a capacidade do portal após a publicação.",
+      "opened_at": "2026-07-01T15:00:00+00:00",
+      "rfc": "797faf9edc905e1783677d9255ae2536"
+    },
+    {
+      "sys_id": "8daa0607258a5434bcbf2051b6bdbc2c",
+      "number": "DEMO-PRB-20260702",
+      "short_description": "[DEMO] Causa raiz em Estoque",
+      "description": "Uma alteração no inventário introduziu uma condição de corrida entre integrações.",
+      "opened_at": "2026-07-01T13:00:00+00:00",
+      "rfc": "c12bea1f08025310ba01cf7cff450cc6"
+    },
+    {
+      "sys_id": "cdb09b98d15659d7954eb6369c3c7c29",
+      "number": "DEMO-PRB-20260703",
+      "short_description": "[DEMO] Causa raiz em Financeiro",
+      "description": "Uma nova regra de conciliação serializou a fila de notas.",
+      "opened_at": "2026-07-01T12:00:00+00:00",
+      "rfc": "52f4a43824ca5ed18a627568a72e7189"
+    },
+    {
+      "sys_id": "f380800a6520515d878d96342b822019",
+      "number": "DEMO-PRB-20260704",
+      "short_description": "[DEMO] Causa raiz em Identidade",
+      "description": "O serviço de sessão armazenava chaves antigas após a rotação.",
+      "opened_at": "2026-07-01T14:00:00+00:00",
+      "rfc": "67b2480e7db45ab5a2b5e300287dd1ce"
+    },
+    {
+      "sys_id": "56734b461cfc5db8bbbfc340dfa9b939",
+      "number": "DEMO-PRB-20260705",
+      "short_description": "[DEMO] Causa raiz em Logística",
+      "description": "O consumidor de eventos descartava atualizações que chegavam fora de ordem.",
+      "opened_at": "2026-07-01T15:00:00+00:00",
+      "rfc": "089bc4736b0a54debcb470ed86087b7e"
+    },
+    {
+      "sys_id": "eca710f6dd28586fa1ca5d63168f72eb",
+      "number": "DEMO-PRB-20260706",
+      "short_description": "[DEMO] Causa raiz em Relatórios",
+      "description": "Exportações grandes excediam a memória disponível no processo.",
+      "opened_at": "2026-07-01T15:00:00+00:00",
+      "rfc": "ddcec0cf4da15dda9ba5c381bdee4843"
+    },
+    {
+      "sys_id": "5640b508f075532291782bc07f542976",
+      "number": "DEMO-PRB-20260801",
+      "short_description": "[DEMO] Causa raiz em Atendimento",
+      "description": "Uma consulta sem índice esgotou a capacidade do portal após a publicação.",
+      "opened_at": "2026-08-01T14:00:00+00:00",
+      "rfc": "1b466339d39858ceac45fdf9e6ffc33f"
+    },
+    {
+      "sys_id": "83dda688f7d054c288de72c3c419bb76",
+      "number": "DEMO-PRB-20260802",
+      "short_description": "[DEMO] Causa raiz em Estoque",
+      "description": "Uma alteração no inventário introduziu uma condição de corrida entre integrações.",
+      "opened_at": "2026-08-01T11:00:00+00:00",
+      "rfc": "1e862734684e5da6b67046d3b5e66f34"
+    },
+    {
+      "sys_id": "5d852f8d5caa5a9fa6a091fb7adf573e",
+      "number": "DEMO-PRB-20260803",
+      "short_description": "[DEMO] Causa raiz em Financeiro",
+      "description": "Uma nova regra de conciliação serializou a fila de notas.",
+      "opened_at": "2026-08-01T10:00:00+00:00",
+      "rfc": "5392e4c2f5de55c49f207a25da5c576c"
+    },
+    {
+      "sys_id": "81614683a897586798ee1e6e3aaee18f",
+      "number": "DEMO-PRB-20260804",
+      "short_description": "[DEMO] Causa raiz em Identidade",
+      "description": "O serviço de sessão armazenava chaves antigas após a rotação.",
+      "opened_at": "2026-08-01T11:00:00+00:00",
+      "rfc": "b028aed52857540babfa34fbb0981a49"
+    },
+    {
+      "sys_id": "f1ae8b686ab05b29ba61d3b2c26ac106",
+      "number": "DEMO-PRB-20260805",
+      "short_description": "[DEMO] Causa raiz em Logística",
+      "description": "O consumidor de eventos descartava atualizações que chegavam fora de ordem.",
+      "opened_at": "2026-08-01T11:00:00+00:00",
+      "rfc": "151ff8ea98415eae8220882c914fc6cf"
+    },
+    {
+      "sys_id": "b3b5487cf0185e90b96c7b8deb9d3060",
+      "number": "DEMO-PRB-20260806",
+      "short_description": "[DEMO] Causa raiz em Relatórios",
+      "description": "Exportações grandes excediam a memória disponível no processo.",
+      "opened_at": "2026-08-01T14:00:00+00:00",
+      "rfc": "2456621c3c3354aeb776411e3dfa001d"
+    },
+    {
+      "sys_id": "e240bb077d945d7f9f99fe149a45971f",
+      "number": "DEMO-PRB-20260901",
+      "short_description": "[DEMO] Causa raiz em Atendimento",
+      "description": "Uma consulta sem índice esgotou a capacidade do portal após a publicação.",
+      "opened_at": "2026-09-01T15:00:00+00:00",
+      "rfc": "586a84010f0b5961974f2e8057c8b9e9"
+    },
+    {
+      "sys_id": "a1aeee7fda9451d39bd1e5466effbf82",
+      "number": "DEMO-PRB-20260902",
+      "short_description": "[DEMO] Causa raiz em Estoque",
+      "description": "Uma alteração no inventário introduziu uma condição de corrida entre integrações.",
+      "opened_at": "2026-09-01T09:00:00+00:00",
+      "rfc": "381598c4de7251d5b2a6531d82db1cf3"
+    },
+    {
+      "sys_id": "3c9708e9636052f8b9890ba7d48d3994",
+      "number": "DEMO-PRB-20260903",
+      "short_description": "[DEMO] Causa raiz em Financeiro",
+      "description": "Uma nova regra de conciliação serializou a fila de notas.",
+      "opened_at": "2026-09-01T15:00:00+00:00",
+      "rfc": "a311c02890a65e05b67a6dfaf3beef8f"
+    },
+    {
+      "sys_id": "1ebbbca2868c5318ad2228a9f56aa10a",
+      "number": "DEMO-PRB-20260904",
+      "short_description": "[DEMO] Causa raiz em Identidade",
+      "description": "O serviço de sessão armazenava chaves antigas após a rotação.",
+      "opened_at": "2026-09-01T09:00:00+00:00",
+      "rfc": "7eac533184e6535b8f1b354955131144"
+    },
+    {
+      "sys_id": "a3f7047a10af5ae78873f8e21ca9d3ea",
+      "number": "DEMO-PRB-20260905",
+      "short_description": "[DEMO] Causa raiz em Logística",
+      "description": "O consumidor de eventos descartava atualizações que chegavam fora de ordem.",
+      "opened_at": "2026-09-01T14:00:00+00:00",
+      "rfc": "3717ca99b09d5efc95f702d66f0a0d87"
+    },
+    {
+      "sys_id": "c7675341824d5a85ae14b674419ae3bf",
+      "number": "DEMO-PRB-20260906",
+      "short_description": "[DEMO] Causa raiz em Relatórios",
+      "description": "Exportações grandes excediam a memória disponível no processo.",
+      "opened_at": "2026-09-01T14:00:00+00:00",
+      "rfc": "d2cdb3b1d0415765a41294e65dc95d8a"
+    },
+    {
+      "sys_id": "445658d21f885581bd49b77954a1ae34",
+      "number": "DEMO-PRB-20261001",
+      "short_description": "[DEMO] Causa raiz em Atendimento",
+      "description": "Uma consulta sem índice esgotou a capacidade do portal após a publicação.",
+      "opened_at": "2026-10-01T12:00:00+00:00",
+      "rfc": "6dd910feefe9587da575d0c099abc68a"
+    },
+    {
+      "sys_id": "4f730fb06618572ab305cd20abe5e9d4",
+      "number": "DEMO-PRB-20261002",
+      "short_description": "[DEMO] Causa raiz em Estoque",
+      "description": "Uma alteração no inventário introduziu uma condição de corrida entre integrações.",
+      "opened_at": "2026-10-01T13:00:00+00:00",
+      "rfc": "f68fd77798f55fa0808c58eccc2b2c3a"
+    },
+    {
+      "sys_id": "9ff63e303b105c60a5d435bd63e9c4b7",
+      "number": "DEMO-PRB-20261003",
+      "short_description": "[DEMO] Causa raiz em Financeiro",
+      "description": "Uma nova regra de conciliação serializou a fila de notas.",
+      "opened_at": "2026-10-01T15:00:00+00:00",
+      "rfc": "2d96c210e70e5c50abbf824a56b88c9a"
+    },
+    {
+      "sys_id": "1b870f7ee51d54a18551f858d8b7e2d3",
+      "number": "DEMO-PRB-20261004",
+      "short_description": "[DEMO] Causa raiz em Identidade",
+      "description": "O serviço de sessão armazenava chaves antigas após a rotação.",
+      "opened_at": "2026-10-01T16:00:00+00:00",
+      "rfc": "40f4e0638f935316834574c859616f99"
+    },
+    {
+      "sys_id": "d2cf65918c2d53098f61684f9da15134",
+      "number": "DEMO-PRB-20261005",
+      "short_description": "[DEMO] Causa raiz em Logística",
+      "description": "O consumidor de eventos descartava atualizações que chegavam fora de ordem.",
+      "opened_at": "2026-10-01T10:00:00+00:00",
+      "rfc": "92dbfa8f22e15284a10f40f2525fbfbd"
+    },
+    {
+      "sys_id": "782643dcef835ade955ad04c19fe7d35",
+      "number": "DEMO-PRB-20261006",
+      "short_description": "[DEMO] Causa raiz em Relatórios",
+      "description": "Exportações grandes excediam a memória disponível no processo.",
+      "opened_at": "2026-10-01T15:00:00+00:00",
+      "rfc": "55c1477e611e5c179a34ca608aafe7f2"
+    }
+  ]
+}

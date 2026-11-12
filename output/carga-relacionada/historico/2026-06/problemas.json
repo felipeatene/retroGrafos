@@ -1,0 +1,52 @@
+{
+  "problems": [
+    {
+      "sys_id": "2f24b4314f1d50e3b96306bd0b19e062",
+      "number": "DEMO-PRB-20260601",
+      "short_description": "[DEMO] Causa raiz em Atendimento",
+      "description": "Uma consulta sem índice esgotou a capacidade do portal após a publicação.",
+      "opened_at": "2026-06-01T14:00:00+00:00",
+      "rfc": "f9191442874c57e49f3e9671b0481ce7"
+    },
+    {
+      "sys_id": "97c020fe00f65954a4d68c8a35a1034c",
+      "number": "DEMO-PRB-20260602",
+      "short_description": "[DEMO] Causa raiz em Estoque",
+      "description": "Uma alteração no inventário introduziu uma condição de corrida entre integrações.",
+      "opened_at": "2026-06-01T09:00:00+00:00",
+      "rfc": "57fcc75b0f745402930be124cfc39313"
+    },
+    {
+      "sys_id": "a25e83bc6d3a5141a550223936a33d28",
+      "number": "DEMO-PRB-20260603",
+      "short_description": "[DEMO] Causa raiz em Financeiro",
+      "description": "Uma nova regra de conciliação serializou a fila de notas.",
+      "opened_at": "2026-06-01T15:00:00+00:00",
+      "rfc": "f06bc6d7d258500c842d5280d1ef6539"
+    },
+    {
+      "sys_id": "30895ec086595ed6bbeec6aa93968fba",
+      "number": "DEMO-PRB-20260604",
+      "short_description": "[DEMO] Causa raiz em Identidade",
+      "description": "O serviço de sessão armazenava chaves antigas após a rotação.",
+      "opened_at": "2026-06-01T10:00:00+00:00",
+      "rfc": "64260bb27dd0575d9cceb4cdc175b905"
+    },
+    {
+      "sys_id": "af9e8614a0285c7cab9c9bba3e759724",
+      "number": "DEMO-PRB-20260605",
+      "short_description": "[DEMO] Causa raiz em Logística",
+      "description": "O consumidor de eventos descartava atualizações que chegavam fora de ordem.",
+      "opened_at": "2026-06-01T15:00:00+00:00",
+      "rfc": "f68c6567b2e85aaf8efb73abfc6ad7f5"
+    },
+    {
+      "sys_id": "e3417846dcd45caa8794fa30f72f54b6",
+      "number": "DEMO-PRB-20260606",
+      "short_description": "[DEMO] Causa raiz em Relatórios",
+      "description": "Exportações grandes excediam a memória disponível no processo.",
+      "opened_at": "2026-06-01T13:00:00+00:00",
+      "rfc": "15afd7187b195cc6a3768e69fa2ac8b7"
+    }
+  ]
+}

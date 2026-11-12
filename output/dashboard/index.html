@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>RetroGrafos — Painel Local de Tags, Recorrências e Grafo</title>
+  <style>
+    :root { --bg: #0f172a; --card: #1e293b; --text: #f8fafc; --muted: #94a3b8; --accent: #38bdf8; --danger: #f43f5e; --ok: #10b981; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 24px; }
+    header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; border-bottom: 1px solid #334155; padding-bottom: 16px; }
+    .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+    .card { background: var(--card); border-radius: 12px; padding: 18px; border: 1px solid #334155; }
+    .kpi-val { font-size: 2rem; font-weight: 700; color: var(--accent); }
+    .filters { display: flex; gap: 16px; margin-bottom: 20px; align-items: center; }
+    select { background: #0f172a; color: var(--text); border: 1px solid #475569; padding: 8px 12px; border-radius: 8px; }
+    .grid-2 { display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th, td { text-align: left; padding: 10px; border-bottom: 1px solid #334155; }
+    .tag { display: inline-block; background: #0284c7; color: #fff; padding: 2px 8px; border-radius: 999px; font-size: 0.78rem; margin-right: 4px; }
+    .tag-rem { background: #be123c; text-decoration: line-through; }
+    .rec-box { border-left: 4px solid var(--danger); padding-left: 12px; margin-bottom: 12px; }
+    .sub-box { border-left: 4px solid var(--muted); padding-left: 12px; margin-bottom: 12px; opacity: 0.85; }
+    svg { width: 100%; height: 420px; background: #0b1120; border-radius: 10px; border: 1px solid #334155; }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1 style="margin:0;">🕸️ RetroGrafos — Radar Semântico ServiceNow</h1>
+      <small style="color:var(--muted);">Mesma fonte de verdade do cofre Obsidian e dos Adaptive Cards do Teams</small>
+    </div>
+    <div id="mode-badge" class="tag">Modo Demonstração</div>
+  </header>
+
+  <div class="kpis">
+    <div class="card"><div>Incidentes Analisados</div><div class="kpi-val" id="kpi-inc">0</div></div>
+    <div class="card"><div>Recorrências Confirmadas (&ge; 4)</div><div class="kpi-val" style="color:var(--danger);" id="kpi-rec">0</div></div>
+    <div class="card"><div>Grupos Abaixo do Limiar (&lt; 4)</div><div class="kpi-val" style="color:var(--muted);" id="kpi-sub">0</div></div>
+    <div class="card"><div>Tags Genéricas Removidas</div><div class="kpi-val" style="color:var(--ok);" id="kpi-rem">0</div></div>
+  </div>
+
+  <div class="filters card">
+    <strong>Filtros do Grafo e Tabela:</strong>
+    <label>Sistema: <select id="f-sys"><option value="">Todos</option></select></label>
+    <label>Tag: <select id="f-tag"><option value="">Todas</option></select></label>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3 style="margin-top:0;">Grafo de Relações (Incidentes ↔ Sistemas ↔ Tags)</h3>
+      <svg id="graph-svg" viewBox="0 0 700 420"></svg>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0;">Radar de Recorrências (Limiar = 4 incidentes)</h3>
+      <div id="rec-list"></div>
+      <h4>Abaixo do Limiar (Monitoramento)</h4>
+      <div id="sub-list"></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:20px;">
+    <h3 style="margin-top:0;">Plano de Sincronização de Tags (`label_entry`)</h3>
+    <table>
+      <thead>
+        <tr><th>Chamado</th><th>Sistema</th><th>Tags Finais (Grafo)</th><th>Genéricas Removidas</th></tr>
+      </thead>
+      <tbody id="plan-tbody"></tbody>
+    </table>
+  </div>
+
+  <script>
+    const REPORT = {"generated_at": "2026-11-11T21:43:53.465358+00:00", "mode": "preview", "recurrence_threshold": 4, "incidents": [{"sys_id": "a83820b58f723300e7e16c7827bdeed1", "number": "INC3109927", "state": "6", "short_description": "Erro no envio de NF pelo Portal Fornecedor - Centralizada", "description": "Fornecedor relata lentidao e falha de timeout ao submeter nota fiscal pela tela centralizada. Limpeza de cache resolveu.", "close_notes": "Orientada limpeza de cache do navegador e reprocessamento.", "u_sintoma": "Erro de Envio / Timeout", "u_system_name": "Portal Fornecedor", "u_system_module": "Faturamento Centralizado", "u_trat_causa_raiz": "Cache corrompido na sessao do cliente", "problem_id": "PRB0040550", "kb_candidate": "KB0010991", "existing_tags": ["sistema", "lentidao", "portal_fornecedor"]}, {"sys_id": "a83820b58f723300e7e16c7827bdeed2", "number": "INC3109928", "state": "6", "short_description": "Falha ao submeter Nota Fiscal na tela Centralizada do Portal Fornecedor", "description": "Usuario nao consegue enviar NF. Tela congela. Resolvido apos limpar cache.", "close_notes": "Aplicado procedimento KB0010991 de limpeza de cache.", "u_sintoma": "Erro de Envio / Timeout", "u_system_name": "Portal Fornecedor", "u_system_module": "Faturamento Centralizado", "u_trat_causa_raiz": "Cache de sessao", "problem_id": "PRB0040550", "kb_candidate": "KB0010991", "existing_tags": ["problema", "erro", "portal_fornecedor"]}, {"sys_id": "a83820b58f723300e7e16c7827bdeed3", "number": "INC3109929", "state": "6", "short_description": "Timeout no Portal Fornecedor ao anexar XML na Centralizada", "description": "Lentidao extrema no envio de NF pelo portal. Limpeza de cache destravou o envio.", "close_notes": "Limpeza de cache executada com sucesso.", "u_sintoma": "Erro de Envio / Timeout", "u_system_name": "Portal Fornecedor", "u_system_module": "Faturamento Centralizado", "u_trat_causa_raiz": "Cache corrompido", "problem_id": "", "kb_candidate": "KB0010991", "existing_tags": ["lentidao", "sistema"]}, {"sys_id": "a83820b58f723300e7e16c7827bdeed4", "number": "INC3109930", "state": "6", "short_description": "Portal Fornecedor travando no envio de NF Centralizada", "description": "Fornecedor sem conseguir faturar. Sessao presa em cache antigo.", "close_notes": "Limpeza de cookies e cache conforme KB0010991.", "u_sintoma": "Erro de Envio / Timeout", "u_system_name": "Portal Fornecedor", "u_system_module": "Faturamento Centralizado", "u_trat_causa_raiz": "Cache expirado", "problem_id": "PRB0040550", "kb_candidate": "KB0010991", "existing_tags": ["falha", "suporte"]}, {"sys_id": "b94931c68f723300e7e16c7827bdeef1", "number": "INC3110452", "state": "6", "short_description": "CheckFacil nao gera PDF no termo de devolucao", "description": "App trava na geracao do PDF de vistoria de devolucao.", "close_notes": "Reiniciado servico de PDF.", "u_sintoma": "Falha na Geracao de PDF", "u_system_name": "CheckFácil", "u_system_module": "Vistoria / Devolucao", "u_trat_causa_raiz": "Fila de PDF travada", "problem_id": "PRB0053101", "kb_candidate": "", "existing_tags": ["problema", "checkfacil"]}, {"sys_id": "b94931c68f723300e7e16c7827bdeef2", "number": "INC3110453", "state": "6", "short_description": "Erro ao exportar PDF de vistoria no CheckFacil", "description": "Cliente aguardando termo de devolucao na agencia.", "close_notes": "Reenviado PDF manualmente.", "u_sintoma": "Falha na Geracao de PDF", "u_system_name": "CheckFácil", "u_system_module": "Vistoria / Devolucao", "u_trat_causa_raiz": "Worker de PDF indisponivel", "problem_id": "", "kb_candidate": "", "existing_tags": ["sistema", "erro"]}, {"sys_id": "b94931c68f723300e7e16c7827bdeef3", "number": "INC3110454", "state": "6", "short_description": "Termo de devolucao em branco no CheckFacil", "description": "PDF nao carrega assinatura na devolucao.", "close_notes": "Regerado documento.", "u_sintoma": "Falha na Geracao de PDF", "u_system_name": "CheckFácil", "u_system_module": "Vistoria / Devolucao", "u_trat_causa_raiz": "Timeout renderizacao PDF", "problem_id": "", "kb_candidate": "", "existing_tags": ["lentidao"]}], "sync_plan": [{"incident_sys_id": "a83820b58f723300e7e16c7827bdeed1", "number": "INC3109927", "system_name": "Portal Fornecedor", "existing_tags": ["sistema", "lentidao", "portal_fornecedor"], "add_tags": ["erro_envio_nf", "centralizada", "limpeza_cache_kb"], "remove_tags": ["sistema", "lentidao"], "final_tags": ["portal_fornecedor", "erro_envio_nf", "centralizada", "limpeza_cache_kb"]}, {"incident_sys_id": "a83820b58f723300e7e16c7827bdeed2", "number": "INC3109928", "system_name": "Portal Fornecedor", "existing_tags": ["problema", "erro", "portal_fornecedor"], "add_tags": ["erro_envio_nf", "centralizada", "limpeza_cache_kb"], "remove_tags": ["problema", "erro"], "final_tags": ["portal_fornecedor", "erro_envio_nf", "centralizada", "limpeza_cache_kb"]}, {"incident_sys_id": "a83820b58f723300e7e16c7827bdeed3", "number": "INC3109929", "system_name": "Portal Fornecedor", "existing_tags": ["lentidao", "sistema"], "add_tags": ["portal_fornecedor", "erro_envio_nf", "centralizada", "limpeza_cache_kb"], "remove_tags": ["lentidao", "sistema"], "final_tags": ["portal_fornecedor", "erro_envio_nf", "centralizada", "limpeza_cache_kb"]}, {"incident_sys_id": "a83820b58f723300e7e16c7827bdeed4", "number": "INC3109930", "system_name": "Portal Fornecedor", "existing_tags": ["falha", "suporte"], "add_tags": ["portal_fornecedor", "erro_envio_nf", "centralizada", "limpeza_cache_kb"], "remove_tags": ["falha", "suporte"], "final_tags": ["portal_fornecedor", "erro_envio_nf", "centralizada", "limpeza_cache_kb"]}, {"incident_sys_id": "b94931c68f723300e7e16c7827bdeef1", "number": "INC3110452", "system_name": "CheckFácil", "existing_tags": ["problema", "checkfacil"], "add_tags": ["falha_geracao_pdf", "vistoria_devolucao"], "remove_tags": ["problema"], "final_tags": ["checkfacil", "falha_geracao_pdf", "vistoria_devolucao"]}, {"incident_sys_id": "b94931c68f723300e7e16c7827bdeef2", "number": "INC3110453", "system_name": "CheckFácil", "existing_tags": ["sistema", "erro"], "add_tags": ["checkfacil", "falha_geracao_pdf", "vistoria_devolucao"], "remove_tags": ["sistema", "erro"], "final_tags": ["checkfacil", "falha_geracao_pdf", "vistoria_devolucao"]}, {"incident_sys_id": "b94931c68f723300e7e16c7827bdeef3", "number": "INC3110454", "system_name": "CheckFácil", "existing_tags": ["lentidao"], "add_tags": ["checkfacil", "falha_geracao_pdf", "vistoria_devolucao"], "remove_tags": ["lentidao"], "final_tags": ["checkfacil", "falha_geracao_pdf", "vistoria_devolucao"]}], "sync_execution": {"mode": "preview", "results": []}, "recurrences": [{"recurrence_id": "REC-002", "system_name": "Portal Fornecedor", "tag_signature": ["centralizada", "erro_envio_nf", "limpeza_cache_kb", "portal_fornecedor"], "incident_numbers": ["INC3109927", "INC3109928", "INC3109929", "INC3109930"], "incident_sys_ids": ["a83820b58f723300e7e16c7827bdeed1", "a83820b58f723300e7e16c7827bdeed2", "a83820b58f723300e7e16c7827bdeed3", "a83820b58f723300e7e16c7827bdeed4"], "count": 4, "suggested_problem": "PRB0040550", "suggested_kb": "KB0010991"}], "below_threshold": [{"recurrence_id": "REC-001", "system_name": "CheckFácil", "tag_signature": ["checkfacil", "falha_geracao_pdf", "vistoria_devolucao"], "incident_numbers": ["INC3110452", "INC3110453", "INC3110454"], "incident_sys_ids": ["b94931c68f723300e7e16c7827bdeef1", "b94931c68f723300e7e16c7827bdeef2", "b94931c68f723300e7e16c7827bdeef3"], "count": 3, "suggested_problem": "PRB0053101", "suggested_kb": "Mapear Novo KB"}], "teams_notifications": [{"recurrence_id": "REC-002", "delivery_key": "78c904324e7000a6", "status": "preview_only", "card": {"type": "message", "attachments": [{"contentType": "application/vnd.microsoft.card.adaptive", "contentUrl": null, "content": {"$schema": "http://adaptivecards.io/schemas/adaptive-card.json", "type": "AdaptiveCard", "version": "1.4", "body": [{"type": "TextBlock", "text": "🚨 Radar RetroGrafos: Recorrência Detectada (REC-002)", "weight": "Bolder", "size": "Large", "color": "Attention"}, {"type": "FactSet", "facts": [{"title": "Sistema:", "value": "Portal Fornecedor"}, {"title": "Incidentes na Semana:", "value": "4 (INC3109927, INC3109928, INC3109929, INC3109930)"}, {"title": "Assinatura de Tags:", "value": "#centralizada #erro_envio_nf #limpeza_cache_kb #portal_fornecedor"}, {"title": "Problema Sugerido:", "value": "PRB0040550"}, {"title": "Artigo KB Sugerido:", "value": "KB0010991"}]}, {"type": "TextBlock", "text": "💡 **Ação Recomendada:** Vincular chamados ao Problema raiz e acionar deflexão via Base de Conhecimento.", "wrap": true, "spacing": "Medium"}], "actions": [{"type": "Action.OpenUrl", "title": "Abrir Incidente Âncora no ServiceNow", "url": "https://dev217534.service-now.com/nav_to.do?uri=incident.do?sys_id=a83820b58f723300e7e16c7827bdeed1"}]}}]}}]};
+    const sysSelect = document.getElementById('f-sys');
+    const tagSelect = document.getElementById('f-tag');
+
+    const escapeHtml = value => String(value).replace(/[&<>"']/g, char => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[char]);
+    const systems = [...new Set(REPORT.sync_plan.map(i => i.system_name))];
+    const tags = [...new Set(REPORT.sync_plan.flatMap(i => i.final_tags))].sort();
+    systems.forEach(s => sysSelect.innerHTML += `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`);
+    tags.forEach(t => tagSelect.innerHTML += `<option value="${escapeHtml(t)}">#${escapeHtml(t)}</option>`);
+
+    document.getElementById('kpi-inc').textContent = REPORT.sync_plan.length;
+    document.getElementById('kpi-rec').textContent = REPORT.recurrences.length;
+    document.getElementById('kpi-sub').textContent = REPORT.below_threshold.length;
+    document.getElementById('kpi-rem').textContent = REPORT.sync_plan.reduce((acc, i) => acc + i.remove_tags.length, 0);
+
+    function render() {
+      const sysFilter = sysSelect.value;
+      const tagFilter = tagSelect.value;
+      const filtered = REPORT.sync_plan.filter(item => {
+        if (sysFilter && item.system_name !== sysFilter) return false;
+        if (tagFilter && !item.final_tags.includes(tagFilter)) return false;
+        return true;
+      });
+
+      const tbody = document.getElementById('plan-tbody');
+      tbody.innerHTML = filtered.map(i => `
+        <tr>
+          <td><strong>${escapeHtml(i.number)}</strong></td>
+          <td>${escapeHtml(i.system_name)}</td>
+          <td>${i.final_tags.map(t => `<span class="tag">#${escapeHtml(t)}</span>`).join('')}</td>
+          <td>${i.remove_tags.map(t => `<span class="tag tag-rem">${escapeHtml(t)}</span>`).join('') || '—'}</td>
+        </tr>
+      `).join('');
+
+      document.getElementById('rec-list').innerHTML = REPORT.recurrences.map(r => `
+        <div class="rec-box">
+          <strong>${escapeHtml(r.recurrence_id)} — ${escapeHtml(r.system_name)} (${r.count} incidentes)</strong><br>
+          <small>Chamados: ${escapeHtml(r.incident_numbers.join(', '))}</small><br>
+          <small>Problema Sugerido: <b>${escapeHtml(r.suggested_problem)}</b> | KB: <b>${escapeHtml(r.suggested_kb)}</b></small>
+        </div>
+      `).join('');
+
+      document.getElementById('sub-list').innerHTML = REPORT.below_threshold.map(r => `
+        <div class="sub-box">
+          <strong>${escapeHtml(r.system_name)} (${r.count}/${REPORT.recurrence_threshold} incidentes — abaixo do limiar)</strong><br>
+          <small>Chamados: ${escapeHtml(r.incident_numbers.join(', '))}</small>
+        </div>
+      `).join('');
+
+      drawGraph(filtered);
+    }
+
+    function drawGraph(items) {
+      const svg = document.getElementById('graph-svg');
+      svg.innerHTML = '';
+      const sysNodes = [...new Set(items.map(i => i.system_name))];
+      const tagNodes = [...new Set(items.flatMap(i => i.final_tags))];
+      const coords = {};
+
+      sysNodes.forEach((s, idx) => {
+        coords['SYS:' + s] = { x: 110, y: 70 + idx * 140, label: s, color: '#f59e0b' };
+      });
+      items.forEach((it, idx) => {
+        coords['INC:' + it.number] = { x: 350, y: 45 + idx * 52, label: it.number, color: '#38bdf8' };
+      });
+      tagNodes.forEach((t, idx) => {
+        coords['TAG:' + t] = { x: 580, y: 45 + idx * 50, label: '#' + t, color: '#10b981' };
+      });
+
+      items.forEach(it => {
+        const incNode = coords['INC:' + it.number];
+        const sysNode = coords['SYS:' + it.system_name];
+        if (incNode && sysNode) {
+          svg.innerHTML += `<line x1="${sysNode.x}" y1="${sysNode.y}" x2="${incNode.x}" y2="${incNode.y}" stroke="#475569" stroke-width="1.5"/>`;
+        }
+        it.final_tags.forEach(t => {
+          const tagNode = coords['TAG:' + t];
+          if (incNode && tagNode) {
+            svg.innerHTML += `<line x1="${incNode.x}" y1="${incNode.y}" x2="${tagNode.x}" y2="${tagNode.y}" stroke="#334155" stroke-width="1.2"/>`;
+          }
+        });
+      });
+
+      Object.values(coords).forEach(n => {
+        svg.innerHTML += `<circle cx="${n.x}" cy="${n.y}" r="9" fill="${n.color}"/>`;
+        svg.innerHTML += `<text x="${n.x + 14}" y="${n.y + 4}" fill="#f8fafc" font-size="11">${escapeHtml(n.label)}</text>`;
+      });
+    }
+
+    sysSelect.addEventListener('change', render);
+    tagSelect.addEventListener('change', render);
+    render();
+  </script>
+</body>
+</html>
