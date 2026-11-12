@@ -1,0 +1,23 @@
+
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Configuração · Lino</title><link rel="stylesheet" href="lino.css"><link rel="stylesheet" href="opcoes-lino.css"><script type="module" src="opcoes.mjs"></script></head>
+<body class="opcoes"><main>
+<h1>Configuração do Lino</h1>
+<form id="config">
+<label for="origem">Origem da instância ServiceNow</label>
+<input id="origem" type="url" required placeholder="https://sua-instancia.service-now.com">
+<label for="prazo">Prazo de revisão de problemas e mudanças, em dias</label>
+<input id="prazo" class="form-control mb-3" type="number" min="1" max="365" value="30" required>
+<label for="lista">Base interna de regras</label>
+<p id="ajuda">Edite as regras em JSON ou importe uma lista no mesmo formato. Salve para aplicar as alterações.</p>
+<textarea id="lista" rows="22" spellcheck="false" aria-describedby="ajuda" required></textarea>
+<div class="acoes"><button type="submit">Salvar configuração</button>
+<button type="button" id="importar" class="secundario">Importar JSON</button>
+<button type="button" id="exportar" class="secundario">Exportar JSON</button>
+<button type="button" id="restaurar" class="secundario">Restaurar exemplo</button></div>
+<input type="file" id="arquivo" accept=".json,application/json" hidden>
+</form>
+<p id="status" role="status" aria-live="polite"></p>
+<details><summary>Campos disponíveis para regras</summary><ul id="campos"></ul></details>
+</main></body></html>

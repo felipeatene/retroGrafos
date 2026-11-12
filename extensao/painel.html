@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lino · ServiceNow</title>
+  <link rel="stylesheet" href="lino.css">
+  <script type="module" src="lino.mjs"></script>
+</head>
+<body>
+  <header class="topo vidro">
+    <div class="marca">
+      <svg class="sinal" viewBox="0 0 36 36" aria-hidden="true"><path d="M10 25 18 10l8 15M10 25h16"/><circle cx="18" cy="10" r="3"/><circle cx="10" cy="25" r="3"/><circle cx="26" cy="25" r="3"/></svg>
+      <h1>Lino</h1>
+    </div>
+    <div class="topo-acoes">
+      <span id="conexao" class="conexao" data-estado="espera"><span></span><span id="conexao-texto">ServiceNow</span></span>
+      <button type="button" id="configurar" class="icone" aria-label="Configurações" title="Configurações">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2.5"/><circle cx="15" cy="17" r="2.5"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="chamado" aria-labelledby="contexto-titulo">
+      <div class="chamado-intro">
+        <div class="chamado-texto">
+          <p id="contexto-numero" class="numero" hidden></p>
+          <h2 id="contexto-titulo">Categorização de incidentes</h2>
+          <p id="contexto-texto" class="texto" role="status">Verificando a aba ativa…</p>
+        </div>
+        <img id="lina" class="lina" src="assets/lina.jpg" width="75" height="75" alt="Lina">
+      </div>
+      <div class="acoes">
+        <button type="button" id="autorizar" class="primario" hidden>Conectar ao ServiceNow</button>
+        <button type="button" id="entrar" class="primario" hidden>Entrar no ServiceNow</button>
+        <button type="button" id="verificar" hidden>Verificar novamente</button>
+        <button type="button" id="legado" hidden>Abrir problemas e mudanças</button>
+      </div>
+      <fieldset id="selecao" hidden><legend>Selecione os incidentes desta página</legend><div id="candidatos" class="candidatos"></div></fieldset>
+      <div id="classificacao" class="acoes" hidden>
+        <button type="button" id="classificar" class="primario">Classificar e aplicar tags</button>
+        <span id="selecionados" class="secundario"></span>
+      </div>
+      <p id="resultado-status" class="texto resultado-status" role="status"></p>
+      <details id="resultados" class="resultados" hidden><summary>Detalhes da classificação</summary><ul id="resultado-lista"></ul></details>
+    </section>
+
+    <section id="exploracao" aria-labelledby="grafo-titulo" hidden>
+      <div class="titulo-linha">
+        <h2 id="grafo-titulo">Grafo de tags</h2>
+        <button type="button" id="preferencias" class="discreto">Termos ignorados</button>
+      </div>
+      <div class="mapa">
+        <div class="filtros vidro">
+          <label class="busca"><span class="visualmente-oculto">Buscar tags</span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="5.5"/><path d="m15 15 4 4"/></svg><input id="busca" type="search" placeholder="Buscar tags"></label>
+          <label><span class="visualmente-oculto">Tipo de tag</span><select id="tipo"><option value="">Todos os tipos</option></select></label>
+          <button type="button" id="atualizar" class="icone" aria-label="Atualizar grafo" title="Atualizar grafo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 8a7.5 7.5 0 1 0 .3 7M19 4v5h-5"/></svg></button>
+        </div>
+        <div class="mapa-canvas">
+          <svg id="grafo" viewBox="0 0 540 350" role="group" aria-label="Conexões entre tags e incidentes"></svg>
+          <p id="grafo-estado" class="grafo-estado" role="status"></p>
+        </div>
+        <div class="mapa-rodape"><span id="grafo-contagem"></span><span id="grafo-legenda" hidden><i></i> Tag <i></i> Incidente</span></div>
+      </div>
+      <div id="catalogo" hidden>
+        <h3>Tags encontradas</h3>
+        <ul id="tags" class="lista-linhas"></ul>
+        <div class="acoes"><button type="button" id="mais-tags" class="discreto" hidden>Mostrar mais tags</button></div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="detalhe" class="vidro" aria-labelledby="detalhe-titulo">
+    <div class="dialogo-cabecalho"><h2 id="detalhe-titulo"></h2><button type="button" class="icone fechar" aria-label="Fechar detalhes">×</button></div>
+    <p id="detalhe-contexto" class="texto"></p>
+    <ul id="detalhe-incidentes" class="lista-linhas"></ul>
+    <button type="button" id="mais-incidentes" class="discreto" hidden>Mostrar mais incidentes</button>
+    <div class="acoes"><button type="button" id="ignorar">Ignorar nas próximas análises</button><button type="button" id="prever" class="perigo">Remover dos chamados</button></div>
+    <section id="impacto" class="impacto" aria-label="Impacto da remoção" hidden>
+      <p id="impacto-texto" role="status"></p>
+      <div class="acoes"><button type="button" id="cancelar-remocao">Cancelar</button><button type="button" id="confirmar" class="perigo" hidden>Confirmar remoção</button></div>
+      <ul id="remocao-falhas" class="lista-linhas" hidden></ul>
+    </section>
+  </dialog>
+
+  <dialog id="ignorado-dialogo" class="vidro" aria-labelledby="ignorado-titulo">
+    <div class="dialogo-cabecalho"><h2 id="ignorado-titulo">Termos ignorados</h2><button type="button" class="icone fechar" aria-label="Fechar termos ignorados">×</button></div>
+    <p id="ignorado-estado" class="texto" role="status"></p>
+    <ul id="ignorado-lista" class="lista-linhas"></ul>
+  </dialog>
+</body>
+</html>

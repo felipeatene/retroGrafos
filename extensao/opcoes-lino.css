@@ -1,0 +1,16 @@
+.opcoes main { max-width: 56rem; }
+.opcoes h1 { font-size: 2rem; }
+.opcoes form, .opcoes details, .opcoes #status { margin-top: 1.25rem; }
+.opcoes label { display: block; margin-top: 1rem; font-weight: 650; }
+.opcoes #ajuda { color: var(--suave); }
+.opcoes input, .opcoes textarea {
+  width: 100%;
+  margin-top: .4rem;
+  border: 1px solid #50644e;
+  border-radius: .55rem;
+  background: #19251d;
+  color: #f4f8f2;
+  padding: .55rem .65rem;
+}
+.opcoes textarea { resize: vertical; }
+.opcoes form button[type="submit"] { color: #102105; background: var(--verde); }
