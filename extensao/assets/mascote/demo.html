@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Lino — rig SVG</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="mascote-poses.css">
+<style>
+  :root { color-scheme: light; font-family: system-ui, "Segoe UI", sans-serif; }
+  body { margin: 0; background: #eef3f1; color: #13221d; }
+  header { padding: 14px 20px; background: #0b5e1f; color: #fff; }
+  header h1 { margin: 0; font-size: 18px; }
+  header p { margin: 2px 0 0; font-size: 13px; opacity: .85; }
+  main { display: grid; grid-template-columns: minmax(420px, 1fr) 330px; gap: 16px; padding: 16px 20px; }
+  .card { background: #fff; border-radius: 12px; box-shadow: 0 1px 3px #0002; padding: 12px; }
+  .card h2 { margin: 0 0 8px; font-size: 14px; }
+
+  #stage { position: relative; height: 440px; overflow: hidden; border-radius: 10px;
+    background: linear-gradient(#f7faf9 0 72%, #dfe7e4 72% 100%); }
+  #actor { position: absolute; bottom: 14px; left: calc(50% - 144px); width: 288px; height: 360px; }
+  #actor.travel { transition: left 2.4s linear; }
+  #actor svg { width: 100%; height: 100%; display: block; }
+  #bubble { position: absolute; max-width: 220px; padding: 9px 12px; border-radius: 14px; background: #fff;
+    border: 2px solid #0b5e1f; font-size: 14px; box-shadow: 0 2px 6px #0002; opacity: 0;
+    transform: translate(0, -100%) scale(.9); transform-origin: 0 100%; transition: opacity .2s, transform .2s; pointer-events: none; }
+  #bubble.show { opacity: 1; transform: translate(0, -100%) scale(1); }
+  #bubble::after { content: ""; position: absolute; left: 10px; bottom: -9px; width: 14px; height: 14px; background: #fff;
+    border: 2px solid #0b5e1f; border-top: 0; border-left: 0; transform: rotate(45deg) skew(10deg, 10deg); }
+
+  .controls { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .controls button { border: 1px solid #1f8927; background: #fff; color: #0b5e1f; padding: 6px 10px; border-radius: 8px; cursor: pointer; font: inherit; font-size: 13px; }
+  .controls button[aria-pressed=true] { background: #1f8927; color: #fff; }
+  label { font-size: 12px; display: grid; gap: 2px; }
+  select { font: inherit; font-size: 13px; padding: 3px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+  .minis { display: flex; align-items: flex-end; gap: 18px; padding: 8px 4px; background: #f4f7f6; border-radius: 8px;
+    background-image: repeating-linear-gradient(0deg, #0001 0 1px, transparent 1px 16px); }
+  .mini { display: grid; justify-items: center; font-size: 11px; color: #4a5c56; gap: 2px; }
+  .mini svg { display: block; }
+  .mini.h96 svg { height: 96px; width: 76.8px; }
+  .mini.h64 svg { height: 64px; width: 51.2px; }
+  .mini.h120 svg { height: 120px; width: 96px; }
+  .ref img { width: 100%; border-radius: 8px; display: block; }
+
+  #sheet { grid-column: 1 / -1; }
+  #sheet .row { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; }
+  #sheet figure { margin: 0; background: #f4f7f6; border-radius: 8px; padding: 6px; text-align: center; font-size: 12px; }
+  #sheet svg { height: 170px; width: 136px; }
+  .m-static, .m-static * { animation: none !important; transition: none !important; }
+  .themed { --mascot-green: #1d5fbf; --mascot-green-dark: #0d3a7a; --mascot-green-light: #4d8ff0; --mascot-lime: #7cd3ff; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Lino — rig vetorial (SVG)</h1>
+  <p>Partes em grupos com pivôs; poses e loops por atributos/classes CSS. Respeita <code>prefers-reduced-motion</code>.</p>
+</header>
+<main>
+  <section class="card">
+    <div class="controls" id="poses">
+      <button data-act="entrada">Entrada (anda + acena)</button>
+      <button data-act="neutral">Idle</button>
+      <button data-act="wave">Acenar</button>
+      <button data-act="think">Pensando</button>
+      <button data-act="confused">Confuso</button>
+      <button data-act="jump">Feliz pulando</button>
+      <button data-act="point">Apontando</button>
+      <button data-act="walk">Andar</button>
+      <button data-act="talk">Falar</button>
+    </div>
+    <div id="stage">
+      <div id="actor">
+<!--MASCOTE:INICIO-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 320" class="mascote" data-pose="neutral" data-eyes="normal" data-mouth="smile" data-hand-l="relaxed" data-hand-r="relaxed" data-props="" role="img" aria-label="Lino, assistente do RetroGrafos">
+<style>
+.mascote{--_g:var(--mascot-green,#1F8927);--_gd:var(--mascot-green-dark,#0B5E1F);--_gl:var(--mascot-green-light,#45BE4F);--_l:var(--mascot-lime,#8DD63F);--_w:var(--mascot-white,#F2F5F3);--_ws:var(--mascot-white-shade,#AFC0BD);--_k:var(--mascot-black,#1B2728);--_o:var(--mascot-outline,#0B1716);--_v:var(--mascot-visor,#05170E);--_y:var(--mascot-yellow,#F2DF3A);--_p:var(--mascot-tongue,#E9727B);overflow:visible}
+.mascote .m-st{stroke:var(--_o);stroke-width:2.4;stroke-linejoin:round;stroke-linecap:round}
+.mascote .w{fill:url(#m-gw)}.mascote .g{fill:url(#m-gg)}.mascote .k{fill:url(#m-gk)}.mascote .ns{stroke:none}
+.mascote .ln{fill:none;stroke:var(--_l);stroke-width:3}
+.mascote .m-alt{display:none}
+.mascote[data-eyes=normal] .m-eyeball,.mascote[data-eyes=worried] .m-eyeball,.mascote[data-eyes=worried] .m-eyes-worried,.mascote[data-eyes=closed] .m-eyes-closed,.mascote[data-eyes=happy] .m-eyes-happy,
+.mascote[data-mouth=happy] .m-mouth-happy,.mascote[data-mouth=smile] .m-mouth-smile,.mascote[data-mouth=neutral] .m-mouth-neutral,.mascote[data-mouth=serious] .m-mouth-serious,.mascote[data-mouth=talk-a] .m-mouth-talk-a,.mascote[data-mouth=talk-o] .m-mouth-talk-o,
+.mascote[data-hand-l=open-wave] #m-hand-l .m-hand-open-wave,.mascote[data-hand-l=relaxed] #m-hand-l .m-hand-relaxed,.mascote[data-hand-l=pointing] #m-hand-l .m-hand-pointing,.mascote[data-hand-l=thinking] #m-hand-l .m-hand-thinking,
+.mascote[data-hand-r=open-wave] #m-hand-r .m-hand-open-wave,.mascote[data-hand-r=relaxed] #m-hand-r .m-hand-relaxed,.mascote[data-hand-r=pointing] #m-hand-r .m-hand-pointing,.mascote[data-hand-r=thinking] #m-hand-r .m-hand-thinking,
+.mascote[data-props~=bulb] .m-prop-bulb{display:inline}
+.mascote #m-body,.mascote #m-shadow{transform-origin:128px 310px}
+.mascote #m-head{transform-origin:128px 94px}
+.mascote #m-arm-l,.mascote #m-arm-r{transform-origin:82px 110px}
+.mascote #m-elbow-l,.mascote #m-elbow-r{transform-origin:76px 140px}
+.mascote #m-hand-l,.mascote #m-hand-r{transform-origin:72px 188px}
+.mascote #m-leg-l,.mascote #m-leg-r{transform-origin:104px 192px}
+.mascote #m-knee-l,.mascote #m-knee-r{transform-origin:104px 236px}
+.mascote #m-eyelid-l{transform-origin:107px 43px;transform:scaleY(0)}
+.mascote #m-eyelid-r{transform-origin:149px 43px;transform:scaleY(0)}
+.mascote #m-pupil-l{transform-origin:107px 57.5px}.mascote #m-pupil-r{transform-origin:149px 57.5px}
+.mascote #m-mouth{transform-origin:128px 87px}
+.mascote #m-lightbulb-question{transform-origin:206px 40px}
+</style>
+<defs>
+<radialGradient id="m-gw" cx=".32" cy=".22" r=".95"><stop offset="0" stop-color="#fff"/><stop offset=".5" style="stop-color:var(--_w)"/><stop offset="1" style="stop-color:var(--_ws)"/></radialGradient>
+<radialGradient id="m-gg" cx=".34" cy=".22" r=".95"><stop offset="0" style="stop-color:var(--_gl)"/><stop offset=".55" style="stop-color:var(--_g)"/><stop offset="1" style="stop-color:var(--_gd)"/></radialGradient>
+<radialGradient id="m-gk" cx=".32" cy=".22" r=".95"><stop offset="0" stop-color="#4D5F60"/><stop offset=".5" style="stop-color:var(--_k)"/><stop offset="1" style="stop-color:var(--_o)"/></radialGradient>
+<radialGradient id="m-gl" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#D8FF96"/><stop offset=".55" style="stop-color:var(--_l)"/><stop offset="1" stop-color="#3B9A2A"/></radialGradient>
+<radialGradient id="m-gy" cx=".4" cy=".35" r=".75"><stop offset="0" stop-color="#FFF9C4"/><stop offset=".6" style="stop-color:var(--_y)"/><stop offset="1" stop-color="#D49B00"/></radialGradient>
+<linearGradient id="m-gv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#14452F"/><stop offset="1" style="stop-color:var(--_v)"/></linearGradient>
+<clipPath id="m-ch"><path id="m-head-shape" d="M128,7C163,7 182,27 182,54C182,82 160,98 128,98C96,98 74,82 74,54C74,27 93,7 128,7Z"/></clipPath>
+<clipPath id="m-cfist"><path d="M62,190Q62,186 67,186H77Q82,186 82,191V204Q82,212 74,212H69Q62,212 62,205Z"/></clipPath>
+<clipPath id="m-cfist-curl"><path d="M62,190Q62,186 67,186H77Q82,186 82,191V201Q82,207 76,207H68Q62,207 62,201Z"/></clipPath>
+<g id="m-gear"><path style="fill:none;stroke:var(--_g);stroke-width:1.4" d="M5.5,0L3.7,1.5L3.9,3.9L1.5,3.7L0,5.5L-1.5,3.7L-3.9,3.9L-3.7,1.5L-5.5,0L-3.7,-1.5L-3.9,-3.9L-1.5,-3.7L0,-5.5L1.5,-3.7L3.9,-3.9L3.7,-1.5Z"/><circle r="2.2" style="fill:var(--_g);stroke:none"/></g>
+</defs>
+<g id="m-root" class="m-st">
+<g id="m-shadow" class="ns" fill="#000"><ellipse cx="128" cy="310" rx="64" ry="8.5" opacity=".08"/><ellipse cx="128" cy="310" rx="50" ry="5.5" opacity=".12"/><ellipse cx="128" cy="309.5" rx="38" ry="3.4" opacity=".16"/></g>
+<g id="m-body">
+<g id="m-backpack"><path class="g" d="M84,99Q128,88 172,99Q187,105 187,124V176Q187,192 171,194H85Q69,192 69,176V124Q69,105 84,99Z"/></g>
+<g id="m-legs">
+<g id="m-leg-l" data-pivot="104 192">
+<g id="m-thigh-l"><rect class="k" x="95" y="186" width="18" height="46" rx="7"/></g>
+<g id="m-knee-l" data-pivot="104 236">
+<g id="m-shin-l"><path class="w" d="M89,246Q89,240 95,240H113Q119,240 119,246L121,280H87Z"/><use href="#m-gear" transform="translate(104 260)"/></g>
+<circle class="k" cx="104" cy="236" r="8.5"/><circle class="ns" cx="104" cy="236" r="2.8" style="fill:var(--_gl)"/>
+<g id="m-boot-l"><path class="w" d="M90,275H118Q122,275 122,280V287Q127,288 127,296V302H81V296Q81,288 86,287V280Q86,275 90,275Z"/><path class="ns" fill="#fff" opacity=".7" d="M89,281Q90,278 94,278H100Q92,280 90,288Z"/><path class="g" d="M82,299H126Q129,299 129,303V304Q129,310 123,310H85Q79,310 79,304V303Q79,299 82,299Z"/></g>
+</g>
+</g>
+<g transform="matrix(-1 0 0 1 256 0)">
+<g id="m-leg-r" data-pivot="104 192" data-mirrored="true">
+<g id="m-thigh-r"><rect class="k" x="95" y="186" width="18" height="46" rx="7"/></g>
+<g id="m-knee-r" data-pivot="104 236">
+<g id="m-shin-r"><path class="w" d="M89,246Q89,240 95,240H113Q119,240 119,246L121,280H87Z"/><use href="#m-gear" transform="translate(104 260)"/></g>
+<circle class="k" cx="104" cy="236" r="8.5"/><circle class="ns" cx="104" cy="236" r="2.8" style="fill:var(--_gl)"/>
+<g id="m-boot-r"><path class="w" d="M90,275H118Q122,275 122,280V287Q127,288 127,296V302H81V296Q81,288 86,287V280Q86,275 90,275Z"/><path class="g" d="M82,299H126Q129,299 129,303V304Q129,310 123,310H85Q79,310 79,304V303Q79,299 82,299Z"/></g>
+</g>
+</g>
+</g>
+</g>
+<g id="m-torso">
+<rect id="m-neck" class="k" x="116" y="84" width="24" height="20" rx="5"/>
+<path id="m-shorts" class="g" d="M95,168H161V188Q161,198 151,198H105Q95,198 95,188Z"/>
+<path id="m-chest" class="g" d="M98,100Q128,94 158,100Q164,104 163,120L160,164H96L93,120Q92,104 98,100Z"/>
+<g id="m-chest-logo" class="ns ln"><path d="M115,110V123H122"/><path d="M140,123L130,113.5Q128,109.5 131.5,109.5Q135,109.5 133.5,113.5L127,118.5Q125,123 129.5,123.5Q133,123.5 138,117.5"/><path d="M123.9,132.4A6,6 0 1 0 123.9,141.6"/><circle cx="136" cy="137" r="6"/></g>
+<rect id="m-belt" class="k" x="95" y="160" width="66" height="10" rx="3"/>
+<rect id="m-belt-buckle" class="ns" x="121" y="161.8" width="14" height="6.4" rx="1.6" style="fill:none;stroke:var(--_ws);stroke-width:1.4"/>
+<g id="m-coat">
+<g id="m-coat-l"><path class="w" d="M112,100L92,103Q82,105 81,116L80,224Q80,229 85,229H105L103,132Z"/><path id="m-lapel-l" class="w" d="M112,100L103,132L95,118L101,113L96,106Z"/><path class="w" d="M84,190H100V209Q100,213 96,213H88Q84,213 84,209Z"/><path fill="none" d="M84,195H100"/></g>
+<g id="m-coat-r" transform="matrix(-1 0 0 1 256 0)"><path class="w" d="M112,100L92,103Q82,105 81,116L80,224Q80,229 85,229H105L103,132Z"/><path id="m-lapel-r" class="w" d="M112,100L103,132L95,118L101,113L96,106Z"/><path class="w" d="M84,190H100V209Q100,213 96,213H88Q84,213 84,209Z"/><path fill="none" d="M84,195H100"/></g>
+<path id="m-chest-pocket" class="w" stroke-width="1.8" d="M157,120H171V134Q171,136 169,136H159Q157,136 157,134Z"/>
+</g>
+</g>
+<g id="m-head" data-pivot="128 94">
+<use href="#m-head-shape" class="w"/>
+<g id="m-helmet-band" clip-path="url(#m-ch)"><path class="g" d="M90,44Q128,29 166,44L176,22Q128,-8 80,22Z"/><path class="ns" fill="#fff" opacity=".35" d="M96,22Q104,12 117,10Q105,17 99,27Z"/></g>
+<use href="#m-head-shape" fill="none"/>
+<g id="m-atom-icon" class="ns" style="fill:none;stroke:var(--_y);stroke-width:1.7"><ellipse cx="128" cy="21" rx="10" ry="3.6"/><ellipse cx="128" cy="21" rx="10" ry="3.6" transform="rotate(60 128 21)"/><ellipse cx="128" cy="21" rx="10" ry="3.6" transform="rotate(-60 128 21)"/><circle cx="128" cy="21" r="2.2" style="fill:var(--_y)"/></g>
+<g id="m-headset-l"><ellipse class="k" cx="77" cy="58" rx="5" ry="13"/><ellipse class="w" cx="70" cy="58" rx="9.5" ry="14.5"/><ellipse class="g" cx="67.5" cy="58" rx="5.5" ry="10"/></g>
+<g id="m-headset-r"><ellipse class="k" cx="179" cy="58" rx="5" ry="13"/><ellipse class="w" cx="186" cy="58" rx="9.5" ry="14.5"/><ellipse class="g" cx="188.5" cy="58" rx="5.5" ry="10"/></g>
+<g id="m-visor">
+<path fill="url(#m-gv)" d="M96,36H160Q173,36 173,49V63Q173,78 158,79H98Q83,78 83,63V49Q83,36 96,36Z"/>
+<path class="ns" fill="#fff" opacity=".16" d="M88,46Q89,39 98,39H152Q124,41 88,53Z"/>
+<g id="m-eye-l">
+<g class="m-alt m-eyeball"><circle fill="url(#m-gl)" cx="107" cy="57.5" r="14" stroke="#2C6E1C" stroke-width="1.2"/><g id="m-pupil-l" class="ns"><circle cx="107" cy="57.5" r="7" fill="#0F4D1A"/><circle id="m-highlight-l" cx="112" cy="52.5" r="4.3" fill="#fff"/><circle cx="102.5" cy="62.5" r="1.8" fill="#fff"/></g></g>
+<g class="m-alt m-eyes-worried ns"><path style="fill:var(--_v)" d="M92,38H122V47L92,53Z"/><path class="ln" stroke-width="2" d="M93,52.5L121,46.5"/></g>
+<path class="m-alt m-eyes-closed ln" d="M96,59Q107,66 118,59"/>
+<path class="m-alt m-eyes-happy ln" d="M96,63Q107,49 118,63"/>
+<g id="m-eyelid-l" class="ns"><rect x="92" y="43" width="30" height="30" style="fill:var(--_v)"/><path class="ln" d="M96,64Q107,70 118,64"/></g>
+</g>
+<g id="m-eye-r">
+<g class="m-alt m-eyeball"><circle fill="url(#m-gl)" cx="149" cy="57.5" r="14" stroke="#2C6E1C" stroke-width="1.2"/><g id="m-pupil-r" class="ns"><circle cx="149" cy="57.5" r="7" fill="#0F4D1A"/><circle id="m-highlight-r" cx="154" cy="52.5" r="4.3" fill="#fff"/><circle cx="144.5" cy="62.5" r="1.8" fill="#fff"/></g></g>
+<g class="m-alt m-eyes-worried ns"><path style="fill:var(--_v)" d="M134,47V38H164V53Z"/><path class="ln" stroke-width="2" d="M135,46.5L163,52.5"/></g>
+<path class="m-alt m-eyes-closed ln" d="M138,59Q149,66 160,59"/>
+<path class="m-alt m-eyes-happy ln" d="M138,63Q149,49 160,63"/>
+<g id="m-eyelid-r" class="ns"><rect x="134" y="43" width="30" height="30" style="fill:var(--_v)"/><path class="ln" d="M138,64Q149,70 160,64"/></g>
+</g>
+</g>
+<g id="m-mouth" fill="none">
+<g id="m-mouth-happy" class="m-alt m-mouth-happy"><path fill="#2A1013" d="M118,82Q128,84 138,82Q137,93 128,93Q119,93 118,82Z"/><path class="ns" style="fill:var(--_p)" d="M122,89Q128,85.5 134,89Q131.5,92.3 128,92.3Q124.5,92.3 122,89Z"/></g>
+<path id="m-mouth-smile" class="m-alt m-mouth-smile" d="M119,84Q128,91 137,84"/>
+<path id="m-mouth-neutral" class="m-alt m-mouth-neutral" d="M122,87H134"/>
+<path id="m-mouth-serious" class="m-alt m-mouth-serious" d="M121,89Q128,83.5 135,89"/>
+<g id="m-mouth-talk-a" class="m-alt m-mouth-talk-a"><ellipse fill="#2A1013" cx="128" cy="87" rx="8" ry="5.5"/><path class="ns" style="fill:var(--_p)" d="M123,90Q128,87.5 133,90Q131,92.3 128,92.3Q125,92.3 123,90Z"/></g>
+<ellipse id="m-mouth-talk-o" class="m-alt m-mouth-talk-o" fill="#2A1013" cx="128" cy="87" rx="4.2" ry="5"/>
+</g>
+<g id="m-mic"><path class="ns" fill="none" stroke="#0B1716" stroke-width="5" d="M187,72C185,84 168,89 151,88"/><path class="ns" fill="none" stroke="#3A4A4B" stroke-width="2.2" d="M187,72C185,84 168,89 151,88"/><rect class="k" x="141" y="84.5" width="10" height="7" rx="3.5"/></g>
+</g>
+<g id="m-arms">
+<g id="m-arm-l" data-pivot="82 110">
+<g id="m-upper-arm-l"><rect class="w" x="71" y="101" width="21" height="40" rx="10.5" transform="rotate(10 82 110)"/></g>
+<g id="m-elbow-l" data-pivot="76 140">
+<g id="m-forearm-l"><g transform="rotate(5 76 140)"><rect class="w" x="62" y="143" width="28" height="40" rx="12"/><use href="#m-gear" transform="translate(76 162)"/><rect class="k" x="67" y="181" width="18" height="8" rx="3"/></g></g>
+<circle class="k" cx="76" cy="140" r="8"/>
+<g id="m-hand-l" data-pivot="72 188">
+<g class="m-alt m-hand-relaxed"><rect class="k" x="78" y="189" width="7" height="14" rx="3.5" transform="rotate(-18 81 190)"/><path class="k" d="M62,190Q62,186 67,186H77Q82,186 82,191V204Q82,212 74,212H69Q62,212 62,205Z"/><path fill="none" stroke="#4A5C5D" stroke-width="1.2" clip-path="url(#m-cfist)" d="M67,204V214M72,205V214M77,204V214"/><path fill="none" d="M62,190Q62,186 67,186H77Q82,186 82,191V204Q82,212 74,212H69Q62,212 62,205Z"/></g>
+<g class="m-alt m-hand-open-wave"><rect class="k" x="61" y="196" width="5" height="15" rx="2.5" transform="rotate(14 63.5 197)"/><rect class="k" x="66.5" y="197" width="5" height="17" rx="2.5" transform="rotate(5 69 198)"/><rect class="k" x="72" y="197" width="5" height="17" rx="2.5" transform="rotate(-4 74.5 198)"/><rect class="k" x="77.5" y="196" width="5" height="15" rx="2.5" transform="rotate(-13 80 197)"/><rect class="k" x="80" y="186" width="5.5" height="14" rx="2.7" transform="rotate(-50 82 189)"/><rect class="k" x="62" y="185" width="20" height="16" rx="6"/></g>
+<g class="m-alt m-hand-pointing"><rect class="k" x="78" y="188" width="7" height="12" rx="3.5" transform="rotate(-18 81 190)"/><path class="k" d="M62,190Q62,186 67,186H77Q82,186 82,191V201Q82,207 76,207H68Q62,207 62,201Z"/><rect class="k" x="74" y="198" width="6" height="21" rx="3"/></g>
+<g class="m-alt m-hand-thinking"><path class="k" d="M62,190Q62,186 67,186H77Q82,186 82,191V201Q82,207 76,207H68Q62,207 62,201Z"/><path fill="none" stroke="#4A5C5D" stroke-width="1.2" clip-path="url(#m-cfist-curl)" d="M66,200V209M70.5,201V209"/><path fill="none" d="M62,190Q62,186 67,186H77Q82,186 82,191V201Q82,207 76,207H68Q62,207 62,201Z"/><rect class="k" x="74" y="198" width="6" height="15" rx="3" transform="rotate(-14 77 200)"/></g>
+</g>
+</g>
+</g>
+<g transform="matrix(-1 0 0 1 256 0)">
+<g id="m-arm-r" data-pivot="82 110" data-mirrored="true">
+<g id="m-upper-arm-r"><rect class="w" x="71" y="101" width="21" height="40" rx="10.5" transform="rotate(10 82 110)"/></g>
+<g id="m-elbow-r" data-pivot="76 140">
+<g id="m-forearm-r"><g transform="rotate(5 76 140)"><rect class="w" x="62" y="143" width="28" height="40" rx="12"/><use href="#m-gear" transform="translate(76 162)"/><rect class="k" x="67" y="181" width="18" height="8" rx="3"/></g></g>
+<circle class="k" cx="76" cy="140" r="8"/>
+<g id="m-hand-r" data-pivot="72 188">
+<g class="m-alt m-hand-relaxed"><rect class="k" x="78" y="189" width="7" height="14" rx="3.5" transform="rotate(-18 81 190)"/><path class="k" d="M62,190Q62,186 67,186H77Q82,186 82,191V204Q82,212 74,212H69Q62,212 62,205Z"/><path fill="none" stroke="#4A5C5D" stroke-width="1.2" clip-path="url(#m-cfist)" d="M67,204V214M72,205V214M77,204V214"/><path fill="none" d="M62,190Q62,186 67,186H77Q82,186 82,191V204Q82,212 74,212H69Q62,212 62,205Z"/></g>
+<g class="m-alt m-hand-open-wave"><rect class="k" x="61" y="196" width="5" height="15" rx="2.5" transform="rotate(14 63.5 197)"/><rect class="k" x="66.5" y="197" width="5" height="17" rx="2.5" transform="rotate(5 69 198)"/><rect class="k" x="72" y="197" width="5" height="17" rx="2.5" transform="rotate(-4 74.5 198)"/><rect class="k" x="77.5" y="196" width="5" height="15" rx="2.5" transform="rotate(-13 80 197)"/><rect class="k" x="80" y="186" width="5.5" height="14" rx="2.7" transform="rotate(-50 82 189)"/><rect class="k" x="62" y="185" width="20" height="16" rx="6"/></g>
+<g class="m-alt m-hand-pointing"><rect class="k" x="78" y="188" width="7" height="12" rx="3.5" transform="rotate(-18 81 190)"/><path class="k" d="M62,190Q62,186 67,186H77Q82,186 82,191V201Q82,207 76,207H68Q62,207 62,201Z"/><rect class="k" x="74" y="198" width="6" height="21" rx="3"/></g>
+<g class="m-alt m-hand-thinking"><path class="k" d="M62,190Q62,186 67,186H77Q82,186 82,191V201Q82,207 76,207H68Q62,207 62,201Z"/><path fill="none" stroke="#4A5C5D" stroke-width="1.2" clip-path="url(#m-cfist-curl)" d="M66,200V209M70.5,201V209"/><path fill="none" d="M62,190Q62,186 67,186H77Q82,186 82,191V201Q82,207 76,207H68Q62,207 62,201Z"/><rect class="k" x="74" y="198" width="6" height="15" rx="3" transform="rotate(-14 77 200)"/></g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g id="m-props">
+<g id="m-lightbulb-question" class="m-alt m-prop-bulb"><g transform="translate(8 4)">
+<path fill="none" style="stroke:var(--_y)" stroke-width="2.4" d="M198,1V-4M186,6L182,2M210,6L214,2M181,17H176M215,17H220"/>
+<path fill="url(#m-gy)" d="M191,27Q187,23 188,17A10,10 0 1 1 208,17Q209,23 205,27L203,31H193Z"/>
+<rect x="193" y="31" width="10" height="6" rx="1.5" fill="#A7B3B4"/>
+<g class="ns" style="fill:none;stroke:#D9480F;stroke-width:2.4"><path d="M194.5,15Q194.5,11 198,11Q201.5,11 201.5,14.5Q201.5,17 198.5,18.5Q198,19 198,21.5"/></g>
+<circle class="ns" cx="198" cy="25" r="1.4" fill="#D9480F"/></g>
+</g>
+<g id="m-speech-anchor" data-x="186" data-y="22"><circle cx="186" cy="22" r="0" fill="none" class="ns"/></g>
+</g>
+</g>
+</g>
+</svg>
+<!--MASCOTE:FIM-->
+      </div>
+      <div id="bubble" role="status" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <aside style="display:grid;gap:12px;align-content:start">
+    <section class="card">
+      <h2>Expressão manual</h2>
+      <div class="grid2">
+        <label>Olhos <select data-attr="data-eyes"><option>normal</option><option>closed</option><option>happy</option><option>worried</option></select></label>
+        <label>Boca <select data-attr="data-mouth"><option>smile</option><option>happy</option><option>neutral</option><option>serious</option><option>talk-a</option><option>talk-o</option></select></label>
+        <label>Mão esq. (tela) <select data-attr="data-hand-l"><option>relaxed</option><option>open-wave</option><option>pointing</option><option>thinking</option></select></label>
+        <label>Mão dir. (tela) <select data-attr="data-hand-r"><option>relaxed</option><option>open-wave</option><option>pointing</option><option>thinking</option></select></label>
+        <label><span><input type="checkbox" id="blink" checked> piscar</span></label>
+        <label><span><input type="checkbox" id="theme"> tema alternativo</span></label>
+      </div>
+    </section>
+    <section class="card">
+      <h2>Legibilidade em tamanho real</h2>
+      <div class="minis">
+        <div class="mini h64" id="mini64"><span>64 px</span></div>
+        <div class="mini h96" id="mini96"><span>96 px</span></div>
+        <div class="mini h120" id="mini120"><span>120 px</span></div>
+      </div>
+    </section>
+    <section class="card ref">
+      <h2>Referência (render 3D)</h2>
+      <img id="refimg" alt="Referência do mascote" src="../../../docs/mascote-referencia/03-acenando-frame-video-0s05.png">
+    </section>
+  </aside>
+
+  <section class="card" id="sheet">
+    <h2>Folha de poses (estático)</h2>
+    <div class="row" id="sheetRow"></div>
+  </section>
+</main>
+
+<script>
+(() => {
+  const POSES = {
+    neutral:  { pose: "neutral",  eyes: "normal",  mouth: "smile",   hl: "relaxed",   hr: "relaxed",   props: "",     ref: "03-acenando-frame-video-0s05.png" },
+    wave:     { pose: "wave",     eyes: "normal",  mouth: "happy",   hl: "open-wave", hr: "relaxed",   props: "",     ref: "03-acenando-frame-video-0s05.png" },
+    think:    { pose: "think",    eyes: "normal",  mouth: "serious", hl: "thinking",  hr: "relaxed",   props: "",     ref: "04-pensativo-frame-video-0s05.png" },
+    confused: { pose: "confused", eyes: "worried", mouth: "serious", hl: "thinking",  hr: "relaxed",   props: "bulb", ref: "05-confuso-lampada-frame-video-0s05.png" },
+    jump:     { pose: "jump",     eyes: "normal",  mouth: "happy",   hl: "open-wave", hr: "open-wave", props: "",     ref: "01-robo-happy-comemorando.png" },
+    point:    { pose: "point",    eyes: "normal",  mouth: "smile",   hl: "relaxed",   hr: "pointing",  props: "",     ref: "03-acenando-frame-video-0s05.png" },
+  };
+  const FALAS = {
+    entrada: "Olá! Sou o assistente da L&CO. Vou analisar este incidente.",
+    talk: "Encontrei 3 incidentes parecidos nos últimos 30 dias.",
+    think: "Hmm… deixa eu cruzar com o histórico.",
+    confused: "Não achei um padrão claro. Pode revisar a categoria?",
+    jump: "Pronto! Classificação concluída.",
+    point: "Olha aqui: este campo está vazio.",
+  };
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)");
+  const actor = document.getElementById("actor");
+  const stage = document.getElementById("stage");
+  const bubble = document.getElementById("bubble");
+  const main = actor.querySelector("svg.mascote");
+  const all = [main];
+
+  for (const id of ["mini64", "mini96", "mini120"]) {
+    const c = main.cloneNode(true);
+    document.getElementById(id).prepend(c);
+    all.push(c);
+  }
+
+  function apply(svg, p) {
+    svg.setAttribute("data-pose", p.pose);
+    svg.setAttribute("data-eyes", p.eyes);
+    svg.setAttribute("data-mouth", p.mouth);
+    svg.setAttribute("data-hand-l", p.hl);
+    svg.setAttribute("data-hand-r", p.hr);
+    svg.setAttribute("data-props", p.props);
+  }
+  const setAll = (fn) => all.forEach(fn);
+
+  function setPose(name) {
+    const p = POSES[name];
+    setAll((s) => apply(s, p));
+    document.getElementById("refimg").src = "../../../docs/mascote-referencia/" + p.ref;
+    syncSelects();
+  }
+  function syncSelects() {
+    document.querySelectorAll("select[data-attr]").forEach((s) => (s.value = main.getAttribute(s.dataset.attr)));
+  }
+  function setLoop(cls, on) { setAll((s) => s.classList.toggle(cls, on)); }
+
+  let talkTimer = 0, bubbleTimer = 0, walkTimer = 0;
+  function say(text, ms = 3200) {
+    clearTimeout(bubbleTimer);
+    placeBubble();
+    bubble.textContent = text;
+    bubble.classList.add("show");
+    startTalk();
+    bubbleTimer = setTimeout(() => { bubble.classList.remove("show"); stopTalk(); }, ms);
+  }
+  function placeBubble() {
+    const a = main.querySelector("#m-speech-anchor circle");
+    const m = a.getScreenCTM();
+    const pt = new DOMPoint(+a.getAttribute("cx"), +a.getAttribute("cy")).matrixTransform(m);
+    const r = stage.getBoundingClientRect();
+    bubble.style.left = Math.min(pt.x - r.left, r.width - 230) + "px";
+    bubble.style.top = Math.max(pt.y - r.top, 70) + "px";
+  }
+  function startTalk() {
+    stopTalk();
+    setLoop("is-talking", true);
+    const rest = main.getAttribute("data-mouth");
+    if (reduce.matches) { setAll((s) => s.setAttribute("data-mouth", "talk-a")); talkTimer = -1; talkRest = rest; return; }
+    const seq = ["talk-a", "talk-o", "smile", "talk-a", "neutral", "talk-o"];
+    let i = 0;
+    talkRest = rest;
+    talkTimer = setInterval(() => setAll((s) => s.setAttribute("data-mouth", seq[i++ % seq.length])), 120);
+  }
+  let talkRest = "smile";
+  function stopTalk() {
+    if (!talkTimer) return;
+    if (talkTimer > 0) clearInterval(talkTimer);
+    talkTimer = 0;
+    setLoop("is-talking", false);
+    setAll((s) => s.setAttribute("data-mouth", talkRest));
+  }
+
+  function walkTo(leftPx, done) {
+    if (reduce.matches) { actor.style.left = leftPx + "px"; done && done(); return; }
+    setLoop("is-walking", true);
+    actor.getBoundingClientRect();
+    actor.classList.add("travel");
+    actor.style.left = leftPx + "px";
+    clearTimeout(walkTimer);
+    walkTimer = setTimeout(() => { setLoop("is-walking", false); actor.classList.remove("travel"); done && done(); }, 2400);
+  }
+  const center = () => stage.clientWidth / 2 - actor.offsetWidth / 2;
+
+  function act(name) {
+    document.querySelectorAll("#poses button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.act === name));
+    stopTalk(); bubble.classList.remove("show");
+    if (name === "entrada") {
+      setPose("neutral");
+      actor.classList.remove("travel");
+      actor.style.left = -actor.offsetWidth + "px";
+      actor.getBoundingClientRect();
+      walkTo(center(), () => { setPose("wave"); say(FALAS.entrada, 3600); setTimeout(() => setPose("neutral"), 3800); });
+      return;
+    }
+    if (name === "walk") {
+      setPose("neutral");
+      const w = stage.clientWidth - actor.offsetWidth;
+      const go = (toRight) => walkTo(toRight ? w - 10 : 10, () => main.classList.contains("is-walking") || walkLoop && go(!toRight));
+      walkLoop = true; go(true);
+      return;
+    }
+    walkLoop = false;
+    if (name === "talk") { setPose("neutral"); say(FALAS.talk, 3500); return; }
+    setPose(name);
+    if (FALAS[name]) say(FALAS[name], 3000);
+  }
+  let walkLoop = false;
+
+  document.getElementById("poses").addEventListener("click", (e) => {
+    const b = e.target.closest("button"); if (!b) return;
+    if (b.dataset.act !== "walk") walkLoop = false;
+    act(b.dataset.act);
+  });
+  document.querySelectorAll("select[data-attr]").forEach((s) =>
+    s.addEventListener("change", () => setAll((svg) => svg.setAttribute(s.dataset.attr, s.value))));
+  document.getElementById("blink").addEventListener("change", (e) => setLoop("is-blinking", e.target.checked));
+  document.getElementById("theme").addEventListener("change", (e) => document.body.classList.toggle("themed", e.target.checked));
+
+  const sheet = [
+    ["neutral", "idle / neutro"], ["wave", "acenar"], ["think", "pensando"], ["confused", "confuso + lâmpada"],
+    ["jump", "feliz (braços abertos)"], ["point", "apontando"],
+    [{ ...POSES.neutral, eyes: "happy", mouth: "happy" }, "olhos happy"],
+    [{ ...POSES.neutral, eyes: "closed", mouth: "neutral" }, "olhos fechados"],
+    [{ ...POSES.neutral, mouth: "talk-a" }, "fala A"],
+    [{ ...POSES.neutral, mouth: "talk-o" }, "fala O"],
+  ];
+  const row = document.getElementById("sheetRow");
+  for (const [p, label] of sheet) {
+    const f = document.createElement("figure");
+    const c = main.cloneNode(true);
+    c.classList.add("m-static");
+    apply(c, typeof p === "string" ? POSES[p] : p);
+    f.append(c, Object.assign(document.createElement("figcaption"), { textContent: label }));
+    row.append(f);
+  }
+
+  setLoop("is-idle", true);
+  setLoop("is-blinking", true);
+  const q = new URLSearchParams(location.search);
+  if (q.get("pose") && POSES[q.get("pose")]) setPose(q.get("pose")); else setPose("neutral");
+  if (q.has("static")) setAll((s) => s.classList.add("m-static"));
+  if (q.get("act")) act(q.get("act"));
+})();
+</script>
+</body>
+</html>

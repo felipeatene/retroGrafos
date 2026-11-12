@@ -1,0 +1,93 @@
+/* Poses e animacoes do rig mascote.svg (SVG inline).
+   Estado: atributos no <svg class="mascote">
+     data-pose  = neutral | wave | think | confused | jump | point
+     data-eyes  = normal | closed | happy | worried
+     data-mouth = smile | happy | neutral | serious | talk-a | talk-o
+     data-hand-l / data-hand-r = relaxed | open-wave | pointing | thinking
+     data-props = "" | bulb
+   Loops (classes): is-idle, is-blinking, is-walking, is-talking; is-paused congela
+   Lado -r e espelhado no SVG: o mesmo angulo gera movimento simetrico
+   (positivo = braco/perna para fora). */
+
+.mascote :is(#m-body, #m-head, #m-arm-l, #m-arm-r, #m-elbow-l, #m-elbow-r,
+  #m-hand-l, #m-hand-r, #m-leg-l, #m-leg-r, #m-knee-l, #m-knee-r,
+  #m-pupil-l, #m-pupil-r, #m-shadow) {
+  transition: transform .45s cubic-bezier(.34, 1.4, .5, 1);
+}
+
+/* ---------- loops base ---------- */
+.mascote.is-idle #m-body { animation: m-breathe 3.2s ease-in-out infinite; }
+.mascote.is-idle[data-pose=neutral] #m-head { animation: m-head-idle 4.6s ease-in-out infinite; }
+.mascote.is-idle[data-pose=neutral] :is(#m-arm-l, #m-arm-r) { animation: m-arm-idle 3.2s ease-in-out infinite; }
+
+.mascote.is-blinking:not([data-eyes=closed]):not([data-eyes=happy]) :is(#m-eyelid-l, #m-eyelid-r) {
+  animation: m-blink 4.2s linear infinite;
+}
+
+/* ---------- poses ---------- */
+.mascote[data-pose=wave] #m-arm-l { transform: rotate(80deg); }
+.mascote[data-pose=wave] #m-elbow-l { transform: rotate(88deg); animation: m-wave .75s ease-in-out .4s infinite; }
+.mascote[data-pose=wave] #m-hand-l { transform: rotate(-8deg); }
+.mascote[data-pose=wave] #m-arm-r { transform: rotate(4deg); }
+.mascote[data-pose=wave] #m-head { transform: rotate(4deg); }
+
+.mascote:is([data-pose=think], [data-pose=confused]) #m-arm-l { transform: rotate(30deg); }
+.mascote:is([data-pose=think], [data-pose=confused]) #m-elbow-l { transform: rotate(158deg); }
+.mascote:is([data-pose=think], [data-pose=confused]) #m-head { transform: rotate(-5deg); }
+.mascote[data-pose=think] :is(#m-pupil-l, #m-pupil-r) { transform: translate(-2px, -2.5px); }
+.mascote[data-pose=confused] :is(#m-pupil-l, #m-pupil-r) { transform: translate(2.5px, -2px); }
+.mascote[data-pose=confused] #m-elbow-l { animation: m-scratch .5s ease-in-out .4s 4; }
+.mascote[data-pose=confused] #m-lightbulb-question { animation: m-pop .5s cubic-bezier(.3, 1.6, .5, 1) both, m-float 2.4s ease-in-out .5s infinite; }
+
+.mascote[data-pose=jump] :is(#m-arm-l, #m-arm-r) { transform: rotate(135deg); }
+.mascote[data-pose=jump] :is(#m-elbow-l, #m-elbow-r) { transform: rotate(-22deg); }
+.mascote[data-pose=jump] #m-body { animation: m-jump .9s cubic-bezier(.3, .7, .4, 1) infinite; }
+.mascote[data-pose=jump] #m-shadow { animation: m-jump-shadow .9s cubic-bezier(.3, .7, .4, 1) infinite; }
+
+.mascote[data-pose=point] #m-arm-r { transform: rotate(42deg); }
+.mascote[data-pose=point] #m-elbow-r { transform: rotate(14deg); }
+.mascote[data-pose=point] #m-hand-r { transform: rotate(-4deg); }
+.mascote[data-pose=point] #m-head { transform: rotate(3deg); }
+.mascote[data-pose=point] :is(#m-pupil-l, #m-pupil-r) { transform: translate(2.5px, 0); }
+
+/* ---------- andar / falar (sobrepoem os loops base) ---------- */
+.mascote.is-walking #m-body { animation: m-walk-body .64s ease-in-out infinite; }
+.mascote.is-walking :is(#m-leg-l, #m-leg-r) { animation: m-step .64s ease-in-out infinite; }
+.mascote.is-walking #m-leg-r { animation-delay: -.32s; }
+.mascote.is-walking[data-pose=neutral] :is(#m-arm-l, #m-arm-r) { animation: m-swing .64s ease-in-out infinite; }
+.mascote.is-walking[data-pose=neutral] #m-arm-r { animation-delay: -.32s; }
+
+.mascote.is-talking[data-pose=neutral] #m-head,
+.mascote.is-talking[data-pose=point] #m-head { animation: m-talk-head .9s ease-in-out infinite; }
+
+/* ---------- keyframes ---------- */
+@keyframes m-breathe { 50% { transform: translateY(-.8px) scaleY(1.012); } }
+@keyframes m-head-idle { 0%, 100% { transform: rotate(0); } 30% { transform: rotate(1.6deg); } 70% { transform: rotate(-1.4deg); } }
+@keyframes m-arm-idle { 50% { transform: rotate(3deg); } }
+@keyframes m-blink { 0%, 93%, 100% { transform: scaleY(0); } 96.5% { transform: scaleY(1); } }
+@keyframes m-wave { 0%, 100% { transform: rotate(72deg); } 50% { transform: rotate(104deg); } }
+@keyframes m-scratch { 0%, 100% { transform: rotate(158deg); } 50% { transform: rotate(148deg); } }
+@keyframes m-pop { from { transform: scale(0) rotate(-20deg); } to { transform: scale(1) rotate(0); } }
+@keyframes m-float { 50% { transform: translateY(-3px) rotate(4deg); } }
+@keyframes m-jump {
+  0%, 100% { transform: translateY(0) scale(1.05, .95); }
+  18% { transform: translateY(0) scale(.96, 1.05); }
+  48% { transform: translateY(-28px) scale(1, 1); }
+  80% { transform: translateY(0) scale(1.06, .94); }
+}
+@keyframes m-jump-shadow { 48% { transform: scale(.6); opacity: .1; } }
+@keyframes m-walk-body {
+  0%, 50%, 100% { transform: translateY(0) rotate(0); }
+  25% { transform: translateY(-3px) rotate(-2deg); }
+  75% { transform: translateY(-3px) rotate(2deg); }
+}
+@keyframes m-step { 0%, 50%, 100% { transform: translateY(0) rotate(0); } 25% { transform: translateY(-9px) rotate(3deg); } }
+@keyframes m-swing { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(12deg); } }
+@keyframes m-talk-head { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(1.8deg) translateY(-.6px); } 75% { transform: rotate(-1.2deg); } }
+
+/* fora da tela / aba oculta: congela os loops sem perder a pose */
+.mascote.is-paused, .mascote.is-paused * { animation-play-state: paused !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mascote, .mascote * { animation: none !important; transition: none !important; }
+}
