@@ -11,14 +11,27 @@
     "alarms"
   ],
   "optional_host_permissions": [
-    "https://*/*"
+    "https://*.service-now.com/*"
   ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
   "background": {
     "service_worker": "painel-worker.js",
     "type": "module"
   },
   "action": {
-    "default_title": "Abrir Lino"
+    "default_title": "Abrir Lino",
+    "default_icon": {
+      "16": "assets/icones/lino-16.png",
+      "32": "assets/icones/lino-32.png"
+    }
+  },
+  "icons": {
+    "16": "assets/icones/lino-16.png",
+    "32": "assets/icones/lino-32.png",
+    "48": "assets/icones/lino-48.png",
+    "128": "assets/icones/lino-128.png"
   },
   "options_page": "opcoes.html",
   "web_accessible_resources": [
@@ -32,7 +45,7 @@
         "assets/mascote/mascote-poses.css"
       ],
       "matches": [
-        "https://*/*"
+        "https://*.service-now.com/*"
       ]
     }
   ]

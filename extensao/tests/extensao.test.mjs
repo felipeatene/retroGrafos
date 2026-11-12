@@ -35,6 +35,7 @@ test("valida a lista inteira e identifica linhas com erro", () => {
   assert.throws(() => validarLista({value: [exemplo.value[0], {fields: {Title: "Tag inválida"}}, null]}),
     /Regra 2:.*\nRegra 3:/);
   assert.throws(() => origemHttps(origem + "/incident.do"), /origem HTTPS/);
+  assert.throws(() => origemHttps("https://evil.example"), /origem HTTPS/);
   assert.equal(origemHttps(origem + "/"), origem);
 });
 

@@ -9,3 +9,4 @@ output/
 *.egg-info/
 .pytest_cache/
 .obsidian/
+dist/
