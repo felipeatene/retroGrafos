@@ -5,13 +5,39 @@ import {CAMPOS, configuracao, origemHttps, validarLista} from "./regras.mjs";
 import {LIMITE, registroURL} from "./lote.mjs";
 
 const el = id => document.getElementById(id);
+const flutuante = window.parent !== window;
+if (flutuante) document.body.classList.add('painel-flutuante');
+const janela = flutuante ? await chrome.runtime.sendMessage({tipo: 'lino:vincular-janela'}).catch(() => null) : null;
+if (janela?.origem) {
+  el('fechar-lino').hidden = false;
+  const recolher = () => window.parent.postMessage({tipo: 'lino:recolher-janela'}, janela.origem);
+  el('fechar-lino').addEventListener('click', recolher);
+  document.addEventListener('keydown', evento => {
+    if (evento.key === 'Escape' && !document.querySelector('dialog[open]')) recolher();
+  });
+}
+
+async function abaDeTrabalho() {
+  if (flutuante) return janela?.id ? chrome.tabs.get(janela.id) : null;
+  const [aba] = await chrome.tabs.query({active: true, currentWindow: true});
+  return aba;
+}
 const detalhe = el("detalhe");
 const dialogoIgnorados = el("ignorado-dialogo");
 const selecionados = new Set();
 let sessao, config, ativa, revisao = 0, atualizacao = 0, ocupado = false;
 let vinculos = [], ignorados = [], tagAberta, impacto = [], erroGrafo = "";
-const comunicar = mensagensPainel("lino", () => sessao?.tabId || ativa?.id);
+const comunicar = mensagensPainel('lino', () => sessao?.tabId || ativa?.id, () => mostrarVista('chamado'));
 let limiteTags = 12, limiteIncidentes = 10, consultandoGrafo = false;
+
+function mostrarVista(vista, focar = false) {
+  const grafo = vista === 'grafo' && Boolean(sessao);
+  el('vista-chamado').hidden = grafo;
+  el('exploracao').hidden = !grafo;
+  el('aba-chamado').setAttribute('aria-pressed', String(!grafo));
+  el('aba-grafo').setAttribute('aria-pressed', String(grafo));
+  if (focar) el(grafo ? 'grafo-titulo' : 'contexto-titulo').focus();
+}
 
 function elemento(tipo, texto) {
   const node = document.createElement(tipo);
@@ -56,7 +82,9 @@ function limparSessao() {
   consultandoGrafo = false;
   detalhe.close();
   dialogoIgnorados.close();
-  for (const id of ["classificacao", "selecao", "exploracao", "resultados"]) el(id).hidden = true;
+  mostrarVista('chamado');
+  for (const id of ["classificacao", "selecao", "navegacao-lino", "resultados"]) el(id).hidden = true;
+  el('selecionados').textContent = '';
   for (const id of ["candidatos", "grafo", "tags", "resultado-lista", "detalhe-incidentes", "ignorado-lista"]) el(id).replaceChildren();
   el("resultado-status").textContent = "";
   el("busca").value = "";
@@ -82,7 +110,8 @@ function erroAcesso(erro) {
 
 function atualizarSelecao() {
   el("classificar").disabled = ocupado || selecionados.size === 0;
-  el("classificar").textContent = ocupado ? "Classificando…" : "Classificar e aplicar tags";
+  el('classificar-rotulo').textContent = ocupado ? 'Aplicando…' : 'Classificar';
+  el('classificar').setAttribute('aria-label', ocupado ? 'Classificando e aplicando tags' : 'Classificar e aplicar tags');
   if (sessao?.contexto.tipo !== "lista") return;
   el("selecionados").textContent = selecionados.size + " de " + LIMITE + " selecionados";
   for (const campo of el("candidatos").querySelectorAll("input")) {
@@ -116,12 +145,17 @@ function montarSelecao(contexto) {
 async function verificar() {
   const versao = ++revisao;
   try {
-    const [aba] = await chrome.tabs.query({active: true, currentWindow: true});
+    const aba = await abaDeTrabalho();
     config = await configuracao();
     if (versao !== revisao) return;
     const origem = origemHttps(config.origem);
     ativa = aba;
     limparSessao();
+    if (flutuante && !janela?.id) {
+      el('contexto-titulo').textContent = 'Abra o Lino pelo mascote';
+      el('contexto-texto').textContent = 'A janela precisa estar vinculada a uma aba do ServiceNow.';
+      return;
+    }
     situacao({texto: "Verificando a aba ativa…"});
     if (aba?.status === "loading") return;
     const autorizado = await chrome.permissions.contains({origins: [origem + "/*"]});
@@ -167,7 +201,7 @@ async function verificar() {
           : "A lista atual não contém incidentes para classificar.", status: "Conectado", estado: "ativo"});
     }
     montarSelecao(contexto);
-    el("exploracao").hidden = false;
+    el('navegacao-lino').hidden = false;
     await carregarGrafo();
   } catch (erro) {
     if (versao === revisao) erroAcesso(erro);
@@ -176,7 +210,7 @@ async function verificar() {
 
 async function executar(alvo, rota, opcoes) {
   if (alvo !== sessao) throw new Error("O contexto da aba mudou.");
-  const [aba] = await chrome.tabs.query({active: true, currentWindow: true});
+  const aba = await abaDeTrabalho();
   if (aba?.id !== alvo.tabId || aba.url !== alvo.url) throw new Error("O contexto da aba mudou.");
   const resposta = await chamar(alvo, rota, opcoes);
   if (alvo !== sessao) throw new Error("O contexto da aba mudou.");
@@ -195,6 +229,7 @@ function abrirIncidente(incidente) {
 
 function renderizarGrafo() {
   const tags = agrupar(vinculos, el("busca").value, el("tipo").value);
+  el('expandir').disabled = !vinculos.length;
   const incidentes = new Set(tags.flatMap(tag => [...tag.incidentes.keys()]));
   el("grafo").hidden = tags.length === 0;
   el("grafo-legenda").hidden = !tags.length;
@@ -236,6 +271,14 @@ async function carregarGrafo() {
       consultandoGrafo = false;
       el("atualizar").disabled = false;
       renderizarGrafo();
+      if (!ocupado && !erroGrafo && vinculos.length) {
+        const tags = agrupar(vinculos);
+        const ids = [...new Set(vinculos.map(vinculo => vinculo.incidente.id))];
+        const compacto = tags.length <= 2 && ids.length <= 4 && tags.length + ids.length <= 6;
+        comunicar({etapa: 'grafo', estado: 'concluido', texto: `${tags.length} tags ligadas a ${ids.length} incidentes.`,
+          miniGrafo: compacto ? {tags: tags.map(tag => ({valor: tag.valor, conexoes: [...tag.incidentes.keys()].map(id => ids.indexOf(id))})), incidentes: ids.length} : undefined,
+          acao: compacto ? undefined : {rotulo: 'Expandir', comando: 'expandir'}});
+      }
       if (!ocupado) {
         const tags = agrupar(vinculos), registros = new Set(vinculos.map(v => v.incidente.id));
         comunicar({etapa: 'grafo', estado: erroGrafo ? 'erro' : 'concluido',
@@ -290,6 +333,7 @@ function mostrarResultado(itens) {
 async function classificar() {
   const alvo = sessao;
   if (!alvo || ocupado || !selecionados.size) return;
+  mostrarVista('chamado');
   ocupado = true;
   atualizarSelecao();
   el("resultados").hidden = true;
@@ -504,7 +548,11 @@ el("autorizar").addEventListener("click", async () => {
   else el("contexto-texto").textContent = "O Lino precisa de acesso à origem do ServiceNow para continuar.";
 });
 el("entrar").addEventListener("click", () => chrome.tabs.update(ativa.id, {url: origemHttps(config.origem) + "/login.do"}));
-el("legado").addEventListener("click", () => chrome.tabs.create({url: chrome.runtime.getURL("legado.html")}));
+el("legado").addEventListener("click", () => {
+  const url = new URL(chrome.runtime.getURL('legado.html'));
+  if (ativa?.id) url.searchParams.set('aba', ativa.id);
+  chrome.tabs.create({url: url.href});
+});
 el("configurar").addEventListener("click", () => chrome.runtime.openOptionsPage());
 el("verificar").addEventListener("click", verificar);
 el("classificar").addEventListener("click", classificar);
@@ -519,16 +567,19 @@ el("mais-incidentes").addEventListener("click", () => { limiteIncidentes += 10; 
 el("busca").addEventListener("input", () => { limiteTags = 12; renderizarGrafo(); });
 el("tipo").addEventListener("change", () => { limiteTags = 12; renderizarGrafo(); });
 
-chrome.tabs.onActivated.addListener(verificar);
+if (!flutuante) chrome.tabs.onActivated.addListener(verificar);
 chrome.tabs.onUpdated.addListener((id, mudanca) => {
-  if (id === ativa?.id && (mudanca.status === "loading" || mudanca.status === "complete")) verificar();
+  if (id === (janela?.id || ativa?.id) && (mudanca.url || mudanca.status === 'loading' || mudanca.status === 'complete')) verificar();
 });
 chrome.storage.onChanged.addListener((mudancas, area) => {
   if (area === "local" && mudancas.config) verificar();
 });
-await verificar();
-
 el("expandir").addEventListener("click", async () => {
   const resposta = await chrome.runtime.sendMessage({tipo: 'lino:expandir', fluxo: 'lino', dados: vinculos});
   if (resposta?.erro) comunicar({etapa: 'grafo', estado: 'erro', texto: resposta.erro, acao: {rotulo: 'Expandir', comando: 'expandir'}});
 });
+
+el('aba-chamado').addEventListener('click', () => mostrarVista('chamado', true));
+el('aba-grafo').addEventListener('click', () => mostrarVista('grafo', true));
+
+await verificar();

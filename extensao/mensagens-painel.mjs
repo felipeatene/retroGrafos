@@ -1,17 +1,22 @@
 import {criarBaloes} from './baloes.mjs';
-export function mensagensPainel(fluxo, destino) {
+export function mensagensPainel(fluxo, destino, aoAbrirDetalhes = () => {}) {
   let ultimaEtapa, sequencia = 0;
   const host = document.createElement('div'); host.className = 'mensagens-lino';
   const intro = document.querySelector('.chamado-intro');
   if (intro) intro.after(host); else document.querySelector('main').prepend(host);
-  const ui = criarBaloes(host, {acao: comando => {
-    if (comando === 'detalhes') { const d = document.getElementById('resultados'); d.open = true; d.scrollIntoView({block: 'nearest'}); }
-    else document.getElementById(comando)?.click();
-  }});
+  function executarAcao(comando) {
+    if (comando !== 'detalhes') { document.getElementById(comando)?.click(); return; }
+    const detalhes = document.getElementById('resultados');
+    if (!detalhes || detalhes.hidden) return;
+    aoAbrirDetalhes();
+    detalhes.open = true;
+    detalhes.querySelector('summary')?.focus();
+    detalhes.scrollIntoView({block: 'nearest'});
+  }
+  const ui = criarBaloes(host, {acao: executarAcao});
   chrome.runtime.onMessage.addListener(m => {
     if (m.tipo !== 'lino:acao-painel' || m.tabId !== destino()) return;
-    if (m.comando === 'detalhes') { const d = document.getElementById('resultados'); if (d) d.open = true; }
-    else document.getElementById(m.comando)?.click();
+    executarAcao(m.comando);
   });
   return async evento => {
     const versao = ++sequencia, inicio = performance.now(), medir = evento.etapa !== ultimaEtapa;
