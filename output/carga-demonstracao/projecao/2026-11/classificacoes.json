@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "items": [
+    {
+      "incident_sys_id": "ad0d69c206205f4aac2e1ee42ff7184e",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "b980cff55ad65b9e914d742741b86e6a",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "6d81bd1469a95354afde25221eabafe8",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "198ab14f8b465ed69bf60c2e8180a5d4",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "02cee8f741b85023aeadfc05143943f6",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "e7e01e70cf855f97869edb468bb9b1ad",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "24d260a678785229a0619ce9a5f220ad",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "7aca4f6b29745f25ae3be541a81a2b63",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "e07b3594c6c553fa97049d70e318951b",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "81b8e8db2c6951a9a77dcbd274466f83",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "58f7c88ebc47506f9a597977bb0ec336",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "991564f08b605f568bf4f2f6381068bc",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "d7825f30f3425ca3943efd1cbba2f3b7",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "f35003b0cd925f2aa1905f5625aecf92",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "4ffdbd52333a51068e7097d88aa47fb0",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "4bf034fec1ad521ca7532340dabd348a",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "2354602c09c15fcf818b2d9fc3a545a9",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "0b721ee1f9485efeba91de4ee7ace9e5",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "08da244da0275b2d8c9acb098512e725",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "bb5a01ec2d76552cb8cfb3b676cedd27",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "528271cca123574fb687fbbd1bae5183",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "dd73d40bec355610bf8d6558079c80e5",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "e73b4d9c7e455482953aca5418c9cc48",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "2486e80723e75119bf6dc4272d841022",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "0b61f6fe23dd5fb19295e8d142e3c67f",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "a19b72a7181f51f590c0b26f1e0d7567",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "c4489e0e83c659caae66fd1575386bf2",
+      "tags": [
+        "divergencia_saldo"
+      ]
+    },
+    {
+      "incident_sys_id": "734b6514b2805093a8c38d0bfb03de9a",
+      "tags": [
+        "divergencia_saldo"
+      ]
+    },
+    {
+      "incident_sys_id": "f1d93e2f70d95813b8c9f9a6e5a897f0",
+      "tags": [
+        "divergencia_saldo"
+      ]
+    },
+    {
+      "incident_sys_id": "ddd5c9e210d6551a90f04a91aec0efff",
+      "tags": [
+        "divergencia_saldo"
+      ]
+    },
+    {
+      "incident_sys_id": "f4e3d1d3ba2853a6b2360fe168db62b8",
+      "tags": [
+        "falha_exportacao"
+      ]
+    },
+    {
+      "incident_sys_id": "cedcd06c669f551e8a135be46cff9c2d",
+      "tags": [
+        "falha_exportacao"
+      ]
+    }
+  ]
+}

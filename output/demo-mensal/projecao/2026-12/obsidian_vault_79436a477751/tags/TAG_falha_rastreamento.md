@@ -1,0 +1,13 @@
+# Tag Semântica: #falha_rastreamento
+
+- **Índice:** [[../README|Índice Principal]]
+
+## Incidentes com esta Tag
+- [[../incidentes/DEMO20261202001|DEMO20261202001]]
+- [[../incidentes/DEMO20261202002|DEMO20261202002]]
+- [[../incidentes/DEMO20261202003|DEMO20261202003]]
+- [[../incidentes/DEMO20261202004|DEMO20261202004]]
+- [[../incidentes/DEMO20261202005|DEMO20261202005]]
+- [[../incidentes/DEMO20261202006|DEMO20261202006]]
+- [[../incidentes/DEMO20261202007|DEMO20261202007]]
+- [[../incidentes/DEMO20261202008|DEMO20261202008]]

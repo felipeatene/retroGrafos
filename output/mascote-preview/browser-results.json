@@ -1,0 +1,9 @@
+{
+  "errors": [],
+  "checks": [
+    "painel 380 e 900 sem overflow",
+    "contexto e resultado",
+    "minimizar e expandir",
+    "ocultar nesta página"
+  ]
+}

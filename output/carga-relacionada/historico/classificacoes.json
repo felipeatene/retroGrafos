@@ -1,0 +1,1103 @@
+{
+  "schema_version": 1,
+  "items": [
+    {
+      "incident_sys_id": "291b791dd6d2522abcd228a0949887d6",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "59c178837d0756f4beb2cb7dac55f6aa",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "450f33c1d5995365ac92a90431f231ab",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "b10140d8c417551eb7f34f8f8b554bd9",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "ff2da39c2ce7514388de50544b07d76b",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "69a2acc8a050591aaf769cf7f4530c15",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "c0e10709195e53c98868d5df41c70e9d",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "d8e0827eb6f25fbea5d5aa8fa07914a5",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "a8fc11e6455c5e81823fdb91c79b3fea",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "88931268afd756a5aa2a43ed5e5ccfba",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "7287c738ce1d5e7b959b6848bc2ec7cc",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "44c608e7821a576a8c419e8825449dcf",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "765182ba2bdb525f9d9aa25413aa5baa",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "8b3a8d09ccf25b4bae2dc9e81717b55c",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "3b4be41c4d6a522e9605338fccde3da0",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "64ce3950ad8c53218b713a88e049b981",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "dc1e077d2dd8579eb24bf568705e0f9a",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "6a1298e482915270aad98ccf9d1830be",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "90adca907d03577985bc0b9c9999cd15",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "467440b8b21858ab85499edbf1fe0f83",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "a4c87597c4715ce492dfab5214ec979e",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "a3c6b74c833f57f6b7486377db2382c7",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "1df2dff795de5cf893ebd4e0c0bcd781",
+      "tags": [
+        "divergencia_saldo"
+      ]
+    },
+    {
+      "incident_sys_id": "f983e48349ae577b8d780b55f199a7bc",
+      "tags": [
+        "falha_exportacao"
+      ]
+    },
+    {
+      "incident_sys_id": "6608c2f2a52459eba7ab1d75823274b1",
+      "tags": [
+        "falha_exportacao"
+      ]
+    },
+    {
+      "incident_sys_id": "39d1c1eef1535244a129d2b2e3e1ac59",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "371e32767320564ab94ddd9a7484caf4",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "9144028638755ea7afae97a2c1d06289",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "2c211091c8375039848919ba20019528",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "4cf4de51614f5c79b662380cee850b4b",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "f77a620bc1ad5f67bbd6548c223d58fc",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "a18f362407bb5dc3b663dbc154741583",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "b59225a80b605a23901c4cf34735c6e7",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "a0ebb84b8f6d59c4a57d13ef447aa09e",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "2a617c58248c54148e14f4d56cda3db8",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "d2142255f7935df0921663a64283668f",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "4b0b3e0fb7cc52989d602593d2bcba14",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "18eec1f2128c501b9da6e5f1ad7b18ec",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "c08fb316f27e5b51801f5f3d18267ba1",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "045bfcebc8f753c2969d6385156f7ee9",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "9cd92e343e6f5a8882aac9346e221d14",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "01c5b7724a2b535ea04196aa04739441",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "2ce28ce575ed542291430540c05fa6da",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "6c2b7e4009955eba90cd707af943b453",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "c837948e368750efb8a05c89ce495243",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "8b6d68684b555cbb8e3c41c29355aad0",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "cace892f58455ef3a4521d640ec2d3ee",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "2de092b32bde5c528a7348c99402b055",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "846b5e5768c5565894ae1d4093bb9dff",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "205ee2ffd2925937b02a29e3fc4b4239",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "f8fffc1aa4c0588883bb422d8bf09f83",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "a9278f436abe57a28c9e436164819369",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "dd570590c9a05a3fb8138cd62058d48f",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "1391db40599e58a2aa853f0469030a78",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "bfec3a5410c3512eb2af098ba0c6dcb9",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "f1b37889be3051fdaece3322cb9c22a8",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "5d8c070154945c2caf2b59a5d241f5e5",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "ceaca0c994025e97b206a6737bcf9042",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "4946c0355b4556529092506c96f35386",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "05f26fde62b559ea907636530ee8b766",
+      "tags": [
+        "divergencia_saldo"
+      ]
+    },
+    {
+      "incident_sys_id": "e82c4a4bb20b5dac8902328b20a37092",
+      "tags": [
+        "falha_exportacao"
+      ]
+    },
+    {
+      "incident_sys_id": "3babaa7418955594bfb77f54a651a10d",
+      "tags": [
+        "falha_exportacao"
+      ]
+    },
+    {
+      "incident_sys_id": "af4ae383b30855b2b2925ea9550c81f0",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "44edf83b186458aab17361ea934653a1",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "baf1ea0bb842519a99674e3e868f9e00",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "01ca93fb34e451059598ea1187b4201d",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "27d3cf59962f5f5e9e1c1ea10fc2254d",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "e0de1abe7c6f53f7bf832d889e0849f5",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "b86dd4a96d175d938210e10b7167794a",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "1fc68ee0ff585a2c8effc668ec9edc49",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "e33a101d624c5eee8368959cbad85dee",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "ebae7aa9e54b5faca36cf7339b765e62",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "a1cc3205b26052fdb95e22b828541b54",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "c570210f87d95df4b66f9b08ee3319b8",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "bebd7f386ec1510d9fd8a60f4d4713c4",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "a2007a0dd4e85cf382b7806463b1f6ee",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "38722803f83f5c2c971642b8ee7248c5",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "c209992163685241941d605afb894782",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "53e5aa1326775692a7a5e7e398d75cce",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "92eeffc9e2e95fc8b730186147c802c1",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "b68f0f6cd992542a9b1365c2f1b0a375",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "03dfab51d0f7512db729b483aa0e4804",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "d332f61bfcaa5bc382254beb069d8478",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "14c7dc13b3f05b478c78389ef0c6fd6d",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "7e42798d819a535ba290c086ac1719cd",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "dbdc999b98335fcc8a8850320177e4cb",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "df4d71c7b5d3536f937374505743e283",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "f1b351b3942a5258b99da35e0b238819",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "819f4e7027795d98b261062aaff7fc7a",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "8b0a69e5914c573abb3f9ea9f531bebd",
+      "tags": [
+        "divergencia_saldo"
+      ]
+    },
+    {
+      "incident_sys_id": "fda8f50bc097521da5c93233f9265d11",
+      "tags": [
+        "divergencia_saldo"
+      ]
+    },
+    {
+      "incident_sys_id": "e451bdbf89f05fd3933db6c0ceeda84e",
+      "tags": [
+        "falha_exportacao"
+      ]
+    },
+    {
+      "incident_sys_id": "ef32261fa3a75228932ef1e0998ea30b",
+      "tags": [
+        "falha_exportacao"
+      ]
+    },
+    {
+      "incident_sys_id": "760b318f28fe5e2cbd42ec586d7b2852",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "44c7f56342b95af7ae07938dfe7588ab",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "f96de1b815ee5154b35675f8bba7375f",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "1279e4cba3dc52798384e9aafe59d292",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "498d1d36de1550bcbb29061edadbd526",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "c16465721e3453c590b1b9e53c4ac8ea",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "b3ad7dbae53256168476b9d5feb6cb44",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "4474092d3dff51a2a8b32c943de4610d",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "be80809d057e5bffaff927b8b421ad48",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "a65c7466dc345d77a9fe1b7202acbad1",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "d53f93622c435623a0bd8dc75afb6dff",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "5f62589154a7532b9d367ff2efdf3cb0",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "9672f78074715dfc98ba1d9d08e84f28",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "2152362ca53e52c19ef22ea86b45da4e",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "cd67139b5b03557f9293885c399012fe",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "e370791456b450fbbd5f409f9419603b",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "03d40ab4ba34538c912c9ab61773d6ca",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "95223421739c5b7b9b5a9f858d851c16",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "be047997e128556bbfbe82d5f513a37c",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "11c37dde3551599d86b5a3ef05aa78e0",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "3ed6cdf6dc545db493365d0041502bc5",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "038b673dcc2657a8a16d08e2a6a6f7b9",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "53b012e9f31256db9a48932eb6665aa2",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "31201f4940f2559cb3f13a8319425ed2",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "9ed8052486b15a7a86c70551fcaddcba",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "59d4520cdc575b9199a4b181ead32050",
+      "tags": [
+        "divergencia_saldo"
+      ]
+    },
+    {
+      "incident_sys_id": "3cd4274c617f5b42b6e963196e596ecd",
+      "tags": [
+        "divergencia_saldo"
+      ]
+    },
+    {
+      "incident_sys_id": "b6dd74ec06065d73b142f30f7382801a",
+      "tags": [
+        "falha_exportacao"
+      ]
+    },
+    {
+      "incident_sys_id": "f62d26b856ff5da2a32eceacf51784b6",
+      "tags": [
+        "falha_exportacao"
+      ]
+    },
+    {
+      "incident_sys_id": "0b9c8ca0742b5235876ae6be3aaa4b77",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "e4d7ea8f23385c41acef909788b3ce61",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "c87311bdf382556793a7cf59a3161885",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "4d07e3c44c5b5759897a0e1ed38111e4",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "993838bec416599ca04c4c1f7afee779",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "5ec69154fee75af3b1f83c00c310197d",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "fb7f6913f50858d39942b124bdefdbd4",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "d9ec143091275aca9d4501352ae0e6ae",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "7bf620e92a235f3b9bbfcac76fa01f5b",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "f9e793ee6968514dae0e367ee05c7523",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "01d4e0bafe1055d48d8331ca95547ba7",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "0050b60b326a522a819ab2d9d1c0444b",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "d4088986654458deaff46953607f0ca8",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "05d09f0bf2ae5bc2b7486fd9765bdee9",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "71b2a521c9055b3389edc74a1b751ba2",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "cdd7dc1e4ae55ce6b0b5f54d6ac93add",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "36bfb39a1b6e5dfaaf7f7efd3aff8c18",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "bae36045a1d158af91f1892d97884110",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "5f1954f762be53ae90607680bb00acf1",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "f3c9cbd9a65852378abe06f8b8e61994",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "724e9d8d09d353a784bcd62b121eaced",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "57f4ddb8b78b57099d3b348703c52677",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "c3a3393aeb19505ca7e31a98dacd58e3",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "d78be2013e8c551781c340bb580090c9",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "d61d2146a6765424800e63aca3c14bd1",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "7308ab55149d51678f0547e81d131d9c",
+      "tags": [
+        "divergencia_saldo"
+      ]
+    },
+    {
+      "incident_sys_id": "b0163a4ddfa95990995bc45ec8c3e8ea",
+      "tags": [
+        "divergencia_saldo"
+      ]
+    },
+    {
+      "incident_sys_id": "665e6b334d915a5390cb4ab2e96f4c28",
+      "tags": [
+        "falha_exportacao"
+      ]
+    },
+    {
+      "incident_sys_id": "3b299679ad5551da919250dde7bebac0",
+      "tags": [
+        "falha_exportacao"
+      ]
+    },
+    {
+      "incident_sys_id": "430d4c2a313e576b83aae11ddb8f40d9",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "481d6caa39895d49b3d9de9591a33ed4",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "9c7c811fc003559db8f54a5ace4d1861",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "6b262c6547905a4dba4ba8a4ffe583d0",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "73ac24cc01675980b65f2de5d63376db",
+      "tags": [
+        "atraso_notas"
+      ]
+    },
+    {
+      "incident_sys_id": "f5c39bfc45c853acbaff341aa1ffaa99",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "49cb7c1b57395fb69146e7b7ca1e8a7e",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "6ae4d7fc0b6f533f8ebde40a36acceb8",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "5f08b7cb1a525366ae84d866c4dfbd28",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "99f90da5e5d7514bb9857a98e4d4b493",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "180bdc02a5e951569b63d1ea1633577a",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "9d644f4b00e55204aed722a389137b9c",
+      "tags": [
+        "falha_rastreamento"
+      ]
+    },
+    {
+      "incident_sys_id": "996b19a81bf75ddcb09e3388f53ae3b8",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "aab120d53b8151f7a15486db61eec66d",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "b68b2db25af5568e8c49d6a47077b71b",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "98d01e176fd558cba68634fbadde2a9e",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "34529e49bc7e52c3bd373b11854f15b6",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "30f6fb346dea5b24abfc6116e092f646",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "b35cfbf8993257d298936d26b9ee9dd1",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "984e28e79bfa536ab02f0824d08776f8",
+      "tags": [
+        "timeout_protocolos"
+      ]
+    },
+    {
+      "incident_sys_id": "e1defbefbede520e9e726d7e31ee374d",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "d9fd376fc48b53be821fe01ddf553e6f",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "2269a3c725335cb29ee5e031e7ed2af4",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "9ff1a69fb4d551e6847f2d24bc4f29bc",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "dfb945a5dd21506098034f95df48b1a2",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "d30e0041650d5c72a8e7f48706c29f2d",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "3361c9b43586562881f204db5d8b5b0c",
+      "tags": [
+        "erro_sessao"
+      ]
+    },
+    {
+      "incident_sys_id": "0c4b4b9b59b45fcb95bc6224ea5f6b79",
+      "tags": [
+        "divergencia_saldo"
+      ]
+    },
+    {
+      "incident_sys_id": "88974c0db4ed5528bf693fffb42cdf4b",
+      "tags": [
+        "divergencia_saldo"
+      ]
+    },
+    {
+      "incident_sys_id": "7f419fa6b63e5dc99f3579373affaae5",
+      "tags": [
+        "divergencia_saldo"
+      ]
+    },
+    {
+      "incident_sys_id": "b77e0850e3d95360b164248a66819b8e",
+      "tags": [
+        "falha_exportacao"
+      ]
+    },
+    {
+      "incident_sys_id": "71acce1790ec5623b345088f4af606dd",
+      "tags": [
+        "falha_exportacao"
+      ]
+    }
+  ]
+}
