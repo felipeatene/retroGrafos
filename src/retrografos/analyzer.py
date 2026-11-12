@@ -100,7 +100,7 @@ def detect_recurrences(
                 unique_ids.append(g.incident_sys_id)
                 unique_numbers.append(g.number)
                 raw_inc = inc_by_id.get(g.incident_sys_id, {})
-                prb = str(raw_inc.get("problem_id") or "").strip()
+                prb = str(raw_inc.get("problem_number") or raw_inc.get("problem_id") or "").strip()
                 kb = str(raw_inc.get("kb_candidate") or "").strip()
                 if prb and prb not in problems:
                     problems.append(prb)
