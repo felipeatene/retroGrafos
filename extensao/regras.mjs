@@ -19,8 +19,10 @@ export const PADRAO = "https://dev217534.service-now.com";
 
 export function origemHttps(valor) {
   const url = new URL(valor);
+  const host = url.hostname;
+  const instancia = host === "service-now.com" || host.endsWith(".service-now.com");
   if (url.protocol !== "https:" || url.username || url.password ||
-      url.pathname !== "/" || url.search || url.hash) {
+      url.pathname !== "/" || url.search || url.hash || !instancia) {
     throw new Error("Informe apenas a origem HTTPS da instância.");
   }
   return url.origin;

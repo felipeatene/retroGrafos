@@ -12,6 +12,8 @@ O JSON usa a estrutura `value[].fields` descrita abaixo. O campo opcional `Rotul
 
 Para validar localmente, execute `node --test extensao/tests/*.test.mjs` na raiz do repositório.
 
+Para gerar o pacote da Chrome Web Store, execute `node scripts/empacotar.mjs`. O ZIP sai em `dist/` e não entra no Git. O guia de conta, permissões e privacidade está em `docs/distribuicao-e-seguranca.md`.
+
 ## Problemas e mudanças no RetroGrafos
 
 Ao abrir um problema ou uma mudança no ServiceNow, o Lino oferece um atalho para o painel RetroGrafos. As instruções abaixo se referem a esse painel.
