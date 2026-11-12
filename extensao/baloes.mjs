@@ -37,7 +37,7 @@ export const PRESETS = {
 export async function criarBaloes(host, {pagina = false, acao = () => {}, metrica = () => {}, aoClicarMascote} = {}) {
   const root = host.attachShadow({mode: 'open'});
   const base = chrome.runtime.getURL('');
-  const [css, poses, svg] = await Promise.all(['baloes.css', 'assets/mascote/mascote-poses.css', 'assets/mascote/mascote.svg'].map(async arquivo => {
+  const [css, poses, svg] = await Promise.all(['baloes.css', 'assets/mascote/mascote-poses.css', 'assets/mascote/lino-pet.svg'].map(async arquivo => {
     const res = await fetch(base + arquivo); if (!res.ok) throw new Error('Não foi possível carregar o Lino.'); return res.text();
   }));
   // Only packaged, trusted extension assets are inserted as markup.
@@ -133,8 +133,8 @@ export async function criarBaloes(host, {pagina = false, acao = () => {}, metric
     render(evento); historico();
   }
   function minimizar(valor = true) {
-    painel.classList.toggle('compacto', valor); rig.dataset.detail = valor ? 'low' : 'full'; rig.dataset.view = valor ? 'head' : 'body';
-    rig.setAttribute('viewBox', valor ? '52 0 152 105' : '0 0 256 320');
+    painel.classList.toggle('compacto', valor);
+    rig.dataset.detail = valor ? 'low' : 'full';
   }
   q('.personagem').addEventListener('click', () => {
     if (aoClicarMascote) { aoClicarMascote(); return; }

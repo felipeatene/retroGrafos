@@ -81,6 +81,16 @@ el("restaurar").addEventListener("click", async () => {
 });
 
 el('mostrar-lino').checked = (await chrome.storage.local.get('lino:ativo'))['lino:ativo'] !== false;
+const tamanhoSalvo = String((await chrome.storage.local.get('lino:tamanho'))['lino:tamanho'] || '64');
+const tamanhoAtual = ['48', '64', '88'].includes(tamanhoSalvo) ? tamanhoSalvo : '64';
+document.querySelector(`input[name="tamanho"][value="${tamanhoAtual}"]`).checked = true;
+for (const input of document.querySelectorAll('input[name="tamanho"]')) {
+  input.addEventListener('change', async () => {
+    if (!input.checked) return;
+    await chrome.storage.local.set({'lino:tamanho': input.value});
+    mostrar('Tamanho do mascote salvo.');
+  });
+}
 el('conectar-lino').onclick = async () => {
   if (!origemSalva) return;
   try {

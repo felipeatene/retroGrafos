@@ -1,7 +1,7 @@
 # Prompt mestre · Mascote Lino no ServiceNow
 
 > Cole todo o conteúdo abaixo da linha em uma IA de UI, código, imagem ou animação. Anexe junto:
-> - as imagens de `docs/mascote-referencia/` e de `extensao/assets/` (`lina.jpg`, `lina-alerta.png`);
+> - as imagens de `docs/mascote-referencia/` e o avatar em `extensao/assets/`;
 > - os arquivos do rig em `extensao/assets/mascote/` (`mascote.svg`, `mascote-poses.css`, `RIG.md`).
 > Itens marcados com **[PREENCHER: …]** dependem de uma decisão do time. Não os invente; deixe a decisão visível na sua resposta.
 
@@ -56,7 +56,7 @@ Use estas regras como base da detecção do mascote. Elas já existem no código
   - A seção `#processamento` reúne o título `#progresso-titulo`, o contador `#progresso-contador` ("7 / 18"), o `<progress id="progresso">`, o texto `#progresso-detalhe` ("Até 3 registros em segundo plano", "Processamento concluído", "N registros precisam de atenção") e o grafo SVG `#grafo` (viewBox `420×290`) dentro de um bloco escuro `#132f2c` que ocupa a largura do painel.
   - Essa seção é atualizada pela função `progresso(acao, feitos, total, falhas)`.
   - O processamento usa até 3 abas de trabalho em segundo plano (`SIMULTANEOS = 3` em `grupos.mjs`; abas criadas com `chrome.tabs.create({active: false})`), e cada lote tem no máximo 25 registros (`LIMITE` em `lote.mjs`).
-- **Fluxo Lino (`painel.html` + `lino.mjs`)**: não há barra. O progresso aparece como texto em `#contexto-texto` e `#resultado-status` (por exemplo "Aplicando as tags · 5 de 20 incidentes", com lotes de 5 por requisição). O mascote atual é a imagem `#lina` (75×75), que troca entre `assets/lina.jpg` e `assets/lina-alerta.png` na função `mascote(alerta)`.
+- **Fluxo Lino (`painel.html` + `lino.mjs`)**: não há barra. O progresso aparece como texto em `#contexto-texto` e `#resultado-status` (por exemplo "Aplicando as tags · 5 de 20 incidentes", com lotes de 5 por requisição). O mascote do painel é o avatar `#lino` (75×75) em `assets/lino-avatar.webp`.
 - **Decidido: as duas formas de progresso viram balões.** No legado, o `#processamento` com o `<progress id="progresso">`. No fluxo Lino, as mensagens de progresso escritas em `#contexto-texto` e `#resultado-status`.
 
 ### 2.4 Como os gráficos são feitos hoje
@@ -79,7 +79,7 @@ Não há biblioteca de gráficos. Os únicos "gráficos" são grafos SVG desenha
 ### 2.6 O mascote que já existe: Lino
 
 - **Nome oficial: Lino** (masculino), o mesmo nome da extensão. Ele fala em primeira pessoa, no masculino.
-- O código atual ainda usa o nome antigo, "Lina": `<img id="lina" alt="Lina">` em `painel.html`, os arquivos `assets/lina.jpg` e `assets/lina-alerta.png`, a função `mascote(alerta)` em `lino.mjs` (que referencia `#lina` e os dois arquivos) e o seletor `.lina` / `.lina.alerta` em `lino.css`. **Tarefa:** renomear e ajustar (ver seção 12, item 9).
+- Os rasters com o nome antigo do personagem foram removidos. O painel usa `assets/lino-avatar.webp` e o rig SVG.
 - Referências anexadas (copiadas para `docs/mascote-referencia/`):
   - `01-robo-happy-comemorando.png`: feliz pulando com os braços abertos. É a imagem mais limpa, sem overlay de player.
   - `02-comemorando-frame-video-0s02.png`: mesma pose, frame 0:02 de um vídeo de 6 s, com overlay de player.
@@ -87,8 +87,7 @@ Não há biblioteca de gráficos. Os únicos "gráficos" são grafos SVG desenha
   - `04-pensativo-frame-video-0s05.png`: mão no headset e boca séria.
   - `05-confuso-lampada-frame-video-0s05.png`: confuso, com lâmpada e "?" acima.
 - Já no produto:
-  - `extensao/assets/lina.jpg` (497×502, 59 KB): busto acenando. As pontas verde-limão dos dedos foram **descartadas**: o canônico são mãos totalmente pretas, como nas imagens novas.
-  - `extensao/assets/lina-alerta.png` (1,05 MB): de pé, surpreso, boca em "O", sobre a plataforma hexagonal. **Tem um timestamp de player ("0:05 / 0:06") gravado no canto inferior esquerdo, e o arquivo é pesado demais para a página.**
+  - Os rasters antigos de busto e de alerta saíram do repositório: o de alerta tinha timestamp de player e pesava cerca de 1 MB. As pontas verde-limão dos dedos foram **descartadas**: o canônico são mãos totalmente pretas.
   - **Rig SVG feito à mão** em `extensao/assets/mascote/`, descrito no `RIG.md`:
     - `mascote.svg`: 17,0 KB (17.361 bytes), cerca de 4,0 KB gzip (4.088 bytes), vista frontal, 75 ids `m-*`, sem raster e sem filtros. Depois do acabamento com a skill `anatomy` (relatório em `docs/anatomy-lino.md`), ele ganhou:
       - os clipPaths `m-cfist` e `m-cfist-curl`, que fazem os vincos dos dedos terminarem na borda da mão;
@@ -236,7 +235,7 @@ Responda por escrito antes de propor qualquer tela:
 
 ### 6.3 Inconsistências que o model sheet precisa resolver
 
-1. **Mãos: decidido.** O canônico são mãos **totalmente pretas**, como nas imagens novas. As pontas verde-limão de `lina.jpg` são descartadas no rig e nos rasters.
+1. **Mãos: decidido.** O canônico são mãos **totalmente pretas**, como nas imagens novas. As pontas verde-limão do raster antigo de busto são descartadas no rig e nos rasters.
 2. O emblema e os pontos verdes do antebraço aparecem só num braço, e a faixa verde só num ombro. **Decisão de design sua, registrada no model sheet**: assimetria proposital ou não, e em qual lado ficam. Aplique a mesma escolha ao rig e aos rasters.
 3. Comprimento do jaleco e número de bolsos.
 4. Orientação do átomo (fixa, sempre frontal).
@@ -270,7 +269,7 @@ Essas folhas são **referência do time**. Elas servem a dois públicos: ao refi
 | Contexto | Formato | Motivo |
 | --- | --- | --- |
 | **Na página do ServiceNow** (64–120 px de altura): todos os estados, expressões, piscar, fala e andar | **Rig SVG inline** `extensao/assets/mascote/mascote.svg` (17,0 KB, cerca de 4,0 KB gzip) com `mascote-poses.css` (5,7 KB, cerca de 1,5 KB gzip), dentro do Shadow DOM, animado por CSS e WAAPI | Um asset só cobre todas as poses e expressões. É nítido em qualquer DPI, as cores vêm de custom properties e não há requisições de imagem na página do ServiceNow |
-| **Contextos de destaque**: aba expandida `grafico.html`, cabeçalho do painel (`#lina` em `painel.html`), avatar, onboarding e material de comunicação | **Raster 3D em WebP com alfa** (seção 6.9) | Preserva o brilho e o volume do render 3D, que o rig flat não reproduz |
+| **Contextos de destaque**: aba expandida `grafico.html`, cabeçalho do painel (`#lino` em `painel.html`), avatar, onboarding e material de comunicação | **Raster 3D em WebP com alfa** (seção 6.9) | Preserva o brilho e o volume do render 3D, que o rig flat não reproduz |
 
 **Regras de uso do rig na página:**
 
@@ -382,7 +381,7 @@ O `--verde: #7dde21` de `lino.css` está próximo de `--mascot-lime`. Proponha u
 
 O pipeline abaixo vale **só** para os assets de destaque. Eles nunca são carregados na página do ServiceNow.
 
-1. **Limpeza das referências**: remova os overlays de player (tempo "0:02 / 0:06" e "0:05 / 0:06", ícone de mudo, barra inferior), a barra "robo-happy.png" do visualizador, o fundo de escritório (incluindo o "CO" da parede) e o timestamp de `lina-alerta.png`.
+1. **Limpeza das referências**: remova os overlays de player (tempo "0:02 / 0:06" e "0:05 / 0:06", ícone de mudo, barra inferior), a barra "robo-happy.png" do visualizador, o fundo de escritório (incluindo o "CO" da parede) e o timestamp do raster antigo de alerta.
 2. **Remoção de fundo** com matting de alfa suave, sem halo verde. Revise as mãos pretas e o microfone.
 3. **Plataforma hexagonal**: remova-a do personagem. Ela vira o asset opcional `lino-pedestal.webp`, usado só em destaque. A sombra vem de um asset separado (`lino-sombra.webp`).
 4. **Master** em 512×512, com os pés em `y = 488` e o centro em `x = 256`. Mesma câmera (frontal, cerca de 10° acima, 50 mm) e mesma luz (principal no alto à esquerda, preenchimento suave, rim fria fraca) em todos.
@@ -391,13 +390,13 @@ O pipeline abaixo vale **só** para os assets de destaque. Eles nunca são carre
 
 | Arquivo (`extensao/assets/mascote/destaque/`) | Uso | Tamanho exibido |
 | --- | --- | --- |
-| `lino-avatar-40.webp`, `lino-avatar-64.webp`, `lino-avatar-128.webp` | `#lina` em `painel.html` (substitui `lina.jpg`) e cabeçalho da aba expandida | 40, 64 e 128 px |
+| `lino-avatar-40.webp`, `lino-avatar-64.webp`, `lino-avatar-128.webp` | `#lino` em `painel.html` e cabeçalho da aba expandida | 40, 64 e 128 px |
 | `lino-destaque-saudacao.webp` | Onboarding e cabeçalho do painel | até 200 px |
 | `lino-destaque-apresentando.webp` | Cabeçalho de `grafico.html` | até 160 px |
 | `lino-destaque-comemorando.webp` | Fim de análise na aba expandida e comunicação (a partir da ref 01) | até 200 px |
 | `lino-destaque-pensando.webp` | Estado carregando de `grafico.html` (ref 04) | até 160 px |
 | `lino-destaque-confuso.webp` | Estado vazio de `grafico.html` (ref 05) | até 160 px |
-| `lino-destaque-alerta.webp` | Estado de erro e substituição de `lina-alerta.png` (1 MB) no painel | até 160 px |
+| `lino-destaque-alerta.webp` | Estado de erro no painel, no lugar do raster antigo de 1 MB | até 160 px |
 | `lino-pedestal.webp`, `lino-sombra.webp` | Opcionais, em destaque | n/a |
 | `docs/mascote-referencia/model-sheet.webp`, `turnaround.webp`, `expressoes.webp` | Só referência do time; não são empacotados | n/a |
 
@@ -423,10 +422,10 @@ Quando o avatar for exibido abaixo de 40 px, use o rig com `data-view="head"` e 
 | `apresentando` | n/a | `present` | `happy` | `smile` | `holding` | `holding` | `clipboard` | `is-idle is-blinking` | **novo** |
 | `comemorando` | 01, 02 | `jump` (1–2 ciclos) | `normal` | `happy` | `open-wave` | `open-wave` | n/a | n/a | sim |
 | `confuso` | 05 | `confused` | `worried` | `serious` | `thinking` | `relaxed` | `bulb` | `is-blinking` | sim |
-| `alerta` | `lina-alerta.png` | `alert` | `wide` | `surprised` (provisório: `talk-o`) | `open-up` | `open-up` | n/a | n/a | **novo** (parcial) |
+| `alerta` | raster antigo de alerta | `alert` | `wide` | `surprised` (provisório: `talk-o`) | `open-up` | `open-up` | n/a | n/a | **novo** (parcial) |
 | `dormindo` | n/a | `sleep` | `closed` | `neutral` | `relaxed` | `relaxed` | `zzz` | `is-idle` | **novo** (olhos existem) |
 | `acordar` | n/a | `sleep` → `neutral` (transição de .45 s) | `closed` → `normal` | `smile` | `relaxed` | `relaxed` | n/a | `is-blinking` | derivado |
-| `minimizado` | `lina.jpg` | `neutral` + `data-view="head"` | `normal` | `smile` | n/a | n/a | n/a | `is-blinking` | **novo** |
+| `minimizado` | raster antigo de busto | `neutral` + `data-view="head"` | `normal` | `smile` | n/a | n/a | n/a | `is-blinking` | **novo** |
 | `saida` | 03 | `wave` (curto) | `normal` | `smile` | `open-wave` | `relaxed` | n/a | `is-walking` + WAAPI no host | sim |
 
 Como o Lino fica por padrão no canto inferior direito, "apontar para a tabela" normalmente precisa de `point-l`. Até ele existir, use `point` só quando o Lino estiver à esquerda do alvo.
@@ -521,7 +520,7 @@ Prompts (adicione depois do bloco de trava):
 5. **Destaque, comemorando**: limpeza e color grade da ref. `01-…`: `Same pose as reference: mid-jump, both arms wide open, big open smile.`
 6. **Destaque, pensando**: `Right hand touching the headset, serious mouth, eyes glancing up-left.` (ref. `04-…`)
 7. **Destaque, confuso**: `Hand on headset, worried eyes, small light bulb with a yellow "?" above the head.` (ref. `05-…`)
-8. **Destaque, alerta** (refazer `lina-alerta.png`): `Startled standing pose, round "O" mouth, eyes wide, hands slightly raised and open at hip height.`
+8. **Destaque, alerta** (refazer o raster antigo de alerta): `Startled standing pose, round "O" mouth, eyes wide, hands slightly raised and open at hip height.`
 9. **Avatar**: `Head only, front view, headset visible, neutral happy smile, centered, tight crop with 8% margin.`
 10. **Pedestal e sombra** (opcionais): `The green hexagonal floor platform from the reference, isolated, clean, top 3/4 view, transparent background.` e `Soft elliptical contact shadow only, transparent background.`
 
@@ -628,7 +627,7 @@ Os eventos fluem do side panel para o service worker e dele para o content scrip
 
 - **Aba alvo no fluxo Lino**: `sessao.tabId`.
 - **Aba alvo no fluxo legado**: a aba ativa do usuário, se for da origem e suportada, e nunca as abas de trabalho. **[PREENCHER: confirmar.]**
-- **Fallback**: se a página não tiver content script (sem permissão ou tela oculta), o side panel mostra os mesmos balões empilhados ao lado de `#lina`.
+- **Fallback**: se a página não tiver content script (sem permissão ou tela oculta), o side panel mostra os mesmos balões empilhados ao lado de `#lino`.
 
 ---
 
@@ -783,11 +782,7 @@ Entregue nesta ordem e com estes títulos:
    - mudanças em `opcoes.html` e `opcoes.mjs`: ligar e desligar o Lino, e **Exportar métricas** (download de JSON) e **Apagar métricas** da chave local `lino:metricas`;
    - `extensao/metricas.mjs`: registro local em buffer circular, sem dados de chamados, com retenção de 30 dias;
    - testes em `extensao/tests/mascote.test.mjs`;
-   - **renomear Lina → Lino no código existente**:
-     - em `painel.html`, `<img id="lina" alt="Lina">` vira `id="lino"` e `alt="Lino"`, ou passa a usar o avatar de destaque `lino-avatar-*.webp`;
-     - em `lino.mjs`, a função `mascote(alerta)` passa a usar `el("lino")` e os novos arquivos;
-     - em `lino.css`, `.lina` e `.lina.alerta` viram `.lino` e `.lino.alerta`;
-     - `assets/lina.jpg` e `assets/lina-alerta.png` são substituídos por `lino-avatar-*.webp` e `lino-destaque-alerta.webp`, e os arquivos antigos são removidos depois que nenhuma referência sobrar (confira com `rg -i lina extensao`).
+   - o nome do personagem no código já é Lino. O avatar do painel é `#lino` / `assets/lino-avatar.webp`. Os rasters antigos foram removidos.
 10. **Plano de validação dos KPIs**: como medir cada um, com script ou passo a passo.
     - Os KPIs de laboratório (desempenho, peso, contraste, detecção) são medidos com DevTools e testes `node --test`.
     - Os KPIs de uso (TTFI, taxa de dispensa, tempo até aparecer) vêm **só** da chave local `lino:metricas`, exportada manualmente em `opcoes.html` pelos participantes do piloto e consolidada à mão pelo time.
@@ -843,7 +838,7 @@ Entregue nesta ordem e com estes títulos:
 - [ ] `comemorando` roda no máximo 2 ciclos de `jump` e volta para `idle`, e o piscar tem intervalo sorteado entre 3 e 6 s.
 - [ ] Com `prefers-reduced-motion: reduce`, as poses aparecem estáticas, sem `is-walking`, lip-sync ou translação, e o host faz só fades de até 150 ms.
 - [ ] `is-paused` é aplicada com a aba oculta, com o Lino fora da viewport e depois de 30 s de `idle`, e removida ao voltar, sem mudar a pose. Com `prefers-reduced-motion: reduce`, o Lino mostra a pose estática.
-- [ ] Os rasters de destaque da 6.9 existem sem fundo, sem plataforma embutida e sem overlay de player, com até 40 KB cada, e o `lina-alerta.png` de 1 MB foi substituído.
+- [ ] Os rasters de destaque da 6.9 existem sem fundo, sem plataforma embutida e sem overlay de player, com até 40 KB cada, e o raster antigo de alerta, de cerca de 1 MB, foi removido.
 
 **Balões**
 
@@ -886,7 +881,7 @@ Lista consolidada dos **[PREENCHER]** espalhados pelo prompt:
 **Já decidido (não reabra):**
 
 - **Marca**: a logo "L&CO" fica no peito (uso autorizado). Abaixo de cerca de 80 px, usa a versão simplificada (`data-detail="low"`).
-- **Mãos**: totalmente pretas. As pontas verde-limão de `lina.jpg` são descartadas. O lado dos emblemas e da faixa é uma decisão de design registrada no model sheet (seção 6.3).
+- **Mãos**: totalmente pretas. As pontas verde-limão do raster antigo de busto são descartadas. O lado dos emblemas e da faixa é uma decisão de design registrada no model sheet (seção 6.3).
 - **Sistema visual**: o escuro e verde de `lino.css` vale para balões, chips, `grafico.html` e telas novas. O legado migra para esses tokens. Na página, os balões são opacos, com contorno e sombra sutil (seção 5.3).
 - **Progresso**: viram balões o `#processamento` e o `<progress>` do legado e o texto de progresso do `lino.mjs` (`#contexto-texto`, `#resultado-status`).
 - **Workspace**: suportado. Service Operations Workspace (`/now/sow/…`) e workspaces do Next Experience (`/now/workspace/…`, `/now/cwf/…`), com detecção por URL e confirmação através de shadow roots abertos (seção 8.1).
@@ -895,7 +890,7 @@ Lista consolidada dos **[PREENCHER]** espalhados pelo prompt:
 - **Nome e voz: Lino**, masculino, o mesmo nome da extensão.
   - Ele fala em primeira pessoa, no masculino ("Estou olhando esta aba…", "Encontrei 18 incidentes nesta página.").
   - O `aria-label` do rig e do host é "Lino, assistente do RetroGrafos".
-  - O código atual ainda usa "Lina" (`#lina`, `lina.jpg`, `lina-alerta.png`, `.lina`). A renomeação é tarefa da seção 12, item 9.
+  - O personagem no código se chama Lino. Os rasters com o nome antigo foram removidos.
 
 - **Formato: híbrido.**
   - Na página do ServiceNow, o Lino é o rig SVG inline em Shadow DOM, animado por CSS e WAAPI.

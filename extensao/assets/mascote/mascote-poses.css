@@ -1,13 +1,14 @@
-/* Poses e animacoes do rig mascote.svg (SVG inline).
+/* Poses do pet chibi lino-pet.svg (SVG inline, viewBox 176×220).
+   Pivôs: corpo/sombra 88 210, cabeça 88 118, ombro 46 126,
+   cotovelo 42 148, mão 40 170, quadril 70 164, joelho 70 184.
    Estado: atributos no <svg class="mascote">
-     data-pose  = neutral | wave | think | confused | jump | point
-     data-eyes  = normal | closed | happy | worried
-     data-mouth = smile | happy | neutral | serious | talk-a | talk-o
-     data-hand-l / data-hand-r = relaxed | open-wave | pointing | thinking
-     data-props = "" | bulb
-   Loops (classes): is-idle, is-blinking, is-walking, is-talking; is-paused congela
-   Lado -r e espelhado no SVG: o mesmo angulo gera movimento simetrico
-   (positivo = braco/perna para fora). */
+     data-pose  = neutral | wave | think | confused | jump | point | alert | sleep | present | point-l
+     data-eyes  = normal | closed | happy | worried | wide
+     data-mouth = smile | happy | neutral | serious | talk-a | talk-o | surprised
+     data-hand-l / data-hand-r = relaxed | open-wave | pointing | thinking | open-up | holding
+     data-props = "" | bulb | clipboard | zzz
+   Loops: is-idle flutua, is-blinking pisca, is-paused congela.
+   Lado -r é espelhado no SVG: o mesmo ângulo abre para fora. */
 
 .mascote :is(#m-body, #m-head, #m-arm-l, #m-arm-r, #m-elbow-l, #m-elbow-r,
   #m-hand-l, #m-hand-r, #m-leg-l, #m-leg-r, #m-knee-l, #m-knee-r,
@@ -16,7 +17,7 @@
 }
 
 /* ---------- loops base ---------- */
-.mascote.is-idle #m-body { animation: m-breathe 3.2s ease-in-out infinite; }
+.mascote.is-idle #m-body { animation: m-hover 2.8s ease-in-out infinite; }
 .mascote.is-idle[data-pose=neutral] #m-head { animation: m-head-idle 4.6s ease-in-out infinite; }
 .mascote.is-idle[data-pose=neutral] :is(#m-arm-l, #m-arm-r) { animation: m-arm-idle 3.2s ease-in-out infinite; }
 
@@ -61,7 +62,7 @@
 .mascote.is-talking[data-pose=point] #m-head { animation: m-talk-head .9s ease-in-out infinite; }
 
 /* ---------- keyframes ---------- */
-@keyframes m-breathe { 50% { transform: translateY(-.8px) scaleY(1.012); } }
+@keyframes m-hover { 50% { transform: translateY(-5px); } }
 @keyframes m-head-idle { 0%, 100% { transform: rotate(0); } 30% { transform: rotate(1.6deg); } 70% { transform: rotate(-1.4deg); } }
 @keyframes m-arm-idle { 50% { transform: rotate(3deg); } }
 @keyframes m-blink { 0%, 93%, 100% { transform: scaleY(0); } 96.5% { transform: scaleY(1); } }
@@ -72,7 +73,7 @@
 @keyframes m-jump {
   0%, 100% { transform: translateY(0) scale(1.05, .95); }
   18% { transform: translateY(0) scale(.96, 1.05); }
-  48% { transform: translateY(-28px) scale(1, 1); }
+  48% { transform: translateY(-16px) scale(1, 1); }
   80% { transform: translateY(0) scale(1.06, .94); }
 }
 @keyframes m-jump-shadow { 48% { transform: scale(.6); opacity: .1; } }
@@ -111,7 +112,6 @@
 .mascote[data-detail=low] .m-st { stroke-width: 4; }
 .mascote[data-detail=low] #m-chest-logo { opacity: 0; }
 .mascote[data-detail=low] #m-logo-small { display: inline; }
-.mascote[data-view=head] :is(#m-legs,#m-torso,#m-backpack,#m-arm-l,#m-arm-r,#m-shadow,#m-clipboard) { visibility: hidden; }
 .mascote[data-pose=jump] :is(#m-body,#m-shadow) { animation-iteration-count: 2; }
 .mascote.is-blinking:not([data-eyes=closed]):not([data-eyes=happy]) :is(#m-eyelid-l,#m-eyelid-r) { animation: m-single-blink .18s linear 1; }
 @keyframes m-single-blink { 0%,100% { transform: scaleY(0); } 50% { transform: scaleY(1); } }

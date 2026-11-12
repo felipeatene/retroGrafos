@@ -34,7 +34,11 @@ const server = http.createServer((req,res) => {
         if (rota==='acesso') dados={usuario:'a'.repeat(32)};
         if (rota==='classificar') {
           globalThis.__classificados=opcoes.corpo.ids;
-          dados={itens:opcoes.corpo.ids.map(id=>({id,numero:'DEMO001',estado:'analisado',tags:[]}))};
+          dados={itens:opcoes.corpo.ids.map(id=>({id,numero:'DEMO001',estado:'analisado',tags:[
+            {valor:'Estoque',estado:'adicionada',fontes:['short_description']},
+            {valor:'Cache',estado:'existente',fontes:['short_description']},
+            {valor:'PDF',estado:'falha',fontes:['short_description']}
+          ]}))};
         }
         return [{result:{status:200,dados}}];
       }}};
@@ -61,14 +65,25 @@ const server = http.createServer((req,res) => {
     await grafo.click();
     await classificar.click();
     await page.locator('#resultados').waitFor();
+    await page.locator('#resultado-barras').waitFor();
+    const barras=await page.locator('.barra-resultado').evaluateAll(linhas=>linhas.map(linha=>linha.innerText.replace(/\s+/g,' ').trim()));
+    assert.deepEqual(barras,['Adicionadas 1','Já presentes 1','Falhas 1']);
+    assert.equal(await page.locator('#detalhe').evaluate(dialogo=>dialogo.open),false);
     assert(await page.locator('#vista-chamado').isVisible());
     assert.deepEqual(await page.evaluate(()=>globalThis.__classificados),['a'.repeat(32)]);
+    if (width===442) await page.screenshot({path:path.join(output,'painel-resultado-442.png')});
     await page.close();
   }
   const page=await context.newPage(); page.on('pageerror',e=>errors.push(e.message)); await page.setViewportSize({width:1366,height:768});
   await page.goto(origin+'/incident_list.do'); await page.addScriptTag({url:origin+'/mascote.js'});
   await page.getByRole('button',{name:'Abrir Lino',exact:true}).waitFor();
   await page.screenshot({path:path.join(output,'pagina-contexto.png')});
+  for (const tamanho of [48, 64, 88]) {
+    await page.locator('#lino-assistente').evaluate((host, px) => host.style.setProperty('--lino-tamanho', px + 'px'), tamanho);
+    const altura = await page.locator('#lino-assistente').evaluate(host => host.shadowRoot.querySelector('.personagem').getBoundingClientRect().height);
+    assert(Math.abs(altura - tamanho) < 2, 'altura do pet ' + tamanho);
+    await page.screenshot({path:path.join(output, `pet-${tamanho}.png`)});
+  }
   await page.evaluate(()=>{ for(const f of __mensagens)f({tipo:'lino:etapa',etapa:'grafo',estado:'concluido',texto:'Uma tag ligada a um incidente.',miniGrafo:{tags:[{valor:'Estoque',conexoes:[0]}],incidentes:1}},{},()=>{}); });
   assert.equal(await page.locator('.mini-grafo line').count(),1);
   await page.evaluate(()=>{ for(const f of __mensagens)f({tipo:'lino:resultado',etapa:'resultado',estado:'erro',texto:'Uma tag precisa de atenção.',totais:{adicionada:8,existente:3,falha:1,negados:0,falhasDeRegistro:0},acao:{rotulo:'Ver detalhes',comando:'detalhes'}},{},()=>{}); });
@@ -83,6 +98,6 @@ const server = http.createServer((req,res) => {
   await page.close();
   const rig=await context.newPage(); await rig.goto(origin+'/assets/mascote/demo.html'); await rig.screenshot({path:path.join(output,'rig.png'),fullPage:true});
   await rig.close(); await browser.close(); server.close();
-  fs.writeFileSync(path.join(output,'browser-results.json'),JSON.stringify({errors,checks:['painel e grafo em 260, 380, 442 e 900 px','navegação por teclado','seleção preservada ao alternar vistas','classificação pela barra','contexto e resultado','minimizar e expandir','ocultar nesta página']},null,2));
+  fs.writeFileSync(path.join(output,'browser-results.json'),JSON.stringify({errors,checks:['painel e grafo em 260, 380, 442 e 900 px','navegação por teclado','seleção preservada ao alternar vistas','classificação pela barra','três barras antes dos detalhes','contexto e resultado','pet em 48, 64 e 88 px','minimizar e expandir','ocultar nesta página']},null,2));
   assert.deepEqual(errors,[]); console.log('Browser checks passed');
 })().catch(e=>{console.error(e);server.close();process.exit(1)});
