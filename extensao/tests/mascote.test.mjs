@@ -62,8 +62,8 @@ test('telemetria remove PII, limita volume e expira dados', async () => {
   assert.equal(store['lino:metricas'].length, 20);
 });
 test('rig preserva pivôs e não usa raster, filtro ou espelhamento global', () => {
-  const svg = readFileSync(new URL('../assets/mascote/mascote.svg', import.meta.url), 'utf8');
+  const svg = readFileSync(new URL('../assets/mascote/lino-pet.svg', import.meta.url), 'utf8');
   assert.ok(!/<(?:image|filter|foreignObject)\b|scaleX\(-1\)/.test(svg));
   for (const nome of ['m-head', 'm-arm-l', 'm-arm-r', 'm-elbow-l', 'm-elbow-r', 'm-knee-l', 'm-knee-r']) assert.ok(svg.includes('id="' + nome + '"'));
-  assert.ok(svg.includes('transform-origin:128px 310px'));
+  assert.ok(svg.includes('transform-origin:88px 210px'));
 });

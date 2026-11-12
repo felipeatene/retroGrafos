@@ -14,3 +14,8 @@
 }
 .opcoes textarea { resize: vertical; }
 .opcoes form button[type="submit"] { color: #102105; background: var(--verde); }
+.opcoes .tamanho { margin-top: 1rem; border: 1px solid #50644e; border-radius: .7rem; padding: .7rem .8rem; }
+.opcoes .tamanho legend { padding-inline: .3rem; font-weight: 650; }
+.opcoes .segmento { display: flex; gap: .4rem; margin-top: .45rem; }
+.opcoes .segmento label { display: flex; flex: 1; align-items: center; justify-content: center; gap: .35rem; margin: 0; min-height: 2.4rem; border: 1px solid #50644e; border-radius: .55rem; font-weight: 600; }
+.opcoes .segmento label:has(input:checked) { background: #2c4328; border-color: var(--verde); color: #efffe9; }

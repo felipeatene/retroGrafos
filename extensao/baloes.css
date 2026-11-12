@@ -28,14 +28,13 @@ progress { width: 100%; height: 3px; accent-color: var(--lino-acao); display: bl
 .historico { pointer-events: auto; background: var(--balao-fundo); border-radius: 6px; padding: 4px 8px; font-size: 12px; max-height: 30vh; overflow: auto; }
 .historico ol { padding-left: 20px; }
 .base { display: flex; align-items: flex-end; gap: 4px; pointer-events: auto; }
-.personagem { border: 0; padding: 0; background: transparent; touch-action: none; width: 77px; height: 96px; }
+.personagem { border: 0; padding: 0; background: transparent; touch-action: none; width: calc(var(--lino-tamanho, 64px) * 0.8); height: var(--lino-tamanho, 64px); }
 .personagem:hover, .personagem:active { background: transparent; }
-.personagem svg { display: block; width: 100%; height: 100%; transform-origin: 50% 96.9%; }
+.personagem svg { display: block; width: 100%; height: 100%; transform-origin: 50% 95.5%; }
 .controles { display: flex; flex-wrap: wrap; gap: 4px; max-width: 220px; }
 .controles button { font-size: 11px; }
 .opcoes-mascote { display: grid; place-items: center; width: 28px; padding: 3px; }
 .opcoes-mascote svg { width: 16px; fill: currentColor; }
-.compacto .personagem { width: 40px; height: 40px; }
 .compacto .balao, .compacto .chips, .compacto .historico { display: none; }
 .janela-lino {
   position: fixed;

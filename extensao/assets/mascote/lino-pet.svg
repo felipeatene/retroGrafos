@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 176 220" class="mascote" data-pose="neutral" data-eyes="normal" data-mouth="smile" data-hand-l="relaxed" data-hand-r="relaxed" data-props="" role="img" aria-label="Lino, assistente do RetroGrafos">
+<style>
+.mascote{--_g:var(--mascot-green,#1F8927);--_gd:var(--mascot-green-dark,#0B5E1F);--_gl:var(--mascot-green-light,#45BE4F);--_l:var(--mascot-lime,#8DD63F);--_w:var(--mascot-white,#F2F5F3);--_ws:var(--mascot-white-shade,#AFC0BD);--_k:var(--mascot-black,#1B2728);--_o:var(--mascot-outline,#0B1716);--_v:var(--mascot-visor,#05170E);--_y:var(--mascot-yellow,#F2DF3A);--_p:var(--mascot-tongue,#E9727B);overflow:visible}
+.mascote .m-st{stroke:var(--_o);stroke-width:3;stroke-linejoin:round;stroke-linecap:round}
+.mascote .w{fill:url(#m-gw)}.mascote .g{fill:url(#m-gg)}.mascote .k{fill:url(#m-gk)}.mascote .ns{stroke:none}
+.mascote .ln{fill:none;stroke:var(--_l);stroke-width:3.2}
+.mascote .m-alt{display:none}
+.mascote[data-eyes=normal] .m-eyeball,.mascote[data-eyes=worried] .m-eyeball,.mascote[data-eyes=wide] .m-eyeball,.mascote[data-eyes=worried] .m-eyes-worried,.mascote[data-eyes=closed] .m-eyes-closed,.mascote[data-eyes=happy] .m-eyes-happy,
+.mascote[data-mouth=happy] .m-mouth-happy,.mascote[data-mouth=smile] .m-mouth-smile,.mascote[data-mouth=neutral] .m-mouth-neutral,.mascote[data-mouth=serious] .m-mouth-serious,.mascote[data-mouth=talk-a] .m-mouth-talk-a,.mascote[data-mouth=talk-o] .m-mouth-talk-o,.mascote[data-mouth=surprised] .m-mouth-talk-o,
+.mascote[data-hand-l=open-wave] #m-hand-l .m-hand-open-wave,.mascote[data-hand-l=open-up] #m-hand-l .m-hand-open-wave,.mascote[data-hand-l=relaxed] #m-hand-l .m-hand-relaxed,.mascote[data-hand-l=holding] #m-hand-l .m-hand-relaxed,.mascote[data-hand-l=pointing] #m-hand-l .m-hand-pointing,.mascote[data-hand-l=thinking] #m-hand-l .m-hand-thinking,
+.mascote[data-hand-r=open-wave] #m-hand-r .m-hand-open-wave,.mascote[data-hand-r=open-up] #m-hand-r .m-hand-open-wave,.mascote[data-hand-r=relaxed] #m-hand-r .m-hand-relaxed,.mascote[data-hand-r=holding] #m-hand-r .m-hand-relaxed,.mascote[data-hand-r=pointing] #m-hand-r .m-hand-pointing,.mascote[data-hand-r=thinking] #m-hand-r .m-hand-thinking,
+.mascote[data-props~=bulb] .m-prop-bulb,.mascote[data-props~=clipboard] #m-clipboard,.mascote[data-props~=zzz] #m-sleep-mark{display:inline}
+.mascote #m-body,.mascote #m-shadow{transform-origin:88px 210px}
+.mascote #m-head{transform-origin:88px 118px}
+.mascote #m-arm-l,.mascote #m-arm-r{transform-origin:46px 126px}
+.mascote #m-elbow-l,.mascote #m-elbow-r{transform-origin:42px 148px}
+.mascote #m-hand-l,.mascote #m-hand-r{transform-origin:40px 170px}
+.mascote #m-leg-l,.mascote #m-leg-r{transform-origin:70px 164px}
+.mascote #m-knee-l,.mascote #m-knee-r{transform-origin:70px 184px}
+.mascote #m-eyelid-l{transform-origin:66px 78px;transform:scaleY(0)}
+.mascote #m-eyelid-r{transform-origin:110px 78px;transform:scaleY(0)}
+.mascote #m-pupil-l{transform-origin:66px 78px}.mascote #m-pupil-r{transform-origin:110px 78px}
+.mascote #m-mouth{transform-origin:88px 102px}
+.mascote #m-lightbulb-question{transform-origin:150px 36px}
+</style>
+<defs>
+<radialGradient id="m-gw" cx=".32" cy=".22" r=".95"><stop offset="0" stop-color="#fff"/><stop offset=".55" style="stop-color:var(--_w)"/><stop offset="1" style="stop-color:var(--_ws)"/></radialGradient>
+<radialGradient id="m-gg" cx=".34" cy=".22" r=".95"><stop offset="0" style="stop-color:var(--_gl)"/><stop offset=".55" style="stop-color:var(--_g)"/><stop offset="1" style="stop-color:var(--_gd)"/></radialGradient>
+<radialGradient id="m-gk" cx=".32" cy=".22" r=".95"><stop offset="0" stop-color="#4D5F60"/><stop offset=".5" style="stop-color:var(--_k)"/><stop offset="1" style="stop-color:var(--_o)"/></radialGradient>
+<radialGradient id="m-gl" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#D8FF96"/><stop offset=".55" style="stop-color:var(--_l)"/><stop offset="1" stop-color="#3B9A2A"/></radialGradient>
+<radialGradient id="m-gy" cx=".4" cy=".35" r=".75"><stop offset="0" stop-color="#FFF9C4"/><stop offset=".6" style="stop-color:var(--_y)"/><stop offset="1" stop-color="#D49B00"/></radialGradient>
+<linearGradient id="m-gv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#14452F"/><stop offset="1" style="stop-color:var(--_v)"/></linearGradient>
+<clipPath id="m-ch"><path id="m-head-shape" d="M88,14C124,14 146,38 146,74C146,112 122,128 88,128C54,128 30,112 30,74C30,38 52,14 88,14Z"/></clipPath>
+</defs>
+<g id="m-root" class="m-st">
+<g id="m-shadow" class="ns" fill="#000"><ellipse cx="88" cy="210" rx="46" ry="7" opacity=".1"/><ellipse cx="88" cy="210" rx="34" ry="4.2" opacity=".16"/><ellipse cx="88" cy="209.4" rx="22" ry="2.4" opacity=".2"/></g>
+<g id="m-body">
+<g id="m-legs">
+<g id="m-leg-l" data-pivot="70 164">
+<g id="m-thigh-l"><rect class="k" x="62" y="158" width="16" height="24" rx="7"/></g>
+<g id="m-knee-l" data-pivot="70 184">
+<rect class="w" x="61" y="180" width="18" height="18" rx="6"/>
+<circle class="k" cx="70" cy="184" r="6"/><circle class="ns" cx="70" cy="184" r="2.2" style="fill:var(--_gl)"/>
+<g id="m-boot-l"><path class="w" d="M60,194H82Q86,194 86,198V204H56V198Q56,194 60,194Z"/><path class="g" d="M54,202H88Q92,202 92,206V208Q92,212 86,212H58Q52,212 52,208V206Q52,202 54,202Z"/></g>
+</g>
+</g>
+<g transform="matrix(-1 0 0 1 176 0)">
+<g id="m-leg-r" data-pivot="70 164" data-mirrored="true">
+<g id="m-thigh-r"><rect class="k" x="62" y="158" width="16" height="24" rx="7"/></g>
+<g id="m-knee-r" data-pivot="70 184">
+<rect class="w" x="61" y="180" width="18" height="18" rx="6"/>
+<circle class="k" cx="70" cy="184" r="6"/><circle class="ns" cx="70" cy="184" r="2.2" style="fill:var(--_gl)"/>
+<g id="m-boot-r"><path class="w" d="M60,194H82Q86,194 86,198V204H56V198Q56,194 60,194Z"/><path class="g" d="M54,202H88Q92,202 92,206V208Q92,212 86,212H58Q52,212 52,208V206Q52,202 54,202Z"/></g>
+</g>
+</g>
+</g>
+</g>
+<g id="m-torso">
+<g id="m-backpack"><path class="g" d="M58,112Q88,104 118,112Q128,116 128,128V150Q128,158 118,158H58Q48,158 48,150V128Q48,116 58,112Z"/></g>
+<rect id="m-neck" class="k" x="78" y="108" width="20" height="16" rx="6"/>
+<path id="m-shorts" class="g" d="M64,152H112V166Q112,174 104,174H72Q64,174 64,166Z"/>
+<path id="m-chest" class="g" d="M66,118Q88,112 110,118Q116,122 115,136L112,156H64L61,136Q60,122 66,118Z"/>
+<g id="m-chest-logo" class="ns"><circle cx="88" cy="136" r="7" style="fill:var(--_l)"/><circle cx="88" cy="136" r="2.4" style="fill:var(--_gd)"/></g>
+<rect id="m-logo-small" class="m-alt ns" x="81" y="128" width="14" height="16" rx="3" style="fill:var(--_l)"/>
+<rect id="m-belt" class="k" x="64" y="150" width="48" height="8" rx="3"/>
+<rect id="m-belt-buckle" class="ns" x="82" y="151.4" width="12" height="5.2" rx="1.4" style="fill:none;stroke:var(--_ws);stroke-width:1.4"/>
+<g id="m-coat">
+<g id="m-coat-l"><path class="w" d="M84,116L58,122Q50,126 50,136L52,168Q52,174 58,174H74L78,140Z"/></g>
+<g id="m-coat-r" transform="matrix(-1 0 0 1 176 0)"><path class="w" d="M84,116L58,122Q50,126 50,136L52,168Q52,174 58,174H74L78,140Z"/></g>
+</g>
+</g>
+<g id="m-head" data-pivot="88 118">
+<use href="#m-head-shape" class="w"/>
+<g id="m-helmet-band" clip-path="url(#m-ch)"><path class="g" d="M46,58Q88,36 130,58L140,28Q88,2 36,28Z"/><path class="ns" fill="#fff" opacity=".4" d="M52,30Q64,16 84,14Q66,22 56,36Z"/></g>
+<use href="#m-head-shape" fill="none"/>
+<g id="m-atom-icon" class="ns" style="fill:none;stroke:var(--_y);stroke-width:1.8"><ellipse cx="88" cy="30" rx="11" ry="4"/><ellipse cx="88" cy="30" rx="11" ry="4" transform="rotate(60 88 30)"/><ellipse cx="88" cy="30" rx="11" ry="4" transform="rotate(-60 88 30)"/><circle cx="88" cy="30" r="2.4" style="fill:var(--_y)"/></g>
+<g id="m-headset-l"><ellipse class="k" cx="34" cy="74" rx="4" ry="12"/><ellipse class="w" cx="26" cy="74" rx="8" ry="13"/><ellipse class="g" cx="23" cy="74" rx="4.5" ry="9"/></g>
+<g id="m-headset-r"><ellipse class="k" cx="142" cy="74" rx="4" ry="12"/><ellipse class="w" cx="150" cy="74" rx="8" ry="13"/><ellipse class="g" cx="153" cy="74" rx="4.5" ry="9"/></g>
+<g id="m-visor">
+<path fill="url(#m-gv)" d="M48,52H128Q142,52 142,66V88Q142,104 124,106H52Q34,104 34,88V66Q34,52 48,52Z"/>
+<path class="ns" fill="#fff" opacity=".18" d="M42,62Q46,54 62,54H120Q88,58 42,72Z"/>
+<g id="m-eye-l">
+<g class="m-alt m-eyeball"><circle fill="url(#m-gl)" cx="66" cy="78" r="15" stroke="#2C6E1C" stroke-width="1.4"/><g id="m-pupil-l" class="ns"><circle cx="66" cy="78" r="7.2" fill="#0F4D1A"/><circle id="m-highlight-l" cx="71" cy="72" r="4.2" fill="#fff"/></g></g>
+<g class="m-alt m-eyes-worried ns"><path style="fill:var(--_v)" d="M50,58H82V68L50,76Z"/><path class="ln" stroke-width="2.2" d="M52,74L80,66"/></g>
+<path class="m-alt m-eyes-closed ln" d="M54,80Q66,88 78,80"/>
+<path class="m-alt m-eyes-happy ln" d="M54,84Q66,68 78,84"/>
+<g id="m-eyelid-l" class="ns"><rect x="50" y="62" width="32" height="32" style="fill:var(--_v)"/><path class="ln" d="M54,86Q66,94 78,86"/></g>
+</g>
+<g id="m-eye-r">
+<g class="m-alt m-eyeball"><circle fill="url(#m-gl)" cx="110" cy="78" r="15" stroke="#2C6E1C" stroke-width="1.4"/><g id="m-pupil-r" class="ns"><circle cx="110" cy="78" r="7.2" fill="#0F4D1A"/><circle id="m-highlight-r" cx="115" cy="72" r="4.2" fill="#fff"/></g></g>
+<g class="m-alt m-eyes-worried ns"><path style="fill:var(--_v)" d="M94,68V58H126V76Z"/><path class="ln" stroke-width="2.2" d="M96,66L124,74"/></g>
+<path class="m-alt m-eyes-closed ln" d="M98,80Q110,88 122,80"/>
+<path class="m-alt m-eyes-happy ln" d="M98,84Q110,68 122,84"/>
+<g id="m-eyelid-r" class="ns"><rect x="94" y="62" width="32" height="32" style="fill:var(--_v)"/><path class="ln" d="M98,86Q110,94 122,86"/></g>
+</g>
+</g>
+<g id="m-mouth" fill="none">
+<g id="m-mouth-happy" class="m-alt m-mouth-happy"><path fill="#2A1013" d="M74,98Q88,100 102,98Q100,112 88,112Q76,112 74,98Z"/><path class="ns" style="fill:var(--_p)" d="M80,106Q88,102 96,106Q93,110 88,110Q83,110 80,106Z"/></g>
+<path id="m-mouth-smile" class="m-alt m-mouth-smile" d="M76,100Q88,110 100,100"/>
+<path id="m-mouth-neutral" class="m-alt m-mouth-neutral" d="M80,102H96"/>
+<path id="m-mouth-serious" class="m-alt m-mouth-serious" d="M78,106Q88,98 98,106"/>
+<g id="m-mouth-talk-a" class="m-alt m-mouth-talk-a"><ellipse fill="#2A1013" cx="88" cy="102" rx="9" ry="6"/><path class="ns" style="fill:var(--_p)" d="M82,106Q88,103 94,106Q92,109 88,109Q84,109 82,106Z"/></g>
+<ellipse id="m-mouth-talk-o" class="m-alt m-mouth-talk-o" fill="#2A1013" cx="88" cy="102" rx="5" ry="6"/>
+</g>
+<g id="m-mic"><path class="ns" fill="none" stroke="#3A4A4B" stroke-width="2.4" d="M150,86C146,98 124,104 112,102"/><rect class="k" x="104" y="98" width="10" height="7" rx="3.5"/></g>
+</g>
+<g id="m-arms">
+<g id="m-arm-l" data-pivot="46 126">
+<g id="m-upper-arm-l"><rect class="w" x="36" y="118" width="18" height="28" rx="9"/></g>
+<g id="m-elbow-l" data-pivot="42 148">
+<g id="m-forearm-l"><rect class="w" x="32" y="146" width="20" height="24" rx="10"/></g>
+<circle class="k" cx="42" cy="148" r="6.5"/><circle class="ns" cx="42" cy="148" r="2.2" style="fill:var(--_gl)"/>
+<g id="m-hand-l" data-pivot="40 170">
+<g class="m-alt m-hand-relaxed"><path class="k" d="M30,166Q30,160 38,160H48Q54,160 54,168V182Q54,190 46,190H36Q30,190 30,182Z"/></g>
+<g class="m-alt m-hand-open-wave"><rect class="k" x="28" y="168" width="6" height="16" rx="3"/><rect class="k" x="35" y="166" width="6" height="18" rx="3"/><rect class="k" x="42" y="166" width="6" height="18" rx="3"/><rect class="k" x="49" y="168" width="6" height="14" rx="3"/><rect class="k" x="30" y="160" width="18" height="12" rx="6"/></g>
+<g class="m-alt m-hand-pointing"><path class="k" d="M32,164Q32,160 38,160H46Q52,160 52,166V176H32Z"/><rect class="k" x="40" y="172" width="7" height="20" rx="3.5"/></g>
+<g class="m-alt m-hand-thinking"><path class="k" d="M30,164Q30,160 36,160H48Q54,160 54,166V176Q54,182 48,182H36Q30,182 30,176Z"/><rect class="k" x="46" y="170" width="6" height="14" rx="3" transform="rotate(-18 49 172)"/></g>
+</g>
+</g>
+</g>
+<g transform="matrix(-1 0 0 1 176 0)">
+<g id="m-arm-r" data-pivot="46 126" data-mirrored="true">
+<g id="m-upper-arm-r"><rect class="w" x="36" y="118" width="18" height="28" rx="9"/></g>
+<g id="m-elbow-r" data-pivot="42 148">
+<g id="m-forearm-r"><rect class="w" x="32" y="146" width="20" height="24" rx="10"/></g>
+<circle class="k" cx="42" cy="148" r="6.5"/><circle class="ns" cx="42" cy="148" r="2.2" style="fill:var(--_gl)"/>
+<g id="m-hand-r" data-pivot="40 170">
+<g class="m-alt m-hand-relaxed"><path class="k" d="M30,166Q30,160 38,160H48Q54,160 54,168V182Q54,190 46,190H36Q30,190 30,182Z"/></g>
+<g class="m-alt m-hand-open-wave"><rect class="k" x="28" y="168" width="6" height="16" rx="3"/><rect class="k" x="35" y="166" width="6" height="18" rx="3"/><rect class="k" x="42" y="166" width="6" height="18" rx="3"/><rect class="k" x="49" y="168" width="6" height="14" rx="3"/><rect class="k" x="30" y="160" width="18" height="12" rx="6"/></g>
+<g class="m-alt m-hand-pointing"><path class="k" d="M32,164Q32,160 38,160H46Q52,160 52,166V176H32Z"/><rect class="k" x="40" y="172" width="7" height="20" rx="3.5"/></g>
+<g class="m-alt m-hand-thinking"><path class="k" d="M30,164Q30,160 36,160H48Q54,160 54,166V176Q54,182 48,182H36Q30,182 30,176Z"/><rect class="k" x="46" y="170" width="6" height="14" rx="3" transform="rotate(-18 49 172)"/></g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g id="m-props">
+<g id="m-lightbulb-question" class="m-alt m-prop-bulb">
+<path class="ns" fill="none" style="stroke:var(--_y)" stroke-width="2.2" d="M150,8V2M140,14L136,10M160,14L164,10"/>
+<path fill="url(#m-gy)" d="M140,34Q136,30 138,22A10,10 0 1 1 158,22Q160,30 156,34L154,38H142Z"/>
+<rect x="142" y="38" width="12" height="5" rx="1.5" fill="#A7B3B4"/>
+</g>
+<g id="m-speech-anchor" data-x="150" data-y="18"><circle cx="150" cy="18" r="0" fill="none" class="ns"/></g>
+</g>
+</g>
+</g>
+<g id="m-clipboard" class="m-alt m-st"><rect x="62" y="124" width="52" height="40" rx="5" class="w"/><rect x="78" y="120" width="20" height="8" rx="2" class="k"/></g>
+<g id="m-sleep-mark" class="m-alt" fill="none" stroke="var(--_ws)" stroke-width="3"><path d="M138 16h12l-12 12h12"/></g>
+</svg>

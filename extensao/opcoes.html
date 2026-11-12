@@ -6,6 +6,12 @@
 <h1>Configuração do Lino</h1>
 <section aria-labelledby="mascote-config"><h2 id="mascote-config">Assistente na página</h2>
 <label><input type="checkbox" id="mostrar-lino"> Mostrar o Lino nas telas do ServiceNow</label>
+<fieldset class="tamanho"><legend>Tamanho do mascote</legend>
+<div class="segmento" role="radiogroup" aria-label="Tamanho do mascote">
+<label><input type="radio" name="tamanho" value="48"> Pequeno</label>
+<label><input type="radio" name="tamanho" value="64"> Médio</label>
+<label><input type="radio" name="tamanho" value="88"> Grande</label>
+</div></fieldset>
 <div class="acoes"><button type="button" id="conectar-lino" class="primario">Conectar ao ServiceNow</button></div>
 <p id="conexao-lino" role="status"></p>
 <p>As métricas ficam neste navegador, sem conteúdo dos chamados. São apagadas após 30 dias.</p>
