@@ -18,18 +18,19 @@
       <button type="button" id="configurar" class="icone" aria-label="Configurações" title="Configurações">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2.5"/><circle cx="15" cy="17" r="2.5"/></svg>
       </button>
+      <button type="button" id="fechar-lino" class="icone" aria-label="Recolher Lino" hidden>×</button>
     </div>
   </header>
 
   <main>
-    <section class="chamado" aria-labelledby="contexto-titulo">
+    <section id="vista-chamado" class="chamado" aria-labelledby="contexto-titulo">
       <div class="chamado-intro">
         <div class="chamado-texto">
           <p id="contexto-numero" class="numero" hidden></p>
-          <h2 id="contexto-titulo">Categorização de incidentes</h2>
+          <h2 id="contexto-titulo" tabindex="-1">Categorização de incidentes</h2>
           <p id="contexto-texto" class="texto" role="status">Verificando a aba ativa…</p>
         </div>
-        <img id="lina" class="lina" src="assets/lina.jpg" width="75" height="75" alt="Lina">
+        <img id="lino" class="lino" src="assets/lino-avatar.webp" width="75" height="75" alt="Lino">
       </div>
       <div class="acoes">
         <button type="button" id="autorizar" class="primario" hidden>Conectar ao ServiceNow</button>
@@ -38,17 +39,14 @@
         <button type="button" id="legado" hidden>Abrir problemas e mudanças</button>
       </div>
       <fieldset id="selecao" hidden><legend>Selecione os incidentes desta página</legend><div id="candidatos" class="candidatos"></div></fieldset>
-      <div id="classificacao" class="acoes" hidden>
-        <button type="button" id="classificar" class="primario">Classificar e aplicar tags</button>
-        <span id="selecionados" class="secundario"></span>
-      </div>
+      <p id="selecionados" class="secundario selecao-resumo"></p>
       <p id="resultado-status" class="texto resultado-status" role="status"></p>
       <details id="resultados" class="resultados" hidden><summary>Detalhes da classificação</summary><ul id="resultado-lista"></ul></details>
     </section>
 
     <section id="exploracao" aria-labelledby="grafo-titulo" hidden>
       <div class="titulo-linha">
-        <h2 id="grafo-titulo">Grafo de tags</h2>
+        <h2 id="grafo-titulo" tabindex="-1">Grafo de tags</h2><button id="expandir" type="button">Expandir</button>
         <button type="button" id="preferencias" class="discreto">Termos ignorados</button>
       </div>
       <div class="mapa">
@@ -70,6 +68,23 @@
       </div>
     </section>
   </main>
+
+  <nav id="navegacao-lino" class="navegacao-lino vidro" aria-label="Navegação do Lino" hidden>
+    <button type="button" id="aba-chamado" class="aba-lino" aria-controls="vista-chamado" aria-pressed="true">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 3h8v4H8zM8 11h8m-8 4h5"/></svg>
+      Chamado
+    </button>
+    <div id="classificacao" class="acao-lino" hidden>
+      <button type="button" id="classificar" class="primario" aria-label="Classificar e aplicar tags">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 4h7l9 9a1.5 1.5 0 0 1 0 2l-5 5a1.5 1.5 0 0 1-2 0l-9-9z"/><circle cx="7.5" cy="8" r="1"/></svg>
+        <span id="classificar-rotulo">Classificar</span>
+      </button>
+    </div>
+    <button type="button" id="aba-grafo" class="aba-lino" aria-controls="exploracao" aria-pressed="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7.5 16 3-8m3 0 3 8M9 18h6"/><circle cx="12" cy="5.5" r="2.5"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="18" r="2.5"/></svg>
+      Grafo
+    </button>
+  </nav>
 
   <dialog id="detalhe" class="vidro" aria-labelledby="detalhe-titulo">
     <div class="dialogo-cabecalho"><h2 id="detalhe-titulo"></h2><button type="button" class="icone fechar" aria-label="Fechar detalhes">×</button></div>

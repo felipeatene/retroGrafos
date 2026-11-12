@@ -1,15 +1,43 @@
+import {mensagensPainel} from "./mensagens-painel.mjs";
 import {chamar, coletar, preferencias} from "./lino-api.mjs";
 import {agrupar, desenhar, TIPOS_LINO} from "./lino-grafo.mjs";
 import {CAMPOS, configuracao, origemHttps, validarLista} from "./regras.mjs";
 import {LIMITE, registroURL} from "./lote.mjs";
 
 const el = id => document.getElementById(id);
+const flutuante = window.parent !== window;
+if (flutuante) document.body.classList.add('painel-flutuante');
+const janela = flutuante ? await chrome.runtime.sendMessage({tipo: 'lino:vincular-janela'}).catch(() => null) : null;
+if (janela?.origem) {
+  el('fechar-lino').hidden = false;
+  const recolher = () => window.parent.postMessage({tipo: 'lino:recolher-janela'}, janela.origem);
+  el('fechar-lino').addEventListener('click', recolher);
+  document.addEventListener('keydown', evento => {
+    if (evento.key === 'Escape' && !document.querySelector('dialog[open]')) recolher();
+  });
+}
+
+async function abaDeTrabalho() {
+  if (flutuante) return janela?.id ? chrome.tabs.get(janela.id) : null;
+  const [aba] = await chrome.tabs.query({active: true, currentWindow: true});
+  return aba;
+}
 const detalhe = el("detalhe");
 const dialogoIgnorados = el("ignorado-dialogo");
 const selecionados = new Set();
 let sessao, config, ativa, revisao = 0, atualizacao = 0, ocupado = false;
 let vinculos = [], ignorados = [], tagAberta, impacto = [], erroGrafo = "";
+const comunicar = mensagensPainel('lino', () => sessao?.tabId || ativa?.id, () => mostrarVista('chamado'));
 let limiteTags = 12, limiteIncidentes = 10, consultandoGrafo = false;
+
+function mostrarVista(vista, focar = false) {
+  const grafo = vista === 'grafo' && Boolean(sessao);
+  el('vista-chamado').hidden = grafo;
+  el('exploracao').hidden = !grafo;
+  el('aba-chamado').setAttribute('aria-pressed', String(!grafo));
+  el('aba-grafo').setAttribute('aria-pressed', String(grafo));
+  if (focar) el(grafo ? 'grafo-titulo' : 'contexto-titulo').focus();
+}
 
 function elemento(tipo, texto) {
   const node = document.createElement(tipo);
@@ -27,13 +55,16 @@ function conexao(texto, estado) {
 }
 
 function mascote(alerta) {
-  el("lina").src = alerta ? "assets/lina-alerta.png" : "assets/lina.jpg";
-  el("lina").classList.toggle("alerta", alerta);
+  el("lino").src = alerta ? "assets/lino-avatar.webp" : "assets/lino-avatar.webp";
+  el("lino").classList.toggle("alerta", alerta);
 }
 
 function situacao({titulo = "Categorização de incidentes", texto, status = "ServiceNow", estado = "espera", acao, numero}) {
   el("contexto-titulo").textContent = titulo;
-  el("contexto-texto").textContent = texto;
+  const progresso = /Verificando|Carregando/.test(texto || '');
+  el("contexto-texto").textContent = progresso || estado === 'erro' ? "" : texto;
+  comunicar({etapa: progresso ? 'aba' : 'contexto', estado: estado === 'erro' ? 'erro' : progresso ? 'ativo' : estado === 'ativo' ? 'concluido' : 'aguardando', texto: estado === 'ativo' ? 'Contexto confirmado.' : texto,
+    acao: acao ? {rotulo: el(acao).textContent, comando: acao} : undefined});
   el("contexto-numero").textContent = numero || "";
   el("contexto-numero").hidden = !numero;
   conexao(status, estado);
@@ -51,7 +82,9 @@ function limparSessao() {
   consultandoGrafo = false;
   detalhe.close();
   dialogoIgnorados.close();
-  for (const id of ["classificacao", "selecao", "exploracao", "resultados"]) el(id).hidden = true;
+  mostrarVista('chamado');
+  for (const id of ["classificacao", "selecao", "navegacao-lino", "resultados"]) el(id).hidden = true;
+  el('selecionados').textContent = '';
   for (const id of ["candidatos", "grafo", "tags", "resultado-lista", "detalhe-incidentes", "ignorado-lista"]) el(id).replaceChildren();
   el("resultado-status").textContent = "";
   el("busca").value = "";
@@ -77,7 +110,8 @@ function erroAcesso(erro) {
 
 function atualizarSelecao() {
   el("classificar").disabled = ocupado || selecionados.size === 0;
-  el("classificar").textContent = ocupado ? "Classificando…" : "Classificar e aplicar tags";
+  el('classificar-rotulo').textContent = ocupado ? 'Aplicando…' : 'Classificar';
+  el('classificar').setAttribute('aria-label', ocupado ? 'Classificando e aplicando tags' : 'Classificar e aplicar tags');
   if (sessao?.contexto.tipo !== "lista") return;
   el("selecionados").textContent = selecionados.size + " de " + LIMITE + " selecionados";
   for (const campo of el("candidatos").querySelectorAll("input")) {
@@ -111,12 +145,17 @@ function montarSelecao(contexto) {
 async function verificar() {
   const versao = ++revisao;
   try {
-    const [aba] = await chrome.tabs.query({active: true, currentWindow: true});
+    const aba = await abaDeTrabalho();
     config = await configuracao();
     if (versao !== revisao) return;
     const origem = origemHttps(config.origem);
     ativa = aba;
     limparSessao();
+    if (flutuante && !janela?.id) {
+      el('contexto-titulo').textContent = 'Abra o Lino pelo mascote';
+      el('contexto-texto').textContent = 'A janela precisa estar vinculada a uma aba do ServiceNow.';
+      return;
+    }
     situacao({texto: "Verificando a aba ativa…"});
     if (aba?.status === "loading") return;
     const autorizado = await chrome.permissions.contains({origins: [origem + "/*"]});
@@ -143,6 +182,7 @@ async function verificar() {
       return;
     }
     const parametros = contexto.id ? {incidente: contexto.id} : {};
+    comunicar({etapa: "acesso", estado: "ativo", texto: "Conferindo seu acesso…"});
     const acesso = await chamar(destino, "acesso", {parametros});
     const verificada = {...destino, usuario: acesso.usuario, contexto};
     const pessoais = await preferencias(verificada).ler();
@@ -156,10 +196,12 @@ async function verificar() {
     } else {
       situacao({titulo: "Incidentes da página", texto: contexto.registros.length
         ? "Selecione os chamados que deseja classificar."
-        : "A lista atual não contém incidentes para classificar.", status: "Conectado", estado: "ativo"});
+        : contexto.interface === 'workspace' && contexto.total === undefined
+          ? "Não consigo ler as linhas deste workspace. Abra um incidente para classificá-lo."
+          : "A lista atual não contém incidentes para classificar.", status: "Conectado", estado: "ativo"});
     }
     montarSelecao(contexto);
-    el("exploracao").hidden = false;
+    el('navegacao-lino').hidden = false;
     await carregarGrafo();
   } catch (erro) {
     if (versao === revisao) erroAcesso(erro);
@@ -168,7 +210,7 @@ async function verificar() {
 
 async function executar(alvo, rota, opcoes) {
   if (alvo !== sessao) throw new Error("O contexto da aba mudou.");
-  const [aba] = await chrome.tabs.query({active: true, currentWindow: true});
+  const aba = await abaDeTrabalho();
   if (aba?.id !== alvo.tabId || aba.url !== alvo.url) throw new Error("O contexto da aba mudou.");
   const resposta = await chamar(alvo, rota, opcoes);
   if (alvo !== sessao) throw new Error("O contexto da aba mudou.");
@@ -187,6 +229,7 @@ function abrirIncidente(incidente) {
 
 function renderizarGrafo() {
   const tags = agrupar(vinculos, el("busca").value, el("tipo").value);
+  el('expandir').disabled = !vinculos.length;
   const incidentes = new Set(tags.flatMap(tag => [...tag.incidentes.keys()]));
   el("grafo").hidden = tags.length === 0;
   el("grafo-legenda").hidden = !tags.length;
@@ -214,6 +257,7 @@ async function carregarGrafo() {
   consultandoGrafo = true;
   erroGrafo = "";
   el("atualizar").disabled = true;
+  if (!ocupado) comunicar({etapa: 'grafo', estado: 'ativo', texto: 'Montando o grafo de tags…'});
   renderizarGrafo();
   try {
     const resultado = await coletar(cursor => executar(alvo, "grafo", {parametros: {cursor}}));
@@ -227,6 +271,20 @@ async function carregarGrafo() {
       consultandoGrafo = false;
       el("atualizar").disabled = false;
       renderizarGrafo();
+      if (!ocupado && !erroGrafo && vinculos.length) {
+        const tags = agrupar(vinculos);
+        const ids = [...new Set(vinculos.map(vinculo => vinculo.incidente.id))];
+        const compacto = tags.length <= 2 && ids.length <= 4 && tags.length + ids.length <= 6;
+        comunicar({etapa: 'grafo', estado: 'concluido', texto: `${tags.length} tags ligadas a ${ids.length} incidentes.`,
+          miniGrafo: compacto ? {tags: tags.map(tag => ({valor: tag.valor, conexoes: [...tag.incidentes.keys()].map(id => ids.indexOf(id))})), incidentes: ids.length} : undefined,
+          acao: compacto ? undefined : {rotulo: 'Expandir', comando: 'expandir'}});
+      }
+      if (!ocupado) {
+        const tags = agrupar(vinculos), registros = new Set(vinculos.map(v => v.incidente.id));
+        comunicar({etapa: 'grafo', estado: erroGrafo ? 'erro' : 'concluido',
+          texto: erroGrafo || (tags.length ? `${tags.length} tags ligadas a ${registros.size} incidentes.` : 'Classifique um incidente para começar o grafo.'),
+          acao: erroGrafo ? {rotulo: 'Atualizar grafo', comando: 'atualizar'} : tags.length + registros.size > 6 ? {rotulo: 'Expandir', comando: 'expandir'} : undefined});
+      }
     }
   }
 }
@@ -263,20 +321,23 @@ function mostrarResultado(itens) {
   });
   el("resultado-lista").replaceChildren(...linhas);
   el("resultados").hidden = false;
-  el("resultado-status").textContent = [contagem(totais.adicionada, "adicionada", "adicionadas"),
+  const resumo = [contagem(totais.adicionada, "adicionada", "adicionadas"),
     contagem(totais.existente, "já presente", "já presentes"), contagem(totais.falha, "falha de tag", "falhas de tag"),
     falhasDeRegistro ? contagem(falhasDeRegistro, "incidente com falha", "incidentes com falha") : "",
     negados ? negados + " sem acesso" : ""].filter(Boolean).join(" · ");
+  comunicar({etapa: 'resultado', estado: totais.falha || negados || falhasDeRegistro ? 'erro' : 'concluido', texto: resumo,
+    totais: {...totais, negados, falhasDeRegistro}, acao: {rotulo: 'Ver detalhes', comando: 'detalhes'}});
   mascote(Boolean(totais.falha || negados || falhasDeRegistro));
 }
 
 async function classificar() {
   const alvo = sessao;
   if (!alvo || ocupado || !selecionados.size) return;
+  mostrarVista('chamado');
   ocupado = true;
   atualizarSelecao();
   el("resultados").hidden = true;
-  el("resultado-status").textContent = "Aplicando as tags no ServiceNow…";
+  comunicar({etapa: "classificar", estado: "ativo", texto: "Aplicando as tags no ServiceNow…", limpar: true});
   try {
     const ids = [...selecionados];
     const contexto = await executar(alvo, "contexto");
@@ -291,7 +352,7 @@ async function classificar() {
     const porRequisicao = 5;
     for (let i = 0; i < ids.length; i += porRequisicao) {
       const lote = ids.slice(i, i + porRequisicao);
-      el("resultado-status").textContent = "Aplicando as tags · " + i + " de " + ids.length + " incidentes";
+      comunicar({etapa: "classificar", estado: "ativo", texto: "Classificando os incidentes selecionados…", feitos: i, total: ids.length});
       try {
         const resposta = await executar(alvo, "classificar", {corpo: {ids: lote, regras, ignorados: termos}});
         if (resposta.itens.length !== lote.length) throw new Error("Resultado incompleto.");
@@ -307,7 +368,7 @@ async function classificar() {
   } catch (erro) {
     tratarErro(erro, alvo, () => {
       mascote(true);
-      el("resultado-status").textContent = "O ServiceNow não confirmou a classificação. Tente novamente para conferir as tags.";
+      comunicar({etapa: "classificar", estado: "erro", texto: "O ServiceNow não confirmou a classificação.", acao: {rotulo: "Classificar e aplicar tags", comando: "classificar"}});
     });
   } finally {
     if (alvo === sessao) {
@@ -487,7 +548,11 @@ el("autorizar").addEventListener("click", async () => {
   else el("contexto-texto").textContent = "O Lino precisa de acesso à origem do ServiceNow para continuar.";
 });
 el("entrar").addEventListener("click", () => chrome.tabs.update(ativa.id, {url: origemHttps(config.origem) + "/login.do"}));
-el("legado").addEventListener("click", () => chrome.tabs.create({url: chrome.runtime.getURL("legado.html")}));
+el("legado").addEventListener("click", () => {
+  const url = new URL(chrome.runtime.getURL('legado.html'));
+  if (ativa?.id) url.searchParams.set('aba', ativa.id);
+  chrome.tabs.create({url: url.href});
+});
 el("configurar").addEventListener("click", () => chrome.runtime.openOptionsPage());
 el("verificar").addEventListener("click", verificar);
 el("classificar").addEventListener("click", classificar);
@@ -502,11 +567,19 @@ el("mais-incidentes").addEventListener("click", () => { limiteIncidentes += 10; 
 el("busca").addEventListener("input", () => { limiteTags = 12; renderizarGrafo(); });
 el("tipo").addEventListener("change", () => { limiteTags = 12; renderizarGrafo(); });
 
-chrome.tabs.onActivated.addListener(verificar);
+if (!flutuante) chrome.tabs.onActivated.addListener(verificar);
 chrome.tabs.onUpdated.addListener((id, mudanca) => {
-  if (id === ativa?.id && (mudanca.status === "loading" || mudanca.status === "complete")) verificar();
+  if (id === (janela?.id || ativa?.id) && (mudanca.url || mudanca.status === 'loading' || mudanca.status === 'complete')) verificar();
 });
 chrome.storage.onChanged.addListener((mudancas, area) => {
   if (area === "local" && mudancas.config) verificar();
 });
+el("expandir").addEventListener("click", async () => {
+  const resposta = await chrome.runtime.sendMessage({tipo: 'lino:expandir', fluxo: 'lino', dados: vinculos});
+  if (resposta?.erro) comunicar({etapa: 'grafo', estado: 'erro', texto: resposta.erro, acao: {rotulo: 'Expandir', comando: 'expandir'}});
+});
+
+el('aba-chamado').addEventListener('click', () => mostrarVista('chamado', true));
+el('aba-grafo').addEventListener('click', () => mostrarVista('grafo', true));
+
 await verificar();

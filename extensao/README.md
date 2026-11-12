@@ -4,9 +4,9 @@
 O Lino categoriza incidentes do ServiceNow com tags nativas. Ele usa a sessão da aba ativa e a API instalada na mesma instância. O grafo reúne vínculos persistidos que o analista pode consultar. Veja o [roteiro do piloto](../servicenow/LINO.md) para instalar e homologar a API.
 
 1. No Chrome 116 ou superior, abra `chrome://extensions`, ative **Modo do desenvolvedor** e use **Carregar sem compactação** com esta pasta. Se a extensão já estiver instalada, use **Recarregar**.
-2. Abra um incidente salvo ou a lista clássica de incidentes, clique no ícone do Lino e conecte a origem do ServiceNow quando solicitado. **Configurações** permite ajustar a instância e importar a base de regras em JSON.
-3. No formulário, clique em **Classificar e aplicar tags**. Na lista, selecione até 25 incidentes da página e use a mesma ação. Os detalhes mostram a origem e o resultado de cada tag.
-4. Busque uma tag no grafo, filtre pelo tipo ou escolha na lista. Abra os detalhes com duplo clique em um nó ou com Enter. **Remover dos chamados** consulta toda a instância e mostra o impacto antes de confirmar. **Ignorar nas próximas análises** é uma preferência da sua conta neste navegador e pode ser revertida em **Termos ignorados**.
+2. Se for a primeira vez, clique no ícone da extensão no Chrome e use **Conectar ao ServiceNow**. Abra um incidente salvo ou uma lista de incidentes na instância autorizada e clique no **mascote flutuante**. Clique nele novamente ou pressione **Esc** para recolher os controles. **Configurações** permite ajustar a instância e importar a base de regras em JSON.
+3. No formulário, clique em **Classificar**. Na lista, selecione até 25 incidentes da página e use a mesma ação. Os detalhes mostram a origem e o resultado de cada tag.
+4. Abra **Grafo** na barra inferior. Busque uma tag, filtre pelo tipo ou escolha na lista. Abra os detalhes com duplo clique em um nó ou com Enter. **Remover dos chamados** consulta toda a instância e mostra o impacto antes de confirmar. **Ignorar nas próximas análises** é uma preferência da sua conta neste navegador e pode ser revertida em **Termos ignorados**.
 
 O JSON usa a estrutura `value[].fields` descrita abaixo. O campo opcional `Rotulo` define como o Lino exibe o termo da regra, com acentos e espaços.
 
@@ -51,3 +51,7 @@ Uma palavra ou frase inteira em qualquer campo selecionado é suficiente para su
 ## Verificação local
 
 Na raiz do repositório, execute `node --test extensao/tests/*.test.mjs`. Para homologar na PDI, use um registro fictício de cada tipo, aplique uma tag inédita para o registro, reabra o formulário e confirme a etiqueta no menu. Analise novamente e repita a aplicação para confirmar que a etiqueta é reconhecida como existente.
+
+## Navegação do painel
+
+A barra inferior dos controles flutuantes adapta o padrão de ação central e feedback ao pressionar do [CYLTabBarController](https://github.com/ChenYilong/CYLTabBarController/tree/4209e37da86a3b0f14334f5573d152ac938908c7). **Chamado** e **Grafo** alternam as vistas. **Classificar** usa a seleção atual e volta ao chamado para mostrar o progresso. **Opções do mascote** reúne os controles para mover, minimizar, ocultar na página e desativar.

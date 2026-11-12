@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Grafo de tags · Lino</title><link rel="stylesheet" href="lino.css"><link rel="stylesheet" href="grafico.css"><script type="module" src="grafico.mjs"></script></head>
+<body><header class="topo vidro"><h1>Lino</h1><span>Grafo de tags</span></header><main>
+<div class="titulo-linha"><h2>Conexões entre chamados</h2><p id="contagem" role="status">Carregando o grafo…</p></div>
+<p id="estado" role="status"></p>
+<section id="conteudo" hidden>
+<div class="filtros vidro"><label>Buscar tags <input id="busca" type="search" placeholder="Nome da tag"></label><label>Tipo <select id="tipo"><option value="">Todos os tipos</option></select></label></div>
+<svg id="grafo" viewBox="0 0 540 350" role="group" aria-label="Conexões entre tags e chamados"></svg>
+<p class="secundario">O desenho mostra até 8 tags e 14 chamados. A lista abaixo inclui todas as conexões do filtro.</p>
+<div class="colunas"><section><h2>Tags</h2><ul id="tags" class="lista-linhas"></ul></section><section aria-labelledby="detalhe"><h2 id="detalhe">Selecione uma tag</h2><ul id="incidentes" class="lista-linhas"></ul></section></div>
+</section></main></body></html>

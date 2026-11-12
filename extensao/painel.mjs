@@ -1,3 +1,4 @@
+import {mensagensPainel} from "./mensagens-painel.mjs";
 
 import {CAMPOS, configuracao, origemHttps, sugerir, validarLista} from "./regras.mjs";
 import {consultaURL, registroURL, LIMITE, lotePermitido, MARCADOR, revisao, processarRegistro} from "./lote.mjs";
@@ -8,6 +9,8 @@ import {abrir, aguardar, formulario, sondar} from "./navegacao.mjs";
 const el = id => document.getElementById(id);
 let config, origem, consulta, pagina, listaTab, usuario, abaLogin;
 const abasTrabalho = [];
+const abaAlvo = Number(new URL(location.href).searchParams.get('aba')) || undefined;
+const comunicar = mensagensPainel("legado", () => abaAlvo);
 let filtro = null;
 let linhas = [];
 let ocupado = false;
@@ -24,16 +27,21 @@ const grafo = criarGrafo(el("grafo"), el("grafo-legenda"), termo => {
   for (const linha of linhas) linha.card.hidden = !!termo && !linha.palavras.includes(termo);
 });
 el("filtro").onclick = () => grafo.filtrar(filtro);
+el('expandir-legado').onclick = async () => {
+  const dados = linhas.flatMap(linha => linha.palavras.map(palavra => ({
+    id: linha.alvo.sysId + ':' + palavra, tag: {id: palavra, tipo: 'termo', valor: palavra},
+    incidente: {id: linha.alvo.sysId, tabela: linha.alvo.tipo, numero: linha.alvo.numero, titulo: linha.alvo.titulo}
+  })));
+  const resposta = await chrome.runtime.sendMessage({tipo: 'lino:expandir', fluxo: 'legado', dados});
+  if (resposta?.erro) status(resposta.erro);
+};
 
 function progresso(acao, feitos, total, falhas = 0) {
-  el("processamento").hidden = false;
-  el("progresso-titulo").textContent = acao;
-  el("progresso-contador").textContent = feitos + " / " + total;
-  el("progresso").max = Math.max(total, 1);
-  el("progresso").value = feitos;
-  el("progresso-detalhe").textContent = feitos < total
-    ? "Até " + SIMULTANEOS + " registros em segundo plano"
-    : falhas ? falhas + " registros precisam de atenção" : "Processamento concluído";
+  el("mapa-processamento").hidden = false;
+  comunicar({etapa: /Analisando/.test(acao) ? 'revisao' : 'resultado',
+    estado: feitos < total ? 'ativo' : falhas ? 'erro' : 'concluido',
+    texto: feitos < total ? acao + '…' : falhas ? falhas + ' registros precisam de atenção.' : 'Lote conferido. Veja o resultado em cada registro.',
+    feitos, total, acao: falhas ? {rotulo: 'Analisar consulta', comando: 'analisar'} : undefined});
 }
 
 const interromper = erro => /sessão|redirecionada|usuário.*mudou/i.test(erro.message);
@@ -81,13 +89,15 @@ async function aba(id, url) {
   if (id !== undefined) {
     try { await chrome.tabs.get(id); return id; } catch { /* Aba fechada. */ }
   }
-  const nova = await chrome.tabs.create({url, active: false});
+  const nova = await chrome.tabs.create({url: "about:blank", active: false});
+  await chrome.runtime.sendMessage({tipo: 'lino:trabalho', tabId: nova.id});
+  await chrome.tabs.update(nova.id, {url});
   return nova.id;
 }
 
 function falha(erro) {
   status(erro.message);
-  if (!el("processamento").hidden) el("progresso-titulo").textContent = "Processamento interrompido";
+  if (!el("mapa-processamento").hidden) comunicar({etapa: "resultado", estado: "erro", texto: "Processamento interrompido. Confira os registros antes de repetir.", acao: {rotulo: "Analisar consulta", comando: "analisar"}});
   if (/sessão|redirecionada/i.test(erro.message)) {
     el("sessao").textContent = "Expirada ou redirecionada";
     el("login").hidden = false;
@@ -251,7 +261,7 @@ async function mostrarPagina(registros) {
   el("registros").replaceChildren();
   el("revisao").hidden = el("barra").hidden = true;
   if (!registros.length) {
-    el("processamento").hidden = true;
+    el("mapa-processamento").hidden = true;
     status("Consulta sem registros acessíveis.");
     return;
   }
@@ -321,7 +331,7 @@ el("consulta").onsubmit = async evento => {
     if (!await origemPermitida(origem)) throw new Error("Autorize o acesso à instância para analisar a consulta.");
     usuario = null;
     abaLogin = undefined;
-    el("processamento").hidden = true;
+    el("mapa-processamento").hidden = true;
     pagina = null;
     el("proxima").hidden = true;
     el("revisao").hidden = el("barra").hidden = true;
@@ -415,7 +425,7 @@ async function rodar(lote, manual = false) {
     status("Lote conferido. Veja o resultado em cada registro.");
   } catch (erro) {
     falha(erro);
-    el("progresso-titulo").textContent = "Processamento interrompido";
+    comunicar({etapa: "resultado", estado: "erro", texto: "Processamento interrompido. Confira os registros antes de repetir.", acao: {rotulo: "Analisar consulta", comando: "analisar"}});
   } finally { atividade(false); }
 }
 

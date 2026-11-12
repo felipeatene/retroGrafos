@@ -1,8 +1,18 @@
+import {lerMetricas, CHAVE_METRICAS} from "./metricas.mjs";
 
 import {CAMPOS, configuracao, listaDemo, origemHttps, validarLista} from "./regras.mjs";
 const el = id => document.getElementById(id);
 const json = valor => JSON.stringify(valor, null, 2);
 const mostrar = texto => { el("status").textContent = texto; };
+let origemSalva;
+
+async function atualizarConexao() {
+  const conectado = origemSalva && await chrome.permissions.contains({origins: [origemSalva + '/*']});
+  el('conectar-lino').disabled = Boolean(conectado) || !origemSalva;
+  el('conexao-lino').textContent = conectado
+    ? 'Conectado. Abra uma lista ou um chamado do ServiceNow e clique no mascote.'
+    : 'Autorize a origem salva para mostrar o mascote nessa instância.';
+}
 
 for (const [chave, nome] of Object.entries(CAMPOS)) {
   const item = document.createElement("li");
@@ -12,6 +22,8 @@ for (const [chave, nome] of Object.entries(CAMPOS)) {
 try {
   const config = await configuracao();
   el("origem").value = config.origem;
+  origemSalva = origemHttps(config.origem);
+  await atualizarConexao();
   el("lista").value = json(config.lista);
   el("prazo").value = config.prazoDias ?? 30;
 } catch (erro) {
@@ -28,6 +40,8 @@ el("config").addEventListener("submit", async evento => {
     if (!Number.isInteger(prazoDias) || prazoDias < 1 || prazoDias > 365) throw new Error("Informe um prazo entre 1 e 365 dias.");
     await chrome.storage.local.set({config: {origem, lista, prazoDias}});
     el("origem").value = origem;
+    origemSalva = origem;
+    await atualizarConexao();
     mostrar("Configuração salva.");
   } catch (erro) { mostrar(erro.message); }
 });
@@ -65,3 +79,24 @@ el("restaurar").addEventListener("click", async () => {
     mostrar("Exemplo restaurado no editor. Salve para colocá-lo em uso.");
   } catch (erro) { mostrar(erro.message); }
 });
+
+el('mostrar-lino').checked = (await chrome.storage.local.get('lino:ativo'))['lino:ativo'] !== false;
+el('conectar-lino').onclick = async () => {
+  if (!origemSalva) return;
+  try {
+    if (await chrome.permissions.request({origins: [origemSalva + '/*']})) {
+      await chrome.storage.local.set({'lino:ativo': true});
+      el('mostrar-lino').checked = true;
+    }
+    await atualizarConexao();
+  } catch { el('conexao-lino').textContent = 'Não foi possível autorizar a instância. Tente novamente.'; }
+};
+el('mostrar-lino').onchange = async () => {
+  await chrome.storage.local.set({'lino:ativo': el('mostrar-lino').checked}); mostrar('Preferência do assistente salva.');
+};
+el('exportar-metricas').onclick = async () => {
+  const url = URL.createObjectURL(new Blob([JSON.stringify({versao: 1, eventos: await lerMetricas()}, null, 2)], {type: 'application/json'}));
+  const link = document.createElement('a'); link.href = url; link.download = 'lino-metricas.json'; link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000); mostrar('Métricas exportadas.');
+};
+el('apagar-metricas').onclick = async () => { await chrome.storage.local.remove(CHAVE_METRICAS); mostrar('Métricas apagadas deste navegador.'); };

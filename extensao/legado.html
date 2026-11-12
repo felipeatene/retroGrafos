@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <title>RetroGrafos · Problemas e mudanças</title>
-  <link rel="stylesheet" href="vendor/bootstrap.min.css"><link rel="stylesheet" href="painel.css">
+  <link rel="stylesheet" href="vendor/bootstrap.min.css"><link rel="stylesheet" href="painel.css"><link rel="stylesheet" href="lino.css"><link rel="stylesheet" href="legado-lino.css">
   <script type="module" src="painel.mjs"></script>
 </head>
 <body>
@@ -40,12 +40,8 @@
     <button type="button" id="entrar" class="btn btn-sm btn-outline-dark">Abrir aba de trabalho</button>
   </div>
 
-  <section id="processamento" hidden aria-labelledby="progresso-titulo">
-    <div class="mapa-cabecalho">
-      <h2 id="progresso-titulo">Analisando registros</h2><span id="progresso-contador"></span>
-    </div>
-    <progress id="progresso" max="1" value="0" aria-labelledby="progresso-titulo"></progress>
-    <p id="progresso-detalhe" class="progresso-detalhe"></p>
+  <section id="mapa-processamento" hidden aria-label="Grafo da análise">
+    <button type="button" id="expandir-legado">Expandir grafo</button>
     <figure class="mapa">
       <svg id="grafo" viewBox="0 0 420 290" aria-label="Conexões entre palavras-chave e registros">
         <title>Mapa de palavras-chave</title>

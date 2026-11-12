@@ -60,6 +60,17 @@ export async function serviceNow(origem, rota, opcoes = {}) {
 }
 
 export async function chamar(sessao, rota, opcoes) {
+  if (rota === "contexto") {
+    const [resposta] = await chrome.scripting.executeScript({target: {tabId: sessao.tabId},
+      func: async origem => {
+        const {classificarTela, contextoAPI} = await import(chrome.runtime.getURL('mascote-contexto.mjs'));
+        return contextoAPI(classificarTela(document, location.href, origem));
+      }, args: [sessao.origem]});
+    if (resposta.result?.motivo === 'sessao') throw Object.assign(new Error('Sessão encerrada.'), {status: 401});
+    if (resposta.result?.motivo === 'acesso') throw Object.assign(new Error('Acesso negado.'), {status: 403});
+    return resposta.result;
+  }
+
   const resposta = await chrome.scripting.executeScript({
     target: {tabId: sessao.tabId}, world: "MAIN", func: serviceNow,
     args: [sessao.origem, rota, {...opcoes, usuario: sessao.usuario}],
