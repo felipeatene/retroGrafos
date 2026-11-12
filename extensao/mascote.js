@@ -9,6 +9,8 @@
     let janela, quadro, abrindo = false, arrastou = false;
     let inicio = performance.now();
     const enviar = m => chrome.runtime.sendMessage(m).catch(() => ({}));
+    const tamanhos = {48: '48px', 64: '64px', 88: '88px'};
+    const aplicarTamanho = valor => { if (host) host.style.setProperty('--lino-tamanho', tamanhos[Number(valor)] || '64px'); };
     const metrica = evento => enviar({tipo: 'lino:metrica', evento: {evento, interface: tela?.interface}});
     const evitar = 'thead, .list_bottom, .list_nav, .form_action_button, #toggleMoreOptions, #tags_menu, #document_tags, [role=tablist], [role=toolbar], [aria-label*="pagination"], [aria-label*="Pagination"]';
     function atualizarBotao() {
@@ -97,6 +99,7 @@
         host = document.createElement('div'); host.id = 'lino-assistente'; host.setAttribute('aria-label', 'Lino, assistente do RetroGrafos');
         host.style.cssText = 'position:fixed;z-index:1040;left:16px;top:16px;pointer-events:none;max-width:calc(100vw - 32px);';
         document.documentElement.append(host);
+        aplicarTamanho((await chrome.storage.local.get('lino:tamanho'))['lino:tamanho']);
         ui = await criarBaloes(host, {pagina: true, acao: comando, metrica, aoClicarMascote: alternarJanela});
         janela = document.createElement('div');
         janela.id = 'janela-lino';
@@ -195,7 +198,11 @@
       const origem = new URL(chrome.runtime.getURL('')).origin;
       if (evento.origin === origem && quadro && evento.source === quadro.contentWindow && evento.data?.tipo === 'lino:recolher-janela') recolherJanela({foco: true});
     });
-    chrome.storage.onChanged.addListener((m, area) => { if (area === 'local' && (m['lino:ativo'] || m.config)) reavaliar(); });
+    chrome.storage.onChanged.addListener((m, area) => {
+      if (area !== 'local') return;
+      if (m['lino:tamanho']) aplicarTamanho(m['lino:tamanho'].newValue);
+      if (m['lino:ativo'] || m.config) reavaliar();
+    });
     const navegar = () => { inicio = performance.now(); reavaliar(); };
     window.navigation?.addEventListener('navigatesuccess', navegar);
     addEventListener('popstate', navegar); addEventListener('resize', posicionar);
