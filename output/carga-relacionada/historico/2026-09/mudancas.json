@@ -1,0 +1,85 @@
+{
+  "changes": [
+    {
+      "sys_id": "586a84010f0b5961974f2e8057c8b9e9",
+      "number": "DEMO-CHG-20260901-C",
+      "short_description": "[DEMO] Correção em Atendimento",
+      "description": "Criar índice e validar o tempo de consulta com tráfego sintético.",
+      "start_date": "2026-09-03T15:00:00+00:00",
+      "kind": "corretiva",
+      "problem_id": "e240bb077d945d7f9f99fe149a45971f"
+    },
+    {
+      "sys_id": "2f13305ea8ae5b70a18e8cfd95a21843",
+      "number": "DEMO-CHG-20260901-O",
+      "short_description": "[DEMO] Publicação anterior em Atendimento",
+      "description": "Publicação fictícia relacionada ao início das ocorrências.",
+      "start_date": "2026-08-31T15:00:00+00:00",
+      "kind": "origem",
+      "problem_id": "e240bb077d945d7f9f99fe149a45971f"
+    },
+    {
+      "sys_id": "381598c4de7251d5b2a6531d82db1cf3",
+      "number": "DEMO-CHG-20260902-C",
+      "short_description": "[DEMO] Correção em Estoque",
+      "description": "Aplicar controle de versão ao saldo e reconciliar divergências.",
+      "start_date": "2026-09-03T09:00:00+00:00",
+      "kind": "corretiva",
+      "problem_id": "a1aeee7fda9451d39bd1e5466effbf82"
+    },
+    {
+      "sys_id": "f456a4c46064519b80bdecdf92180b55",
+      "number": "DEMO-CHG-20260902-O",
+      "short_description": "[DEMO] Publicação anterior em Estoque",
+      "description": "Publicação fictícia relacionada ao início das ocorrências.",
+      "start_date": "2026-08-31T09:00:00+00:00",
+      "kind": "origem",
+      "problem_id": "a1aeee7fda9451d39bd1e5466effbf82"
+    },
+    {
+      "sys_id": "a311c02890a65e05b67a6dfaf3beef8f",
+      "number": "DEMO-CHG-20260903-C",
+      "short_description": "[DEMO] Correção em Financeiro",
+      "description": "Reimplantar o processamento em lotes e validar notas em ambiente de teste.",
+      "start_date": "2026-09-03T15:00:00+00:00",
+      "kind": "corretiva",
+      "problem_id": "3c9708e9636052f8b9890ba7d48d3994"
+    },
+    {
+      "sys_id": "a0d44359b9295572a996bb90e90bc986",
+      "number": "DEMO-CHG-20260903-O",
+      "short_description": "[DEMO] Publicação anterior em Financeiro",
+      "description": "Publicação fictícia relacionada ao início das ocorrências.",
+      "start_date": "2026-08-31T15:00:00+00:00",
+      "kind": "origem",
+      "problem_id": "3c9708e9636052f8b9890ba7d48d3994"
+    },
+    {
+      "sys_id": "7eac533184e6535b8f1b354955131144",
+      "number": "DEMO-CHG-20260904-C",
+      "short_description": "[DEMO] Correção em Identidade",
+      "description": "Invalidar o cache na rotação e validar renovação de sessão.",
+      "start_date": "2026-09-03T09:00:00+00:00",
+      "kind": "corretiva",
+      "problem_id": "1ebbbca2868c5318ad2228a9f56aa10a"
+    },
+    {
+      "sys_id": "3717ca99b09d5efc95f702d66f0a0d87",
+      "number": "DEMO-CHG-20260905-C",
+      "short_description": "[DEMO] Correção em Logística",
+      "description": "Ordenar eventos por versão e reprocessar o lote de teste.",
+      "start_date": "2026-09-03T14:00:00+00:00",
+      "kind": "corretiva",
+      "problem_id": "a3f7047a10af5ae78873f8e21ca9d3ea"
+    },
+    {
+      "sys_id": "d2cdb3b1d0415765a41294e65dc95d8a",
+      "number": "DEMO-CHG-20260906-C",
+      "short_description": "[DEMO] Correção em Relatórios",
+      "description": "Processar exportações em partes e medir o consumo de memória.",
+      "start_date": "2026-09-03T14:00:00+00:00",
+      "kind": "corretiva",
+      "problem_id": "c7675341824d5a85ae14b674419ae3bf"
+    }
+  ]
+}
