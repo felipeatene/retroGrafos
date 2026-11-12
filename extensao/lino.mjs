@@ -1,6 +1,7 @@
 import {mensagensPainel} from "./mensagens-painel.mjs";
 import {chamar, coletar, preferencias} from "./lino-api.mjs";
-import {agrupar, desenhar, TIPOS_LINO} from "./lino-grafo.mjs";
+import {criarGrafoVivo} from "./grafo-vivo.mjs";
+import {agrupar, projetar, TIPOS_LINO} from "./projecao.mjs";
 import {CAMPOS, configuracao, origemHttps, validarLista} from "./regras.mjs";
 import {LIMITE, registroURL} from "./lote.mjs";
 
@@ -28,7 +29,18 @@ const selecionados = new Set();
 let sessao, config, ativa, revisao = 0, atualizacao = 0, ocupado = false;
 let vinculos = [], ignorados = [], tagAberta, impacto = [], erroGrafo = "";
 const comunicar = mensagensPainel('lino', () => sessao?.tabId || ativa?.id, () => mostrarVista('chamado'));
-let limiteTags = 12, limiteIncidentes = 10, consultandoGrafo = false;
+let limiteTags = 12, limiteIncidentes = 10, consultandoGrafo = false, enquadrado = false;
+const vivo = criarGrafoVivo(el("grafo"), {
+  aoAbrir(no) {
+    if (no.abrir === "incidente") {
+      const encontrado = vinculos.find(item => item.incidente.id === no.incidenteId);
+      if (encontrado) abrirIncidente(encontrado.incidente);
+    } else if (no.abrir === "tag") {
+      const tag = agrupar(vinculos).find(item => item.id === no.tagId);
+      if (tag) abrirTag(tag);
+    }
+  },
+});
 
 function mostrarVista(vista, focar = false) {
   const grafo = vista === 'grafo' && Boolean(sessao);
@@ -37,6 +49,7 @@ function mostrarVista(vista, focar = false) {
   el('aba-chamado').setAttribute('aria-pressed', String(!grafo));
   el('aba-grafo').setAttribute('aria-pressed', String(grafo));
   if (focar) el(grafo ? 'grafo-titulo' : 'contexto-titulo').focus();
+  if (grafo) requestAnimationFrame(caberGrafo);
 }
 
 function elemento(tipo, texto) {
@@ -85,7 +98,9 @@ function limparSessao() {
   mostrarVista('chamado');
   for (const id of ["classificacao", "selecao", "navegacao-lino", "resultados"]) el(id).hidden = true;
   el('selecionados').textContent = '';
-  for (const id of ["candidatos", "grafo", "tags", "resultado-lista", "detalhe-incidentes", "ignorado-lista"]) el(id).replaceChildren();
+  enquadrado = false;
+  vivo.definir({nos: [], arestas: []});
+  for (const id of ["candidatos", "tags", "resultado-lista", "detalhe-incidentes", "ignorado-lista"]) el(id).replaceChildren();
   el("resultado-status").textContent = "";
   el("resultado-barras").replaceChildren();
   el("resultado-barras").hidden = true;
@@ -229,25 +244,53 @@ function abrirIncidente(incidente) {
   if (sessao) chrome.tabs.create({url: registroURL(sessao.origem, "incident", incidente.id)});
 }
 
+function pintarLegenda(legenda) {
+  const caixa = el("grafo-legenda");
+  const itens = legenda?.tipo === "categorica" ? legenda.itens : [];
+  caixa.replaceChildren();
+  caixa.hidden = !itens.length;
+  for (const item of itens.slice(0, 4)) {
+    const marca = elemento("i");
+    marca.style.background = item.cor;
+    caixa.append(marca, elemento("span", item.rotulo));
+  }
+}
+
+function caberGrafo() {
+  if (enquadrado || el("grafo").hidden || el("grafo").clientWidth < 40) return;
+  vivo.enquadrar();
+  enquadrado = true;
+}
+
 function renderizarGrafo() {
-  const tags = agrupar(vinculos, el("busca").value, el("tipo").value);
-  el('expandir').disabled = !vinculos.length;
+  const busca = el("busca").value;
+  const tipo = el("tipo").value;
+  const tags = agrupar(vinculos, busca, tipo);
+  el("expandir").disabled = !vinculos.length;
   const incidentes = new Set(tags.flatMap(tag => [...tag.incidentes.keys()]));
-  el("grafo").hidden = tags.length === 0;
-  el("grafo-legenda").hidden = !tags.length;
-  el("grafo-estado").textContent = erroGrafo || (tags.length ? ""
-    : consultandoGrafo ? "Carregando o grafo…"
-    : vinculos.length ? "Nenhuma tag corresponde aos filtros." : "Classifique um incidente para começar o grafo.");
-  el("grafo-contagem").textContent = tags.length ? tags.length + " tags · " + incidentes.size + " incidentes" : "";
+  const proj = projetar(vinculos, {vertices: ["tag", "incidente"], arestas: "pertence", cor: "tipo", busca, tipo});
+  const vazio = proj.nos.length === 0;
+  el("grafo").hidden = vazio;
+  el("grafo-estado").textContent = erroGrafo || (vazio
+    ? consultandoGrafo ? "Carregando o grafo…"
+    : vinculos.length ? "Nenhuma tag corresponde aos filtros." : "Classifique um incidente para começar o grafo."
+    : "");
+  el("grafo-contagem").textContent = tags.length ? tags.length + " tags · " + incidentes.size + " incidentes" + (proj.aviso ? " · " + proj.aviso : "") : "";
+  pintarLegenda(vazio ? null : proj.legenda);
   el("catalogo").hidden = !tags.length;
   el("mais-tags").hidden = tags.length <= limiteTags;
-  desenhar(el("grafo"), tags, abrirTag, abrirIncidente);
+  vivo.definir(proj);
+  requestAnimationFrame(caberGrafo);
   el("tags").replaceChildren(...tags.slice(0, limiteTags).map(tag => {
     const li = elemento("li");
     const botao = elemento("button");
     botao.type = "button";
     botao.append(elemento("span", tag.valor), elemento("small", TIPOS_LINO[tag.tipo] + " · " + tag.incidentes.size));
     botao.addEventListener("click", () => abrirTag(tag));
+    botao.addEventListener("focus", () => vivo.destacar("tag:" + tag.id));
+    botao.addEventListener("blur", () => vivo.destacar(null));
+    botao.addEventListener("mouseenter", () => vivo.destacar("tag:" + tag.id));
+    botao.addEventListener("mouseleave", () => vivo.destacar(null));
     li.append(botao);
     return li;
   }));
@@ -600,6 +643,7 @@ chrome.tabs.onUpdated.addListener((id, mudanca) => {
 chrome.storage.onChanged.addListener((mudancas, area) => {
   if (area === "local" && mudancas.config) verificar();
 });
+el("enquadrar").addEventListener("click", () => { enquadrado = true; vivo.enquadrar(); });
 el("expandir").addEventListener("click", async () => {
   const resposta = await chrome.runtime.sendMessage({tipo: 'lino:expandir', fluxo: 'lino', dados: vinculos});
   if (resposta?.erro) comunicar({etapa: 'grafo', estado: 'erro', texto: resposta.erro, acao: {rotulo: 'Expandir', comando: 'expandir'}});

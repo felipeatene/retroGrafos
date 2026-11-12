@@ -4,7 +4,7 @@ import {readFileSync} from "node:fs";
 import test from "node:test";
 import vm from "node:vm";
 import {coletar, preferencias} from "../lino-api.mjs";
-import {agrupar} from "../lino-grafo.mjs";
+import {agrupar} from "../projecao.mjs";
 import {validarLista} from "../regras.mjs";
 
 const fonte = nome => readFileSync(new URL("../../servicenow/" + nome + ".js", import.meta.url), "utf8");
@@ -118,7 +118,26 @@ test("classifica metadados, data no fuso da instância e texto, respeitando ACL 
   assert.ok([...a.dados.label.values()].every(tag => tag.group_list === grupo &&
     tag.owner === owner && tag.viewable_by === "groups and users" && tag.global === "false"));
   a.nega.campo.add("caller_id");
-  assert.ok(!a.chamar("grafo").dados.itens.some(item => item.tag.valor === "Ana de Souza"));
+  const grafo = a.chamar("grafo").dados.itens;
+  assert.ok(!grafo.some(item => item.tag.valor === "Ana de Souza"));
+  const estoque = grafo.find(item => item.tag.valor === "Estóque");
+  assert.equal(estoque.incidente.campos.grupo, "");
+  assert.equal(estoque.incidente.campos.prioridade, "");
+  assert.equal(estoque.incidente.abertoEm, "2026-10-22 02:00:00");
+});
+
+test("grafo devolve os campos do incidente e omite o que a ACL esconde", () => {
+  const a = ambiente();
+  a.incidente(11, {u_system_name: "Estoque", short_description: "Queda do enlace",
+    assignment_group: "Service Desk", priority: "2 - Alta", state: "Em andamento",
+    category: "Rede", cmdb_ci: "Roteador-01", opened_at: "2026-11-01 15:04:00"});
+  a.nega.campo.add("priority");
+  assert.equal(a.chamar("classificar", {corpo: {ids: [id(11)], regras: [], ignorados: []}}).status, 200);
+  const item = a.chamar("grafo").dados.itens[0];
+  assert.deepEqual(item.incidente.campos, {
+    grupo: "Service Desk", prioridade: "", estado: "Em andamento", categoria: "Rede", ic: "Roteador-01",
+  });
+  assert.equal(item.incidente.abertoEm, "2026-11-01 15:04:00");
 });
 
 test("autoriza antes de operar, valida identidade, repete sem duplicar e preserva vínculo manual", () => {

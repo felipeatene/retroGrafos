@@ -1,7 +1,23 @@
-main { max-width: 1120px; margin: auto; padding: 32px 24px; }
-#grafo { width: 100%; height: min(55vh, 560px); display: block; }
-.colunas { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
-.filtros { position: static; display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }
-.filtros label { display: flex; align-items: center; gap: 8px; }
-.titulo-linha { flex-wrap: wrap; }
-@media (max-width: 600px) { main { padding: 16px; } .colunas { grid-template-columns: 1fr; gap: 16px; } .filtros label { width: 100%; } }
+body.pagina-grafo main { width: min(100%, 88rem); }
+.palco { display: grid; grid-template-columns: 17.5rem minmax(0, 1fr); gap: 1rem; align-items: start; }
+.mapeamento { grid-row: 1 / span 2; display: grid; gap: .75rem; align-content: start; position: sticky; top: 4.6rem; max-height: calc(100vh - 5.6rem); overflow: auto; }
+.mapeamento fieldset { margin: 0; display: grid; gap: .4rem; }
+.mapeamento .campo, .mapeamento .opcao { display: flex; justify-content: space-between; gap: .6rem; align-items: center; color: var(--suave); font-size: .82rem; }
+.mapeamento .opcao { justify-content: flex-start; }
+.mapeamento select, .mapeamento input[type="search"] { width: 9.2rem; min-height: 2.15rem; background: #18271ded; border: 1px solid #49614b; border-radius: .47rem; padding-inline: .4rem; }
+.mapeamento input[type="range"] { width: 9.2rem; accent-color: var(--verde); }
+.mapeamento input[type="checkbox"], .mapeamento input[type="radio"] { accent-color: var(--verde); }
+.cena { position: relative; min-height: 28rem; border: 1px solid #384a39; border-radius: 1rem; background: linear-gradient(155deg, #253b29, #17221a 72%); overflow: hidden; }
+body.pagina-grafo #grafo { width: 100%; height: min(68vh, 640px); }
+.listas { grid-column: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.legenda-cor { display: flex; flex-wrap: wrap; gap: .35rem .65rem; align-items: center; color: var(--suave); font-size: .75rem; }
+.legenda-cor i { width: .55rem; height: .55rem; border-radius: 50%; }
+.regua-calor { display: block; width: 100%; height: .45rem; border-radius: 99px; background: linear-gradient(90deg, var(--de), var(--ate)); }
+.nota { margin: 0; color: var(--metadado); font-size: .75rem; }
+.linha-tempo { display: grid; }
+@media (max-width: 800px) {
+  .palco, .listas { grid-template-columns: 1fr; }
+  .mapeamento { grid-row: auto; position: static; max-height: none; }
+  .listas { grid-column: 1; }
+  body.pagina-grafo #grafo { height: 22rem; }
+}

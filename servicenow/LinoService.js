@@ -198,7 +198,11 @@ LinoService.prototype = {
         });
         if (!campos.length) return null;
         return {id: id, tag: tag, incidente: {id: incidenteId, numero: this.valor(incidente, 'number'),
-            titulo: this.valor(incidente, 'short_description')}, fontes: campos,
+            titulo: this.valor(incidente, 'short_description'),
+            campos: {grupo: this.contexto(incidente, 'assignment_group'), prioridade: this.contexto(incidente, 'priority'),
+                estado: this.contexto(incidente, 'state'), categoria: this.contexto(incidente, 'category'),
+                ic: this.contexto(incidente, 'cmdb_ci')},
+            abertoEm: this.valor(incidente, 'opened_at')}, fontes: campos,
             removivel: incidente.canWrite() && vinculo.canDelete()};
     },
 
